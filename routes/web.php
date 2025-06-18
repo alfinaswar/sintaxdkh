@@ -4,6 +4,7 @@ use App\Http\Controllers\DataInventarisController;
 use App\Http\Controllers\MasterDepartemenController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\MasterMerkController;
+use App\Http\Controllers\WorkOrderController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/create', [DataInventarisController::class, 'create'])->name('data-inventaris.create');
         Route::post('/store', [DataInventarisController::class, 'store'])->name('data-inventaris.store');
         Route::get('/edit/{id}', [DataInventarisController::class, 'edit'])->name('data-inventaris.edit');
+        Route::get('/detail/{id}', [DataInventarisController::class, 'show'])->name('data-inventaris.show');
         Route::put('/update/{id}', [DataInventarisController::class, 'update'])->name('data-inventaris.update');
         Route::delete('/destroy/{id}', [DataInventarisController::class, 'destroy'])->name('data-inventaris.destroy');
     });
@@ -51,6 +53,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name('master-item.edit');
         Route::put('/update/{id}', [MasterItemController::class, 'update'])->name('master-item.update');
         Route::delete('/destroy/{id}', [MasterItemController::class, 'destroy'])->name('master-item.destroy');
+    });
+    Route::prefix('work-order')->group(function () {
+        Route::get('/', [WorkOrderController::class, 'index'])->name('work-order.index');
+        Route::get('/create', [WorkOrderController::class, 'create'])->name('work-order.create');
+        Route::post('/store', [WorkOrderController::class, 'store'])->name('work-order.store');
+        Route::get('/edit/{id}', [WorkOrderController::class, 'edit'])->name('work-order.edit');
+        Route::put('/update/{id}', [WorkOrderController::class, 'update'])->name('work-order.update');
+        Route::delete('/destroy/{id}', [WorkOrderController::class, 'destroy'])->name('work-order.destroy');
     });
     Route::prefix('master-merk')->group(function () {
         Route::get('/', [MasterMerkController::class, 'index'])->name('master-merk.index');
@@ -67,6 +77,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [MasterDepartemenController::class, 'edit'])->name('master-dept.edit');
         Route::put('/update/{id}', [MasterDepartemenController::class, 'update'])->name('master-dept.update');
         Route::delete('/destroy/{id}', [MasterDepartemenController::class, 'destroy'])->name('master-dept.destroy');
+        Route::get('/get-units-by-departemen', [MasterDepartemenController::class, 'getByDepartemen'])->name('master-dept.get-item-by-departemen');
+
     });
     Route::prefix('bukti-upload')->group(function () {
         Route::GET('/bukti-upload', [UserController::class, 'index'])->name('bukti.index');

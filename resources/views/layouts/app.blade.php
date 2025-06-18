@@ -13,12 +13,13 @@
     <meta property="og:description" content="Yashadmin:Sales Management System Admin Bootstrap 5 Template">
     <meta property="og:image" content="https:/yashadmin.dexignzone.com/xhtml/social-image.png">
     <meta name="format-detection" content="telephone=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- PAGE TITLE HERE -->
-    <title>Kuisoner</title>
+    <title>Dashboard</title>
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-
+    <link rel="stylesheet" href="{{ asset('') }}assets/vendor/select2/css/select2.min.css">
     <link href="{{ asset('') }}assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{ asset('') }}assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -26,6 +27,8 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+
     <!-- tagify-css -->
 
     <!-- Style css -->
@@ -120,30 +123,44 @@
                     <li class="menu-title">Dashboard</li>
                     <li><a class="" href="{{route('data-inventaris.index')}}" aria-expanded="false">
                             <div class="menu-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.13478 20.7733V17.7156C9.13478 16.9351 9.77217 16.3023 10.5584 16.3023H13.4326C13.8102 16.3023 14.1723 16.4512 14.4393 16.7163C14.7063 16.9813 14.8563 17.3408 14.8563 17.7156V20.7733C14.8539 21.0978 14.9821 21.4099 15.2124 21.6402C15.4427 21.8705 15.756 22 16.0829 22H18.0438C18.9596 22.0024 19.8388 21.6428 20.4872 21.0008C21.1356 20.3588 21.5 19.487 21.5 18.5778V9.86686C21.5 9.13246 21.1721 8.43584 20.6046 7.96467L13.934 2.67587C12.7737 1.74856 11.1111 1.7785 9.98539 2.74698L3.46701 7.96467C2.87274 8.42195 2.51755 9.12064 2.5 9.86686V18.5689C2.5 20.4639 4.04738 22 5.95617 22H7.87229C8.55123 22 9.103 21.4562 9.10792 20.7822L9.13478 20.7733Z"
-                                        fill="#90959F" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M3 3h18v18H3z" />
+                                    <path d="M3 9h18" />
+                                    <path d="M9 21V9" />
                                 </svg>
                             </div>
-                            <span class="nav-text">Data Master</span>
+                            <span class="nav-text">Data Inventaris</span>
+                        </a>
+                    </li>
+                    <li><a class="" href="{{route('work-order.index')}}" aria-expanded="false">
+                            <div class="menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                                </svg>
+                            </div>
+                            <span class="nav-text">Work Order</span>
                         </a>
                     </li>
                     <li class="menu-title">Data Master</li>
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <div class="menu-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.13478 20.7733V17.7156C9.13478 16.9351 9.77217 16.3023 10.5584 16.3023H13.4326C13.8102 16.3023 14.1723 16.4512 14.4393 16.7163C14.7063 16.9813 14.8563 17.3408 14.8563 17.7156V20.7733C14.8539 21.0978 14.9821 21.4099 15.2124 21.6402C15.4427 21.8705 15.756 22 16.0829 22H18.0438C18.9596 22.0024 19.8388 21.6428 20.4872 21.0008C21.1356 20.3588 21.5 19.487 21.5 18.5778V9.86686C21.5 9.13246 21.1721 8.43584 20.6046 7.96467L13.934 2.67587C12.7737 1.74856 11.1111 1.7785 9.98539 2.74698L3.46701 7.96467C2.87274 8.42195 2.51755 9.12064 2.5 9.86686V18.5689C2.5 20.4639 4.04738 22 5.95617 22H7.87229C8.55123 22 9.103 21.4562 9.10792 20.7822L9.13478 20.7733Z"
-                                        fill="#90959F" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                                 </svg>
                             </div>
                             <span class="nav-text">Data Master</span>
                         </a>
                         <ul aria-expanded="false">
-
                             <li><a href="{{route('master-item.index')}}">Item</a></li>
                             <li><a href="{{route('master-merk.index')}}">Merk</a></li>
                             <li><a href="{{route('master-dept.index')}}">Dept / Unit</a></li>
@@ -152,25 +169,22 @@
                     <li class="menu-title">Manajemen User</li>
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <div class="menu-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.13478 20.7733V17.7156C9.13478 16.9351 9.77217 16.3023 10.5584 16.3023H13.4326C13.8102 16.3023 14.1723 16.4512 14.4393 16.7163C14.7063 16.9813 14.8563 17.3408 14.8563 17.7156V20.7733C14.8539 21.0978 14.9821 21.4099 15.2124 21.6402C15.4427 21.8705 15.756 22 16.0829 22H18.0438C18.9596 22.0024 19.8388 21.6428 20.4872 21.0008C21.1356 20.3588 21.5 19.487 21.5 18.5778V9.86686C21.5 9.13246 21.1721 8.43584 20.6046 7.96467L13.934 2.67587C12.7737 1.74856 11.1111 1.7785 9.98539 2.74698L3.46701 7.96467C2.87274 8.42195 2.51755 9.12064 2.5 9.86686V18.5689C2.5 20.4639 4.04738 22 5.95617 22H7.87229C8.55123 22 9.103 21.4562 9.10792 20.7822L9.13478 20.7733Z"
-                                        fill="#90959F" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
                                 </svg>
                             </div>
                             <span class="nav-text">Manajemen User</span>
                         </a>
                         <ul aria-expanded="false">
-
                             <li><a href="{{route('users.index')}}">Data Pengguna</a></li>
                             <li><a href="index-2.html">Master Rumah Sakit</a></li>
                             <li><a href="index-3.html">Role</a></li>
                         </ul>
                     </li>
-
                 </ul>
-
             </div>
         </div>
 
@@ -219,13 +233,16 @@
     <script src="{{ asset('') }}assets/js/dashboard/dashboard-2.js"></script>
 
 
-    <!-- tagify -->
+
     <script src="{{ asset('') }}assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('') }}assets/js/plugins-init/datatables.init.js"></script>
 
     <script src="{{ asset('') }}assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
     <script src="{{ asset('') }}assets/vendor/datatables/js/buttons.html5.min.js"></script>
     <script src="{{ asset('') }}assets/vendor/datatables/js/jszip.min.js"></script>
+
+    <script src="{{ asset('') }}assets/vendor/select2/js/select2.full.min.js"></script>
+    <script src="{{ asset('') }}assets/js/plugins-init/select2-init.js"></script>
 
     <!-- Apex Chart -->
 

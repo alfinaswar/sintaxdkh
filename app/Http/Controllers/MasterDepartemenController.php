@@ -141,6 +141,14 @@ class MasterDepartemenController extends Controller
             ->with('success', 'Departemen berhasil diperbarui');
     }
 
+    public function getByDepartemen(Request $request)
+    {
+        $departemenId = $request->departemen_id;
+
+        $units = MasterUnit::where('IdDepartemen', $departemenId)->get(['id', 'NamaUnit']);
+
+        return response()->json($units);
+    }
     public function destroy($id)
     {
         $id = Crypt::decrypt($id);

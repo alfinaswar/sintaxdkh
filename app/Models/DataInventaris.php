@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class DataInventaris extends Model
 {
     use HasFactory;
+    protected $table = 'data_inventaris';
+    protected $guarded = ['id'];
+    public function getDepartemen()
+    {
+        return $this->belongsTo(MasterDepartemen::class, 'Departemen', 'id');
+    }
+    public function getUnit()
+    {
+        return $this->belongsTo(MasterUnit::class, 'Unit', 'id');
+    }
+    public function getMerk()
+    {
+        return $this->belongsTo(MasterMerk::class, 'Merk', 'id');
+    }
+    public function getItem()
+    {
+        return $this->belongsTo(MasterItem::class, 'ItemID', 'id');
+    }
 }

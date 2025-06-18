@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('Unit')->nullable();
             $table->enum('Jenis', ['MEDIS', 'NON-MEDIS'])->nullable();
             $table->string('ManualBook')->nullable();
-            $table->enum('Klasifikasi', ['HIGH-RISK', 'MEDIUM-RISK', 'LOW-RISK'])->nullable();
+            $table->enum('Klasifikasi', ['HIGH-RISK', 'MEDIUM-RISK', 'LOW-RISK', 'LOW-TO-MEDIUM-RISK'])->nullable();
             $table->string('Keterangan')->nullable();
             $table->string('Gambar')->nullable();
             $table->string('KodeRS')->nullable();

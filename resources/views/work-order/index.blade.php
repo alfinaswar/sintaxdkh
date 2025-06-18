@@ -3,7 +3,7 @@
 @section('content')
     <div class="row mb-3">
         <div class="col text-end">
-            <a href="{{ route('data-inventaris.create') }}" class="btn btn-success">Tambah Inventaris Baru</a>
+            <a href="{{ route('work-order.create') }}" class="btn btn-success">Tambah Work Order Baru</a>
         </div>
     </div>
     @if (session()->has('success'))
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Data Inventaris</h4>
+            <h4 class="card-title">Data Work Order</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -29,15 +29,14 @@
                     <thead>
                         <tr>
                             <th width="5%">No</th>
-                            <th>No Inventaris</th>
-                            <th>Item</th>
-                            <th>Serial Number</th>
-                            <th>Merk</th>
-                            <th>Tipe</th>
-                            <th>Tanggal Beli</th>
-                            <th>Dept / Unit</th>
-                            <th>Manual Book</th>
-                            <th>Gambar</th>
+                            <th>Tanggal</th>
+                            <th>Departemen</th>
+                            <th>Judul</th>
+                            <th>Kasus</th>
+                            <th>Kategori</th>
+                            <th>Prioritas</th>
+                            <th>Ditugaskan Ke</th>
+                            <th>Status</th>
                             <th class="text-center" width="15%">Aksi</th>
                         </tr>
                     </thead>
@@ -62,7 +61,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route('data-inventaris.destroy', ':id') }}'.replace(':id', id),
+                            url: '{{ route('work-order.destroy', ':id') }}'.replace(':id', id),
                             type: 'DELETE',
                             data: {
                                 _token: '{{ csrf_token() }}'
@@ -102,7 +101,7 @@
                             previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                         }
                     },
-                    ajax: "{{ route('data-inventaris.index') }}",
+                    ajax: "{{ route('work-order.index') }}",
                     columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -110,43 +109,36 @@
                         searchable: false
                     },
                     {
-                        data: 'NoInventaris',
-                        name: 'NoInventaris'
+                        data: 'Tanggal',
+                        name: 'Tanggal'
                     },
                     {
-                        data: 'get_item.Nama',
-                        name: 'get_item.Nama'
+                        data: 'get_departemen.NamaDepartemen',
+                        name: 'get_departemen.NamaDepartemen'
                     },
                     {
-                        data: 'SerialNumber',
-                        name: 'SerialNumber'
+                        data: 'Judul',
+                        name: 'Judul'
                     },
                     {
-                        data: 'get_merk.Merk',
-                        name: 'get_merk.Merk'
+                        data: 'Kasus',
+                        name: 'Kasus'
                     },
                     {
-                        data: 'Tipe',
-                        name: 'Tipe'
+                        data: 'KategoriKasus',
+                        name: 'KategoriKasus'
                     },
                     {
-                        data: 'TanggalBeli',
-                        name: 'TanggalBeli'
+                        data: 'Prioritas',
+                        name: 'Prioritas'
                     },
                     {
-                        data: 'PosisiBarang',
-                        name: 'PosisiBarang'
+                        data: 'get_ditugaskan_ke.name',
+                        name: 'get_ditugaskan_ke.name'
                     },
-
-
                     {
-                        data: 'ManualBook',
-                        name: 'ManualBook'
-                    },
-
-                    {
-                        data: 'Gambar',
-                        name: 'Gambar'
+                        data: 'StatusID',
+                        name: 'StatusID'
                     },
                     {
                         data: 'action',
