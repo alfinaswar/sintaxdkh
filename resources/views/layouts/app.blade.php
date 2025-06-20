@@ -180,8 +180,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{route('users.index')}}">Data Pengguna</a></li>
-                            <li><a href="index-2.html">Master Rumah Sakit</a></li>
-                            <li><a href="index-3.html">Role</a></li>
+                            <li><a href="{{route('master-rs.index')}}">Master Rumah Sakit</a></li>
+                            <li><a href="{{route('roles.index')}}">Role</a></li>
                         </ul>
                     </li>
                 </ul>

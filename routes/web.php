@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\DataInventarisController;
+use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\MasterDepartemenController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\MasterMerkController;
+use App\Http\Controllers\MasterRsController;
 use App\Http\Controllers\WorkOrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,10 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('provinces', [DependantDropdownController::class, 'provinces'])->name('provinces');
+    Route::get('cities', [DependantDropdownController::class, 'cities'])->name('cities');
+    Route::get('districts', [DependantDropdownController::class, 'districts'])->name('districts');
+    Route::get('villages', [DependantDropdownController::class, 'villages'])->name('villages');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
@@ -44,6 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [DataInventarisController::class, 'edit'])->name('data-inventaris.edit');
         Route::get('/detail/{id}', [DataInventarisController::class, 'show'])->name('data-inventaris.show');
         Route::put('/update/{id}', [DataInventarisController::class, 'update'])->name('data-inventaris.update');
+        Route::put('/work-order/{id}', [DataInventarisController::class, 'WorkOrder'])->name('data-inventaris.Wo');
+        Route::put('/preventif-maintenance/{id}', [DataInventarisController::class, 'Pm'])->name('data-inventaris.Pm');
+        Route::put('/kalibrasi/{id}', [DataInventarisController::class, 'Kalibrasi'])->name('data-inventaris.Kalibrasi');
         Route::delete('/destroy/{id}', [DataInventarisController::class, 'destroy'])->name('data-inventaris.destroy');
     });
     Route::prefix('master-item')->group(function () {
@@ -59,6 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/create', [WorkOrderController::class, 'create'])->name('work-order.create');
         Route::post('/store', [WorkOrderController::class, 'store'])->name('work-order.store');
         Route::get('/edit/{id}', [WorkOrderController::class, 'edit'])->name('work-order.edit');
+        Route::get('/response/{id}', [WorkOrderController::class, 'reply'])->name('work-order.reply');
         Route::put('/update/{id}', [WorkOrderController::class, 'update'])->name('work-order.update');
         Route::delete('/destroy/{id}', [WorkOrderController::class, 'destroy'])->name('work-order.destroy');
     });
@@ -69,6 +79,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [MasterMerkController::class, 'edit'])->name('master-merk.edit');
         Route::put('/update/{id}', [MasterMerkController::class, 'update'])->name('master-merk.update');
         Route::delete('/destroy/{id}', [MasterMerkController::class, 'destroy'])->name('master-merk.destroy');
+    });
+    Route::prefix('master-rumah-sakit')->group(function () {
+        Route::get('/', [MasterRsController::class, 'index'])->name('master-rs.index');
+        Route::get('/create', [MasterRsController::class, 'create'])->name('master-rs.create');
+        Route::post('/store', [MasterRsController::class, 'store'])->name('master-rs.store');
+        Route::get('/edit/{id}', [MasterRsController::class, 'edit'])->name('master-rs.edit');
+        Route::put('/update/{id}', [MasterRsController::class, 'update'])->name('master-rs.update');
+        Route::delete('/destroy/{id}', [MasterRsController::class, 'destroy'])->name('master-rs.destroy');
     });
     Route::prefix('master-departemen-unit')->group(function () {
         Route::get('/', [MasterDepartemenController::class, 'index'])->name('master-dept.index');

@@ -98,7 +98,7 @@
                                         <option value="">Pilih Item</option>
                                         @foreach($items as $item)
                                             <option value="{{ $item->id }}" {{ old('ItemID') == $item->id ? 'selected' : '' }}>
-                                                {{ $item->Nama }}
+                                                {{ $item->getItem->Nama }} - {{$item->NoInventaris}}
                                             </option>
                                         @endforeach
                                     </select>

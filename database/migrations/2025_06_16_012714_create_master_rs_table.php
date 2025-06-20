@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('master_rs', function (Blueprint $table) {
             $table->id();
-            $table->string('kodeRs', 50)->unique();
             $table->string('Nama', 255);
             $table->string('JenisRs', 100)->nullable();
             $table->string('KelasRs', 50)->nullable();
@@ -25,7 +24,7 @@ return new class extends Migration {
             $table->string('Kecamatan', 100)->nullable();
             $table->string('KodePos', 10)->nullable();
             $table->string('Website', 255)->nullable();
-            $table->string('StatusPenye lenggara', 100)->nullable();
+            $table->string('StatusPenyelenggara', 100)->nullable();
             $table->date('TanggalBerdiri')->nullable();
             $table->string('NomorIzin', 100)->nullable();
             $table->date('TanggalIzin')->nullable();

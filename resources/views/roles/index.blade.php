@@ -1,56 +1,59 @@
 @extends('layouts.app')
 
-
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Role Management</h2>
-        </div>
-        <div class="pull-right">
-        @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0">Manajemen Role</h4>
+            @can('role-create')
+                <a class="btn btn-primary" href="{{ route('roles.create') }}">Tambah Role Baru</a>
             @endcan
         </div>
+        <div class="card-body">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    {{ $message }}
+                </div>
+            @endif
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">No</th>
+                            <th>Nama</th>
+                            <th style="width: 220px;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($roles as $key => $role)
+                            <tr>
+                                <td>{{ ++$i }}</td>
+                                <td>{{ $role->name }}</td>
+                                <td>
+                                    <a class="btn btn-info btn-sm" href="{{ route('roles.show', $role->id) }}">Detail</a>
+                                    @can('role-edit')
+                                        <a class="btn btn-warning btn-sm" href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                                    @endcan
+                                    @can('role-delete')
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
+                                        {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-sm', 'onclick' => "return confirm('Yakin ingin menghapus role ini?')"]) !!}
+                                        {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach
+                        @if($roles->isEmpty())
+                            <tr>
+                                <td colspan="3" class="text-center">Tidak ada data role.</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-3">
+                {!! $roles->render() !!}
+            </div>
+        </div>
     </div>
-</div>
-
-
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        {{ $message }}
-    </div>
-@endif
-
-
-<table class="table table-bordered">
-  <tr>
-     <th>No</th>
-     <th>Name</th>
-     <th width="280px">Action</th>
-  </tr>
-    @foreach ($roles as $key => $role)
-    <tr>
-        <td>{{ ++$i }}</td>
-        <td>{{ $role->name }}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-            @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
-            @endcan
-            @can('role-delete')
-                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-            @endcan
-        </td>
-    </tr>
-    @endforeach
-</table>
-
-
-{!! $roles->render() !!}
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection

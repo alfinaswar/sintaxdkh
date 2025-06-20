@@ -15,7 +15,7 @@
                             <label for="Tanggal" class="form-label">Tanggal</label>
                             <input type="date" name="Tanggal" id="Tanggal"
                                 class="form-control @error('Tanggal') is-invalid @enderror"
-                                value="{{ old('Tanggal', $workOrder->Tanggal) }}">
+                                value="{{ old('Tanggal', $workOrder->Tanggal) }}" readonly>
                             @error('Tanggal')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -24,7 +24,8 @@
                             <label for="Judul" class="form-label">Judul</label>
                             <input type="text" name="Judul" id="Judul"
                                 class="form-control @error('Judul') is-invalid @enderror"
-                                placeholder="Masukkan judul work order" value="{{ old('Judul', $workOrder->Judul) }}">
+                                placeholder="Masukkan judul work order" value="{{ old('Judul', $workOrder->Judul) }}"
+                                readonly>
                             @error('Judul')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -71,8 +72,8 @@
                         <div class="mb-3">
                             <label for="Kasus" class="form-label">Kasus</label>
                             <textarea name="Kasus" id="Kasus" rows="3"
-                                class="form-control @error('Kasus') is-invalid @enderror"
-                                placeholder="Deskripsikan kasus">{{ old('Kasus', $workOrder->Kasus) }}</textarea>
+                                class="form-control @error('Kasus') is-invalid @enderror" placeholder="Deskripsikan kasus"
+                                readonly>{{ old('Kasus', $workOrder->Kasus) }}</textarea>
                             @error('Kasus')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -143,6 +144,30 @@
                                 @endforeach
                             </select>
                             @error('DitugaskanKe')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="StatusID" class="form-label">Status</label>
+                            <select name="StatusID" id="StatusID"
+                                class="form-select @error('StatusID') is-invalid @enderror">
+                                <option value="">Pilih Status</option>
+                                <option value="Open" {{ old('StatusID', $workOrder->StatusID) == 'Open' ? 'selected' : '' }}>
+                                    Open</option>
+                                <option value="In Progress" {{ old('StatusID', $workOrder->StatusID) == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                                <option value="Pending" {{ old('StatusID', $workOrder->StatusID) == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="Closed" {{ old('StatusID', $workOrder->StatusID) == 'Closed' ? 'selected' : '' }}>Closed</option>
+                                <option value="Cancelled" {{ old('StatusID', $workOrder->StatusID) == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                            </select>
+                            @error('StatusID')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="Keterangan" class="form-label">Keterangan</label>
+                            <textarea name="Keterangan" id="Keterangan" rows="3"
+                                class="form-control @error('Keterangan') is-invalid @enderror">{{ old('Keterangan', $workOrder->Keterangan) }}</textarea>
+                            @error('Keterangan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

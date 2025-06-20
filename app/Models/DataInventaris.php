@@ -26,4 +26,8 @@ class DataInventaris extends Model
     {
         return $this->belongsTo(MasterItem::class, 'ItemID', 'id');
     }
+    public function getWo()
+    {
+        return $this->hasMany(WorkOrder::class, 'ItemID', 'ItemID');
+    }
 }

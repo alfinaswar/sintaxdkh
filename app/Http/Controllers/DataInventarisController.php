@@ -144,7 +144,8 @@ class DataInventarisController extends Controller
     public function show($id)
     {
         $id = Crypt::decrypt($id);
-        $data = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem')->find($id);
+        $data = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem', 'getWo', 'getWo.getDitugaskanKe', 'getWo.getDitugaskanOleh')->find($id);
+        // dd($data);
         return view('data-inventaris.show', compact('data'));
     }
 

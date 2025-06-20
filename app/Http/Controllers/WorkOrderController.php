@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataInventaris;
 use App\Models\MasterDepartemen;
 use App\Models\MasterItem;
 use App\Models\MasterUnit;
@@ -26,6 +27,7 @@ class WorkOrderController extends Controller
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="' . route('work-order.edit', encrypt($row->id)) . '" class="btn btn-warning btn-sm">Edit</a>';
                     $btn .= ' <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . encrypt($row->id) . '">Delete</button>';
+                    $btn .= ' <a href="' . route('work-order.reply', encrypt($row->id)) . '" class="btn btn-success btn-sm">Respon</a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -37,7 +39,7 @@ class WorkOrderController extends Controller
 
     public function create()
     {
-        $items = MasterItem::get();
+        $items = DataInventaris::with('getItem')->get();
         $departemens = MasterDepartemen::get();
         $staffs = User::get();
         return view('work-order.create', compact('departemens', 'staffs', 'items'));
@@ -100,8 +102,18 @@ class WorkOrderController extends Controller
         $staffs = User::get();
         $workOrder = WorkOrder::findOrFail($id);
         $units = MasterUnit::get();
-        $items = MasterItem::get();
+        $items = DataInventaris::with('getItem')->get();
         return view('work-order.edit', compact('workOrder', 'departemens', 'staffs', 'units', 'items'));
+    }
+    public function reply($id)
+    {
+        $id = Crypt::decrypt($id);
+        $departemens = MasterDepartemen::get();
+        $staffs = User::get();
+        $workOrder = WorkOrder::findOrFail($id);
+        $units = MasterUnit::get();
+        $items = DataInventaris::with('getItem')->get();
+        return view('work-order.reply', compact('workOrder', 'departemens', 'staffs', 'units', 'items'));
     }
 
     public function update(Request $request, $id)
@@ -138,7 +150,9 @@ class WorkOrderController extends Controller
             'KategoriKasus' => $request->KategoriKasus,
             'Prioritas' => $request->Prioritas,
             'DitugaskanKe' => $request->DitugaskanKe,
-            'StatusID' => 'Open',
+            'StatusID' => $request->StatusID ?? 'Open',
+            'Keterangan' => $request->Keterangan ?? '-',
+
             'KodeRS' => auth()->user()->KodeRS,
         ]);
 
