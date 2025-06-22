@@ -2,29 +2,29 @@
 
 use App\Http\Controllers\DataInventarisController;
 use App\Http\Controllers\DependantDropdownController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasterDepartemenController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\MasterMerkController;
 use App\Http\Controllers\MasterRsController;
-use App\Http\Controllers\WorkOrderController;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PmController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WorkOrderController;
 use App\Models\MasterMerk;
+use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+ * |--------------------------------------------------------------------------
+ * | Web Routes
+ * |--------------------------------------------------------------------------
+ * |
+ * | Here is where you can register web routes for your application. These
+ * | routes are loaded by the RouteServiceProvider and all of them will
+ * | be assigned to the "web" middleware group. Make something great!
+ * |
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,6 +63,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update/{id}', [MasterItemController::class, 'update'])->name('master-item.update');
         Route::delete('/destroy/{id}', [MasterItemController::class, 'destroy'])->name('master-item.destroy');
     });
+    Route::prefix('preventif-maintenance')->group(function () {
+        Route::get('/', [PmController::class, 'index'])->name('pm.index');
+        Route::get('/create', [PmController::class, 'create'])->name('pm.create');
+        Route::post('/store', [PmController::class, 'store'])->name('pm.store');
+        Route::get('/edit/{id}', [PmController::class, 'edit'])->name('pm.edit');
+        Route::put('/update/{id}', [PmController::class, 'update'])->name('pm.update');
+        Route::delete('/destroy/{id}', [PmController::class, 'destroy'])->name('pm.destroy');
+    });
     Route::prefix('work-order')->group(function () {
         Route::get('/', [WorkOrderController::class, 'index'])->name('work-order.index');
         Route::get('/create', [WorkOrderController::class, 'create'])->name('work-order.create');
@@ -96,12 +104,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update/{id}', [MasterDepartemenController::class, 'update'])->name('master-dept.update');
         Route::delete('/destroy/{id}', [MasterDepartemenController::class, 'destroy'])->name('master-dept.destroy');
         Route::get('/get-units-by-departemen', [MasterDepartemenController::class, 'getByDepartemen'])->name('master-dept.get-item-by-departemen');
-
     });
     Route::prefix('bukti-upload')->group(function () {
         Route::GET('/bukti-upload', [UserController::class, 'index'])->name('bukti.index');
         Route::GET('/bukti-upload/edit/{id}', [UserController::class, 'editProfil'])->name('bukti.edit');
         Route::PUT('/bukti-upload/update/{id}', [UserController::class, 'updateProfil'])->name('bukti.update');
-
     });
 });

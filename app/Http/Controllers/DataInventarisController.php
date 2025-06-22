@@ -77,7 +77,8 @@ class DataInventarisController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
+            return redirect()
+                ->back()
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -117,9 +118,11 @@ class DataInventarisController extends Controller
             'IdUser' => auth()->user()->id,
         ]);
 
-        return redirect()->route('data-inventaris.index')
+        return redirect()
+            ->route('data-inventaris.index')
             ->with('success', 'Data inventaris berhasil ditambahkan');
     }
+
     private function GenerateNomor()
     {
         $prefix = 'INV';
@@ -141,10 +144,13 @@ class DataInventarisController extends Controller
 
         return $kodeAwal . $newNumber;
     }
+
     public function show($id)
     {
         $id = Crypt::decrypt($id);
-        $data = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem', 'getWo', 'getWo.getDitugaskanKe', 'getWo.getDitugaskanOleh')->find($id);
+        $data = DataInventaris::with('getDepartemen',
+            'getUnit', 'getMerk', 'getItem', 'getWo', 'getWo.getDitugaskanKe',
+            'getWo.getDitugaskanOleh', 'getPm', 'getPm.getDikerjakanOleh')->find($id);
         // dd($data);
         return view('data-inventaris.show', compact('data'));
     }
@@ -176,7 +182,8 @@ class DataInventarisController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
+            return redirect()
+                ->back()
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -224,7 +231,8 @@ class DataInventarisController extends Controller
             'IdUser' => auth()->user()->id,
         ]);
 
-        return redirect()->route('data-inventaris.index')
+        return redirect()
+            ->route('data-inventaris.index')
             ->with('success', 'Data inventaris berhasil diperbarui');
     }
 

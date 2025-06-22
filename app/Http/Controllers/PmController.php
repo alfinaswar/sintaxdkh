@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pm;
 use Illuminate\Http\Request;
+use Str;
 
 class PmController extends Controller
 {
@@ -28,12 +29,25 @@ class PmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        if ($request->hasFile('Before')) {
+            $file = $request->file('Before');
+            $fileName = rand() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/preventif/before', $fileName);
+            $data['Before'] = $fileName;
+        }
+        if ($request->hasFile('After')) {
+            $file = $request->file('After');
+            $fileName = rand() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/preventif/after', $fileName);
+            $data['After'] = $fileName;
+        }
+        $data['DikerjakanOleh'] = auth()->user()->id;
+        $data['KodeRS'] = auth()->user()->KodeRS ?? 'A';
+        Pm::create($data);
+        return redirect()->back()->with('suceess', 'Preventif Maintenance Berhasil Ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Pm $pm)
     {
         //

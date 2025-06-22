@@ -14,15 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->date('Tanggal')->nullable();
             $table->string('ItemID')->nullable();
-            $table->string('Departemen')->nullable();
-            $table->string('Unit')->nullable();
             $table->enum('Status', ['Baik', 'Kurang Baik', 'Rusak'])->default('Baik');
             $table->string('DikerjakanOleh')->nullable();
             $table->dateTime('DiselesaikanTanggal')->nullable();
             $table->text('Keterangan')->nullable();
-            $table->integer('Penilaian')->nullable();
-            $table->string('PenilaianOleh')->nullable();
             $table->string('KodeRS')->nullable();
+            $table->string('Before')->nullable();
+            $table->string('After')->nullable();
             $table->timestamps();
         });
     }
