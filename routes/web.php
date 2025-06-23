@@ -3,6 +3,7 @@
 use App\Http\Controllers\DataInventarisController;
 use App\Http\Controllers\DependantDropdownController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KalibrasiController;
 use App\Http\Controllers\MasterDepartemenController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\MasterMerkController;
@@ -62,6 +63,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name('master-item.edit');
         Route::put('/update/{id}', [MasterItemController::class, 'update'])->name('master-item.update');
         Route::delete('/destroy/{id}', [MasterItemController::class, 'destroy'])->name('master-item.destroy');
+    });
+    Route::prefix('kalibrasi')->group(function () {
+        Route::get('/', [KalibrasiController::class, 'index'])->name('kalibrasi.index');
+        Route::get('/create', [KalibrasiController::class, 'create'])->name('kalibrasi.create');
+        Route::post('/store', [KalibrasiController::class, 'store'])->name('kalibrasi.store');
+        Route::get('/edit/{id}', [KalibrasiController::class, 'edit'])->name('kalibrasi.edit');
+        Route::put('/update/{id}', [KalibrasiController::class, 'update'])->name('kalibrasi.update');
+        Route::delete('/destroy/{id}', [KalibrasiController::class, 'destroy'])->name('kalibrasi.destroy');
     });
     Route::prefix('preventif-maintenance')->group(function () {
         Route::get('/', [PmController::class, 'index'])->name('pm.index');

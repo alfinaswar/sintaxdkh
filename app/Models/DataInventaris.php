@@ -41,4 +41,8 @@ class DataInventaris extends Model
     {
         return $this->hasMany(Pm::class, 'ItemID', 'ItemID');
     }
+    public function getKalibrasi()
+    {
+        return $this->hasMany(Kalibrasi::class, 'ItemID', 'ItemID');
+    }
 }
