@@ -15,44 +15,49 @@
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-striped table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">No</th>
-                            <th>Nama</th>
-                            <th style="width: 220px;">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $key => $role)
+            <div class="basic-form">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead>
                             <tr>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $role->name }}</td>
-                                <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('roles.show', $role->id) }}">Detail</a>
-                                    @can('role-edit')
-                                        <a class="btn btn-warning btn-sm" href="{{ route('roles.edit', $role->id) }}">Edit</a>
-                                    @endcan
-                                    @can('role-delete')
-                                        {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
-                                        {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-sm', 'onclick' => "return confirm('Yakin ingin menghapus role ini?')"]) !!}
-                                        {!! Form::close() !!}
-                                    @endcan
-                                </td>
+                                <th style="width: 50px;">No</th>
+                                <th>Nama</th>
+                                <th style="width: 220px;">Aksi</th>
                             </tr>
-                        @endforeach
-                        @if($roles->isEmpty())
-                            <tr>
-                                <td colspan="3" class="text-center">Tidak ada data role.</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @forelse ($roles as $key => $role)
+                                <tr>
+                                    <td>{{ ++$i }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            <a class="btn btn-info btn-sm"
+                                                href="{{ route('roles.show', $role->id) }}">Detail</a>
+                                            @can('role-edit')
+                                                <a class="btn btn-warning btn-sm"
+                                                    href="{{ route('roles.edit', $role->id) }}">Edit</a>
+                                            @endcan
+                                            @can('role-delete')
+                                                {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
+                                                {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-sm', 'onclick' => "return confirm('Yakin ingin menghapus role ini?')"]) !!}
+                                                {!! Form::close() !!}
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Tidak ada data role.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="mt-3">
-                {!! $roles->render() !!}
+                <div class="d-flex justify-content-end mt-3">
+                    {!! $roles->render() !!}
+                </div>
             </div>
         </div>
     </div>

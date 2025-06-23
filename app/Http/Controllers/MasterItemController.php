@@ -17,7 +17,12 @@ class MasterItemController extends Controller
     {
         // dd($data = Kuisoner::orderBy('id', 'desc')->get());
         if ($request->ajax()) {
-            $data = MasterItem::orderBy('id', 'desc');
+            if (auth()->user()->hasRole('Admin')) {
+                $data = MasterItem::orderBy('id', 'desc');
+            } else {
+                $data = MasterItem::where('KodeRS', auth()->user()->KodeRS)
+                    ->orderBy('id', 'desc');
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

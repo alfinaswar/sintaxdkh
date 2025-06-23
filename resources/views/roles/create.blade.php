@@ -1,56 +1,49 @@
 @extends('layouts.app')
 
-
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Create New Role</h2>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0">Buat Role Baru</h4>
+            <a class="btn btn-secondary" href="{{ route('roles.index') }}">Kembali</a>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+        <div class="card-body">
+            <div class="basic-form">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Oops!</strong> Terjadi kesalahan pada input Anda.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                {!! Form::open(['route' => 'roles.store', 'method' => 'POST']) !!}
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="name" class="form-label">Nama Role</label>
+                        {!! Form::text('name', null, ['placeholder' => 'Nama Role', 'class' => 'form-control', 'id' => 'name']) !!}
+                    </div>
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Permission</label>
+                        <div class="row">
+                            @foreach($permission as $value)
+                                <div class="col-md-4 mb-2">
+                                    <div class="form-check">
+                                        {!! Form::checkbox('permission[]', $value->id, false, ['class' => 'form-check-input', 'id' => 'perm_' . $value->id]) !!}
+                                        <label class="form-check-label" for="perm_{{ $value->id }}">{{ $value->name }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
-</div>
-
-
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    </div>
-@endif
-
-
-{!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Permission:</strong>
-            <br/>
-            @foreach($permission as $value)
-                <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                {{ $value->name }}</label>
-            <br/>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
-{!! Form::close() !!}
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 @endsection

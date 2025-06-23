@@ -16,7 +16,12 @@ class MasterMerkController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = MasterMerk::orderBy('id', 'desc');
+            if (auth()->user()->hasRole('Admin')) {
+                $data = MasterMerk::orderBy('id', 'desc');
+            } else {
+                $data = MasterMerk::where('KodeRS', auth()->user()->KodeRS)
+                    ->orderBy('id', 'desc');
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

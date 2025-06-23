@@ -17,7 +17,12 @@ class MasterDepartemenController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = MasterDepartemen::orderBy('id', 'desc');
+            if (auth()->user()->hasRole('Admin')) {
+                $data = MasterDepartemen::orderBy('id', 'desc');
+            } else {
+                $data = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)
+                    ->orderBy('id', 'desc');
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
