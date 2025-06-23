@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataInventaris;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -24,6 +26,8 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        return view('home');
+        $user = User::where('KodeRS', auth()->user()->KodeRS)->count();
+        $inv = DataInventaris::where('KodeRS', auth()->user()->id)->count();
+        return view('home', compact('user', 'inv'));
     }
 }
