@@ -6,6 +6,10 @@ use App\Models\DataInventaris;
 use App\Models\MasterDepartemen;
 use App\Models\MasterItem;
 use App\Models\MasterMerk;
+use App\Models\MasterRs;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
@@ -22,18 +26,58 @@ class DataInventarisController extends Controller
     {
         if ($request->ajax()) {
             if (auth()->user()->hasRole('Admin')) {
-                $data = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem')->orderBy('id', 'desc');
+                $query = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem')->orderBy('id', 'desc');
             } else {
-                $data = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem')
+                $query = DataInventaris::with('getDepartemen', 'getUnit', 'getMerk', 'getItem')
                     ->where('KodeRS', auth()->user()->KodeRS)
                     ->orderBy('id', 'desc');
             }
+            if ($request->filled('filter_rs')) {
+                $query->where('KodeRS', $request->filter_rs);
+            }
+            if ($request->filled('filter_item')) {
+                $query->where('ItemID', $request->filter_item);
+            }
+            if ($request->filled('filter_dept')) {
+                $query->where('Departemen', $request->filter_dept);
+            }
+            if ($request->filled('filter_unit')) {
+                $query->where('Unit', $request->filter_unit);
+            }
+            $data = $query->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('data-inventaris.show', encrypt($row->id)) . '" class="btn btn-info btn-md"><i class="fa fa-eye"></i> Detail</a>';
-                    $btn .= ' <a href="' . route('data-inventaris.edit', encrypt($row->id)) . '" class="btn btn-warning btn-md"><i class="fa fa-edit"></i> Edit</a>';
-                    $btn .= ' <a href="' . route('data-inventaris.show', encrypt($row->id)) . '" class="btn btn-danger btn-md btn-delete" data-id="' . encrypt($row->id) . '"><i class="fa fa-trash"></i> Delete</a>';
+                    $id = encrypt($row->id);
+                    $btn = '
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn btn-primary btn-md dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Aksi
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="' . route('data-inventaris.show', $id) . '">
+                                        <i class="fa fa-eye"></i> Detail
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="' . route('data-inventaris.edit', $id) . '">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item btn-delete" href="javascript:void(0);" data-id="' . $id . '">
+                                        <i class="fa fa-trash"></i> Hapus
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="' . route('data-inventaris.cetak-label', $id) . '" target="_blank">
+                                        <i class="fa fa-print"></i> Cetak Label
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    ';
                     return $btn;
                 })
                 ->addColumn('Gambar', function ($row) {
@@ -48,8 +92,10 @@ class DataInventarisController extends Controller
                 ->rawColumns(['action', 'Gambar', 'ManualBook', 'PosisiBarang'])
                 ->make(true);
         }
-
-        return view('data-inventaris.index');
+        $rs = MasterRs::get();
+        $departemen = MasterDepartemen::get();
+        $items = DataInventaris::with('getItem')->orderBy('ItemID', 'ASC')->get();
+        return view('data-inventaris.index', compact('rs', 'departemen', 'items'));
     }
 
     public function create()
@@ -145,6 +191,32 @@ class DataInventarisController extends Controller
         return $kodeAwal . $newNumber;
     }
 
+    public function Cetaklabel($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = DataInventaris::with('getItem', 'getRS')->findOrFail($id);
+        // dd($data);
+        $writer = new PngWriter();
+        $barcode = [];
+
+        $link = route('hasilscan', $data->NoInventaris);
+        $qrCode = QrCode::create($link)
+            ->setSize(50)
+            ->setMargin(0);
+
+        $barcode[$data->id] = base64_encode($writer->write($qrCode)->getString());
+
+
+        $viewData = [
+            'data' => $data,
+            'barcode' => $barcode,
+        ];
+
+        $pdf = app('dompdf.wrapper')->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('data-inventaris.cetak-label', $viewData)->setPaper([0, 0, 161.57, 70.0], 'portrait');
+
+        return $pdf->stream('stiker.pdf');
+    }
+
     public function show($id)
     {
         $id = Crypt::decrypt($id);
@@ -162,6 +234,23 @@ class DataInventarisController extends Controller
         )->find($id);
         // dd($data);
         return view('data-inventaris.show', compact('data'));
+    }
+    public function ShowCetak($id)
+    {
+        $data = DataInventaris::with(
+            'getDepartemen',
+            'getUnit',
+            'getMerk',
+            'getItem',
+            'getWo',
+            'getWo.getDitugaskanKe',
+            'getWo.getDitugaskanOleh',
+            'getPm',
+            'getPm.getDikerjakanOleh',
+            'getKalibrasi'
+        )->where('NoInventaris', $id)->first();
+        // dd($data);
+        return view('data-inventaris.show-dari-barcode', compact('data'));
     }
 
     public function edit($id)

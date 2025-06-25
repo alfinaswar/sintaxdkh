@@ -24,6 +24,39 @@
             <h4 class="card-title">Data Inventaris</h4>
         </div>
         <div class="card-body">
+            <!-- Filter -->
+
+            <div class="row mb-3">
+                <div class="col-md-3"><label for="filter_rs" class="form-label">Rumah Sakit</label><select
+                        class="single-select-placeholder js-states" id="filter_rs" name="filter_rs">
+                        <option value="">Semua Rumah Sakit</option>@foreach($rs as $r)<option value="{{ $r->id }}">
+                            {{ $r->Nama }}
+                        </option>@endforeach
+                    </select></div>
+                <div class="col-md-3"><label for="filter_item" class="form-label">Item</label><select
+                        class="single-select-placeholder js-states" id="filter_item" name="filter_item">
+                        <option value="">Semua Item</option>@foreach($items as $item)<option value="{{ $item->id }}">
+                            {{ $item->getItem->Nama }}
+                        </option>@endforeach
+                    </select></div>
+                <div class="col-md-3"><label for="filter_dept" class="form-label">Departemen</label><select
+                        class="single-select-placeholder js-states" id="filter_dept" name="filter_dept">
+                        <option value="">Semua Departemen</option>@foreach($departemen as $dept)<option
+                        value="{{ $dept->id }}">{{ $dept->NamaDepartemen }}</option>@endforeach
+                    </select></div>
+                <div class="col-md-3"><label for="filter_unit" class="form-label">Unit</label><select
+                        class="single-select-placeholder js-states" id="filter_unit " name="filter_unit">
+                        <option value="">Semua Unit</option>
+                    </select>
+                </div>
+                <div class="col-12 text-end mt-3">
+                    <button type="button" id="btnFilter" class="btn btn-primary">Filter</button>
+                    <span style="display:inline-block; width: 10px;"></span>
+                    <button type="button" id="btnReset" class="btn btn-secondary">Reset</button>
+                </div>
+            </div>
+
+            <!-- End Filter -->
             <div class="table-responsive">
                 <table id="example" class="display table" style="width: 100%;">
                     <thead>
@@ -50,6 +83,39 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
+            $('#filter_dept').on('change', function () {
+                let departemenId = $(this).val();
+                let url = $(this).data('url');
+
+                $('#Unit').empty().append('<option value="">Loading...</option>');
+
+                if (departemenId) {
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: { departemen_id: departemenId },
+                        success: function (response) {
+                            $('#filter_unit').empty().append('<option value="">Pilih Unit</option>');
+                            $.each(response, function (key, unit) {
+                                $('#filter_unit').append(`<option value="${unit.id}">${unit.NamaUnit}</option>`);
+                            });
+                        },
+                        error: function () {
+                            $('#filter_unit').empty().append('<option value="">Gagal mengambil data</option>');
+                        }
+                    });
+                } else {
+                    $('#filter_unit').empty().append('<option value="">Pilih Unit</option>');
+                }
+            });
+
+            $('#btnFilter').click(function () {
+                $('#example').DataTable().ajax.reload();
+            });
+            $('#btnReset').on('click', function () {
+                $('#filterForm')[0].reset();
+                table.ajax.reload();
+            });
             $('body').on('click', '.btn-delete', function () {
                 var id = $(this).data('id');
 
@@ -88,6 +154,7 @@
                 });
             });
 
+            // Memperbaiki inisialisasi DataTable dan penempatan properti columns
             var dataTable = function () {
                 var table = $('#example');
                 table.DataTable({
@@ -102,58 +169,65 @@
                             previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                         }
                     },
-                    ajax: "{{ route('data-inventaris.index') }}",
-                    columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false
+                    ajax: {
+                        url: '{{ route('data-inventaris.index') }}',
+                        data: function (d) {
+                            d.filter_rs = $('#filter_rs').val();
+                            d.filter_item = $('#filter_item').val();
+                            d.filter_dept = $('#filter_dept').val();
+                            d.filter_unit = $('#filter_unit').val();
+                        }
                     },
-                    {
-                        data: 'NoInventaris',
-                        name: 'NoInventaris'
-                    },
-                    {
-                        data: 'get_item.Nama',
-                        name: 'get_item.Nama'
-                    },
-                    {
-                        data: 'SerialNumber',
-                        name: 'SerialNumber'
-                    },
-                    {
-                        data: 'get_merk.Merk',
-                        name: 'get_merk.Merk'
-                    },
-                    {
-                        data: 'Tipe',
-                        name: 'Tipe'
-                    },
-                    {
-                        data: 'TanggalBeli',
-                        name: 'TanggalBeli'
-                    },
-                    {
-                        data: 'PosisiBarang',
-                        name: 'PosisiBarang'
-                    },
-
-
-                    {
-                        data: 'ManualBook',
-                        name: 'ManualBook'
-                    },
-
-                    {
-                        data: 'Gambar',
-                        name: 'Gambar'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    }]
+                    columns: [
+                        {
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            searchable: false
+                        },
+                        {
+                            data: 'NoInventaris',
+                            name: 'NoInventaris'
+                        },
+                        {
+                            data: 'get_item.Nama',
+                            name: 'get_item.Nama'
+                        },
+                        {
+                            data: 'SerialNumber',
+                            name: 'SerialNumber'
+                        },
+                        {
+                            data: 'get_merk.Merk',
+                            name: 'get_merk.Merk'
+                        },
+                        {
+                            data: 'Tipe',
+                            name: 'Tipe'
+                        },
+                        {
+                            data: 'TanggalBeli',
+                            name: 'TanggalBeli'
+                        },
+                        {
+                            data: 'PosisiBarang',
+                            name: 'PosisiBarang'
+                        },
+                        {
+                            data: 'ManualBook',
+                            name: 'ManualBook'
+                        },
+                        {
+                            data: 'Gambar',
+                            name: 'Gambar'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action',
+                            orderable: false,
+                            searchable: false
+                        }
+                    ]
                 });
             };
             dataTable();

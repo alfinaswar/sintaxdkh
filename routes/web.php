@@ -34,6 +34,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/view/{id}', [DataInventarisController::class, 'ShowCetak'])->name('hasilscan');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('provinces', [DependantDropdownController::class, 'provinces'])->name('provinces');
@@ -42,7 +43,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('villages', [DependantDropdownController::class, 'villages'])->name('villages');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
 
     Route::prefix('inventaris')->group(function () {
         Route::get('/', [DataInventarisController::class, 'index'])->name('data-inventaris.index');
@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/store', [DataInventarisController::class, 'store'])->name('data-inventaris.store');
         Route::get('/edit/{id}', [DataInventarisController::class, 'edit'])->name('data-inventaris.edit');
         Route::get('/detail/{id}', [DataInventarisController::class, 'show'])->name('data-inventaris.show');
+        Route::get('/cetakLabel/{id}', [DataInventarisController::class, 'Cetaklabel'])->name('data-inventaris.cetak-label');
         Route::put('/update/{id}', [DataInventarisController::class, 'update'])->name('data-inventaris.update');
         Route::put('/work-order/{id}', [DataInventarisController::class, 'WorkOrder'])->name('data-inventaris.Wo');
         Route::put('/preventif-maintenance/{id}', [DataInventarisController::class, 'Pm'])->name('data-inventaris.Pm');

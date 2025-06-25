@@ -26,6 +26,10 @@ class DataInventaris extends Model
     {
         return $this->belongsTo(MasterMerk::class, 'Merk', 'id');
     }
+    public function getRS()
+    {
+        return $this->belongsTo(MasterRs::class, 'KodeRS', 'id');
+    }
 
     public function getItem()
     {
@@ -45,4 +49,5 @@ class DataInventaris extends Model
     {
         return $this->hasMany(Kalibrasi::class, 'ItemID', 'ItemID');
     }
+
 }

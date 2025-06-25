@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer py-0 d-flex flex-wrap justify-content-between align-items-center px-0">
+                {{-- <div class="card-footer py-0 d-flex flex-wrap justify-content-between align-items-center px-0">
                     <ul class="nav nav-underline nav-underline-primary nav-underline-text-dark nav-underline-gap-x-0"
                         id="tabMyProfileBottom" role="tablist">
                         <li class="nav-item ms-1" role="presentation">
@@ -110,5 +110,5 @@
                         </li>
                     </ul>
 
-                </div>
+                </div> --}}
             </div>
