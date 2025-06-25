@@ -53,7 +53,7 @@
         <table id="main" border="0" width="100%">
             <tbody>
                 <tr>
-                    <td style="width: 50px; height: 25px;"></td>
+                    <td style="width: 50px; height: 25px; width:30%;"></td>
                     <td colspan=""></td>
                     <td colspan="">
                         {{ strlen($data->getRS->Nama) > 18 ? substr($data->getRS->Nama, 0, 18) . '..' : $data->getRS->Nama }}
