@@ -32,8 +32,7 @@
                             <div class="mb-3">
                                 <label for="dikerjakanOleh" class="form-label">Dikerjakan Oleh</label>
                                 <input type="text" class="form-control" id="dikerjakanOleh" name="DikerjakanOleh"
-                                    placeholder="Masukkan nama yang mengerjakan" value="{{ auth()->user()->name }}"
-                                    readonly>
+                                    placeholder="Masukkan nama yang mengerjakan" value="" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -59,7 +58,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan keterangan"></textarea>
+                            <textarea class="form-control" id="keterangan" name="keterangan"
+                                placeholder="Masukkan keterangan"></textarea>
                         </div>
                     </div>
 
