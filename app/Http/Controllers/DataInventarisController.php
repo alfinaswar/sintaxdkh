@@ -117,7 +117,7 @@ class DataInventarisController extends Controller
             'TanggalBeli' => 'required|date',
             'Departemen' => 'required',
             'Unit' => 'required',
-            'ManualBook' => 'required|file|mimes:pdf,doc,docx|max:5000',
+            'ManualBook' => 'nullable|file|mimes:pdf,doc,docx|max:5000',
             'Klasifikasi' => 'required',
             'Gambar' => 'required|image|mimes:jpeg,png,jpg|max:5000'
         ]);

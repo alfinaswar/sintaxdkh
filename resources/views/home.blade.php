@@ -15,7 +15,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Dua card info user dan total inventaris di sebelah kanan -->
+
+            @hasrole('Admin')
             <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body d-flex align-items-center justify-content-between">
@@ -37,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            @endhasrole
             <div class="col-xl-3 col-lg-3 col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-body d-flex align-items-center justify-content-between">

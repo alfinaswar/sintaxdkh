@@ -94,6 +94,9 @@
                             <select class="single-select-placeholder js-states @error('Unit') is-invalid @enderror"
                                 id="Unit" name="Unit">
                                 <option value="">Pilih Unit</option>
+                                @if(old('Unit'))
+                                    <option value="{{ old('Unit') }}" selected>{{ old('Unit') }}</option>
+                                @endif
                             </select>
                             @error('Unit')
                                 <div class="invalid-feedback">{{ $message }}</div>
