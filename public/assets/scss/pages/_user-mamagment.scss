@@ -9,7 +9,7 @@
 			height: 15px;
 			background: $success;
 			border-radius: 50%;
-			left: 6rem;
+			#{$dz-pos-left}: 6rem;
 			position: absolute;
 			bottom: 0.4rem;
 			&.deactive{
@@ -88,18 +88,18 @@
 	justify-content: space-between;
 	padding: 9px 30px;
 	.member{
-		margin-right: 4rem;	
+		margin-#{$dz-pos-right}: 4rem;	
 		.heading{
 			padding: 0 10px;
 		}
 		
 	}
 }
-.right-check{
+.#{$dz-pos-right}-check{
 	.custom-checkbox{
-		margin-right: 5rem;
+		margin-#{$dz-pos-right}: 5rem;
 		@include respond ('phone'){
-			margin-right: 1rem;
+			margin-#{$dz-pos-right}: 1rem;
 		}
 	}
 }
@@ -155,7 +155,7 @@
 			margin: 0 7px;
 			border-radius: $radius-xs;
 			&:first-child{
-				margin-left: 0;
+				margin-#{$dz-pos-left}: 0;
 			}
 		}
 	}
@@ -164,7 +164,7 @@
 	.avatar{
 		height: 60px;
 		width: 60px;
-		margin-right: 10px;
+		margin-#{$dz-pos-right}: 10px;
 	}
 }
 .c-card-details{
@@ -173,7 +173,7 @@
 			display: flex;
 			padding: 6px 0px;
 			h6{
-				margin-left: 5px;
+				margin-#{$dz-pos-left}: 5px;
 				margin-bottom: 0;
 				font-size: 13px;
 			}
@@ -202,7 +202,7 @@
 			padding: 7px 12px;
 		}
 		&:first-child{
-			margin-left:0;
+			margin-#{$dz-pos-left}:0;
 		}
 	}
 }
@@ -220,7 +220,7 @@
 .c-status{
 	i{
 		transform: scale(0.5);
-		margin-right: 5px;
+		margin-#{$dz-pos-right}: 5px;
 	}
 }
 
@@ -343,7 +343,7 @@
 		width: 160px;
 		height: 130px;
 		border-radius: $radius;
-		margin-right: 18px;
+		margin-#{$dz-pos-right}: 18px;
 		object-fit: cover;
 		@include respond ('phone'){
 			width: 100%;
@@ -375,7 +375,7 @@
 		width: 300px;
 		height: 180px;
 		border-radius: 0.375rem;
-		margin-right: 12px;
+		margin-#{$dz-pos-right}: 12px;
 		object-fit: cover;
 		@include respond ('tab-land'){
 			width: 100%;
@@ -402,7 +402,7 @@
 	}
 	&.style-2{
 		margin-bottom: 0;
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid var(--border);
 		.av-post{
 			height: 40px;
 			width: 40px;
@@ -425,7 +425,7 @@
 	.icon-box{
 		position: absolute;
 		top: -12px;
-		left: 46%;
+		#{$dz-pos-left}: 46%;
 	}
 	.notify-data{
 		text-align: center;

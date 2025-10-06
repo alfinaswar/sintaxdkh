@@ -1,13 +1,16 @@
 .email-left-box {
-	border-right: 1px solid $white;
     height: calc(100vh - 72px);
     padding: 1.875rem 1.25rem;
     overflow-y: auto;
-	border-right:1px solid $border;
+	border-#{$dz-pos-right}:1px solid var(--border);
+    @include respond ('phone'){
+		padding-left:10px!important;
+	}
 	
 	@include respond ('tab-port'){
-		border-right:0;
+		border-#{$dz-pos-right}:0;
 		height:calc(100vh - 204.2px);
+        
 	}
     .btn.text-white.btn-block{
         background-color:var(--primary);
@@ -41,7 +44,6 @@
         }
 
         i{
-            // font-size: 1.0625rem;
             color: var(--primary);
 
         }
@@ -54,8 +56,7 @@
             padding: 0.625rem 0.9375rem;
             display: block;
             background: transparent;
-            color: #000;
-            // font-size: 1.0625rem;
+            color: var(--text-dark);
             font-weight: 600;
             z-index: 1;
         }
@@ -75,16 +76,16 @@
     
             i{
                 font-size: 1.125rem;
-                padding-right: 1.125rem;
-                color: #000;
+                padding-#{$dz-pos-right}: 1.125rem;
+                color: var(--text-dark);
             }
             svg{
-                margin-right: 1.125rem;
+                margin-#{$dz-pos-right}: 1.125rem;
             }
     
             &.active{
                 color: var(--primary);
-                background-color: var(--rgba-primary-1);
+                background-color: var(--rgba-primary-1)!important;
                 span.badge{
                     background-color: var(--primary);
                 }
@@ -102,7 +103,7 @@
                 background-color: var(--rgba-primary-1) ;
                 color: var(--primary);
                 position: absolute;
-                left: 0;
+                #{$dz-pos-left}: 0;
                 top: 0;
                 width: 0%;
                 height: 100%;
@@ -147,49 +148,41 @@ input#checkAll.form-check-input:checked{
         margin-bottom: 0rem;
     }
     @include media-breakpoint-between(sm, md) {
-        padding-left: 0;
-		padding-right:0;
-		margin-left: 0!important;
+        padding-#{$dz-pos-left}: 0;
+		padding-#{$dz-pos-right}:0;
+		margin-#{$dz-pos-left}: 0!important;
 		clear:both;
 	}
 
     @include media-breakpoint-down(xs) {
-        padding-left: 0;
-        padding-right: 0;
+        padding-#{$dz-pos-left}: 0;
+        padding-#{$dz-pos-right}: 0;
     }
 
-    // &.generic-position{
-    //     padding-left: 15rem;
-
-    //     @media(min-width: 106.25rem){
-    //         padding-left: 18.75rem;
-    //     }
-    // }
-
     .right-box-border{
-        border-right: 0.125rem solid var(--rgba-primary-1);
+        border-#{$dz-pos-right}: 0.125rem solid var(--rgba-primary-1);
     }
 
     .right-box-padding{
         @media screen and (min-width: 40.5625rem) and (max-width: 75rem){
-            padding-left: 1.25rem;
+            padding-#{$dz-pos-left}: 1.25rem;
         }
 
         @media(min-width: 106.25rem){
-            padding-left: 0.9375rem;
+            padding-#{$dz-pos-left}: 0.9375rem;
         }
 		@include media-breakpoint-between(sm, md) {
-			padding-left: 1rem;			
+			padding-#{$dz-pos-left}: 1rem;			
 		}
         @include respond('phone'){
             padding: 1rem;
         }
     }
     .table-pagenation{
-        background-color:$white;
+        background-color:var(--card);
         margin-top:0;
-		margin-left:-4px;
-		padding-left:1rem;
+		margin-#{$dz-pos-left}:-4px;
+		padding-#{$dz-pos-left}:1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -205,22 +198,18 @@ input#checkAll.form-check-input:checked{
         height: auto;
     }
     @include respond('tab-port'){
-        border-top: 1px solid $white;
+        border-top: 1px solid var(--card);
 		padding-top:10px;
     }
   
     .btn-group {
         .btn.nav-link.active {
-            // background: $dark;
             border: 0;
             background-color: transparent;
             font-size: 14px;
             padding: 0.5rem 1rem;
              color: var(--primary);
 			 box-shadow:unset;
-            // i {
-            //     color: $white!important;
-            // }
             @include respond('tab-land'){
                 padding: 0.5rem 1rem;
 				font-size:0.75rem;
@@ -238,7 +227,7 @@ input#checkAll.form-check-input:checked{
                 background-color: var(--primary);
                 position: absolute;
                 bottom: -0.325rem;
-                left: 50%;
+                #{$dz-pos-left}: 50%;
                 transform: translateX(-50%);
                 width: 100%;
                 height: 3px;
@@ -266,7 +255,7 @@ input#checkAll.form-check-input:checked{
                 background-color: var(--primary);
                 position: absolute;
                 bottom: -0.325rem;
-                left: 50%;
+                #{$dz-pos-left}: 50%;
                 transform: translateX(-50%);
                 width: 0%;
                 height: 3px;
@@ -284,7 +273,7 @@ input#checkAll.form-check-input:checked{
                 }
             }
             svg{
-                margin-right: 0.5rem;
+                margin-#{$dz-pos-right}: 0.5rem;
                 margin-bottom: 0.2rem;
 
             }
@@ -305,9 +294,9 @@ input#checkAll.form-check-input:checked{
     height: 100%;
     flex-wrap: wrap;
     .btn-group{
-        margin-left: 1.125rem;
+        margin-#{$dz-pos-left}: 1.125rem;
 		@include respond ('phone'){
-			margin-left: 0;
+			margin-#{$dz-pos-left}: 0;
 		}
     }
     @include respond('phone-land'){
@@ -316,10 +305,11 @@ input#checkAll.form-check-input:checked{
 	
     .mail-tools{
         @include respond('tab-land'){
-            margin-left: 3.725rem;
+            margin-#{$dz-pos-left}: 3.725rem;
         }
 		@include respond ('phone'){
-			margin-left:2.025rem;
+			margin-#{$dz-pos-left}:2.025rem;
+            margin-bottom: 5px;
 		}
 		
 		a{	
@@ -374,7 +364,7 @@ input#checkAll.form-check-input:checked{
             color: #6a707e;
 
             i{
-                padding-right: 0.3125rem;
+                padding-#{$dz-pos-right}: 0.3125rem;
             }
         }
 
@@ -383,7 +373,7 @@ input#checkAll.form-check-input:checked{
 				color:var(--primary)!important;
 			}
             & > div:not(:last-child){
-                border-right: 0.0625rem solid #DDDFE1;
+                border-#{$dz-pos-right}: 0.0625rem solid var(--border);
             }
         }
     }
@@ -394,23 +384,29 @@ input#checkAll.form-check-input:checked{
     padding: 0 1rem;
 	
 	@include respond ('tab-port'){
-		 height: calc(100vh - 294px);
+		 height: calc(100vh - 125px);
 	}
+    @include respond ('phone'){
+        height: calc(100vh - 125px);
+
+    }
 }
 .read-wapper{
     height: calc(100vh - 180px); 
 	padding: 0 1.25rem;
+    @include respond('tab-port'){
+        height: calc(100vh - 6px); 
+
+    }
 }
 .compose-content {
     
     .wysihtml5-toolbar {
         border-color: $white;
     }
-    // .textarea_editor {
-    //     background: $l-bg!important;
-    // }
+    
     .dropzone {
-        background: $white!important;
+        background: var(--card)!important;
     }
 
     h5{
@@ -424,7 +420,7 @@ input#checkAll.form-check-input:checked{
     }
 
     .dropzone{
-        border: 0.0625rem dashed #DDDFE1;
+        border: 0.0625rem dashed var(--border);
         min-height: 13.125rem;
         position: relative;
 		border-radius:$radius;
@@ -433,7 +429,7 @@ input#checkAll.form-check-input:checked{
             margin: 0;
             position: absolute;
             top: 50%;
-            left: 50%;
+            #{$dz-pos-left}: 50%;
             transform: translate(-50%, -50%);
         }
     }
@@ -444,9 +440,13 @@ input#checkAll.form-check-input:checked{
 
 .email-list {
     display: block;
-    padding-left: 0;
-    background:#f7f7f7;
+    padding-#{$dz-pos-left}: 0;
+    background:var(--body-bg);
     height: calc(100vh - 180px);
+    @include respond(tab-port){
+
+        height: 100%;
+    }
     overflow-y: scroll;
     label{
         margin-bottom: 0px;
@@ -459,7 +459,7 @@ input#checkAll.form-check-input:checked{
         line-height: 3.438rem;
         cursor: default;
         transition-duration: 0.3s;
-        border-bottom: 1px solid $white;
+        border-bottom: 1px solid var(--card);
         a {
             color: var(--primary);
         }
@@ -472,14 +472,14 @@ input#checkAll.form-check-input:checked{
             i{
                 color: $muted;
                 font-size: 1.125rem;
-                padding-left: .4rem;
+                padding-#{$dz-pos-left}: .4rem;
             }
         }
 		
 		.icon {
 			position: absolute;
-			top: 16px;
-			right: 10px;
+			top: 0px;
+			#{$dz-pos-right}: 10px;
 			opacity: 0;
 			transition-duration: 0.3s;
 			@include respond ('phone'){
@@ -507,7 +507,7 @@ input#checkAll.form-check-input:checked{
         }
 
         .col-mail {
-            float: left;
+            float: #{$dz-pos-left};
             position: relative;
         }
 
@@ -516,21 +516,21 @@ input#checkAll.form-check-input:checked{
 
             .star-toggle {
                 display: block;
-                float: left;
+                float: #{$dz-pos-left};
                 margin-top: 1.125rem;
                 font-size: 1rem;
-                margin-left: 0.3125rem;
+                margin-#{$dz-pos-left}: 0.3125rem;
             }
 
             .email-checkbox {
                 display: block;
-                float: left;
+                float: #{$dz-pos-left};
                 margin: 0.9375rem 0.625rem 0 1.25rem;
             }
 
             .dot {
                 display: block;
-                float: left;
+                float: #{$dz-pos-left};
                 border: .4rem solid transparent;
                 border-radius: 6.25rem;
                 margin: 1.375rem 1.625rem 0;
@@ -544,15 +544,15 @@ input#checkAll.form-check-input:checked{
         .col-mail-2 {
             position: absolute;
             top: 0;
-            left: 5.625rem;
-            right: 0;
+            #{$dz-pos-left}: 5.625rem;
+            #{$dz-pos-right}: 0;
             bottom: 0;
 
             .subject {
                 position: absolute;
 				top: 0;
-				left: 0;
-				right: 5.5rem;
+				#{$dz-pos-left}: 0;
+				#{$dz-pos-right}: 5.5rem;
 				font-weight: 400;
 				margin: 0 220px;
 				text-overflow: ellipsis;
@@ -566,12 +566,10 @@ input#checkAll.form-check-input:checked{
             .date {
                 position: absolute;
                 top: 0;
-                right: 15px;
+                #{$dz-pos-right}: 15px;
 				opacity: 1;
 				transition-duration: 0.3s;
                 font-weight: 500;
-                // width: 4rem;
-                // padding-left: 5rem;
             }
         }
 		.message-single {
@@ -607,6 +605,10 @@ input#checkAll.form-check-input:checked{
             font-size: 0.938rem;
             font-weight: 400;
             padding: 0 1.25rem;
+
+            &.style-1{
+                padding:0 2.25rem;
+            }
         }
     }
     
@@ -636,8 +638,8 @@ input#checkAll.form-check-input:checked{
     label {
         position: absolute;
         top: .3rem;
-        left: .3rem;
-        right: .3rem;
+        #{$dz-pos-left}: .3rem;
+        #{$dz-pos-right}: .3rem;
         bottom: .3rem;
         cursor: pointer;
         opacity: 0;
@@ -670,11 +672,11 @@ input#checkAll.form-check-input:checked{
 .email-filter{
 
     @media (min-width: 40.5rem){
-        padding-left: 1.25rem;
+        padding-#{$dz-pos-left}: 1.25rem;
     }
 
     @media(min-width: 106.25rem){
-        padding-left: 1.875rem;
+        padding-#{$dz-pos-left}: 1.875rem;
     }
 
     .input-group{
@@ -683,7 +685,6 @@ input#checkAll.form-check-input:checked{
             
             i{
                 font-size: 0.875rem;
-                // color: $muted;
             }
 
             .input-group-text{
@@ -698,12 +699,10 @@ input#checkAll.form-check-input:checked{
             border: 0;
             font-size: 0.875rem;
             height: 1.875rem;
-            // color: $muted;
             border-bottom: 0.0625rem solid #DDDFE1;
 
             &::placeholder{
                 font-size: 0.875rem;
-                // color: $muted;
             }
         }
 
@@ -718,22 +717,22 @@ input#checkAll.form-check-input:checked{
     padding: 1.5625rem 0;
 
     .media{
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+        padding-#{$dz-pos-left}: 1.25rem;
+        padding-#{$dz-pos-right}: 1.25rem;
 
         @media(min-width: 106.25rem){
-            padding-left: 1.875rem;
-            padding-right: 1.875rem;
+            padding-#{$dz-pos-left}: 1.875rem;
+            padding-#{$dz-pos-right}: 1.875rem;
         }
 
         img{
             width: 3.4375rem;
             height: 3.4375rem;
             border-radius: 50%;
-            margin-right: 0.9375rem;
+            margin-#{$dz-pos-right}: 0.9375rem;
 
             @media(min-width: 106.25rem){
-                margin-right: 1.875rem;
+                margin-#{$dz-pos-right}: 1.875rem;
             }
         }
 
@@ -773,43 +772,78 @@ input#checkAll.form-check-input:checked{
         }
     }
 }
-[direction="rtl"]{
-	.email-right-box {
-		padding-left: 1rem;
-		padding-right: 15rem;
-		@include respond('tab-port') {
-			padding-left: 0;
-			padding-right: 0;
-			margin-right:0;
-		}
-		@include respond('phone') {
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-	.email-left-box{
-		float:right;
-	}
-	.email-list .message .col-mail-2{
-		right: 5.625rem;
-		left: 0;
-		float: right;
-		.date{
-			right:auto;
-			left:0;
-		}
-		.subject{
-			right: 0;
-			left: 5.5rem;
-		}
-	}
-	
-}
+
 .inbox-height{
     min-height: 860px!important;
 }
 .bg-facebook{
     background-color: #1877f2;
+}
+
+@include respond ('phone'){
+	.email-left-body{
+		width: 18rem;
+		position: fixed;
+		height: 100vh;
+		z-index: 2;
+		transition: all 0.5s;
+		#{$dz-pos-left}: -22rem;
+		top: 0px;
+		z-index: 999;
+		&.active{
+			#{$dz-pos-left}:0;
+			background: var(--card);
+			transition:all 0.5s;
+			overflow-y:scroll;
+		}
+	}
+}
+
+.email-tools-box{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background-color:var(--rgba-primary-1);
+	border-radius:$radius;
+	color:var(--primary);
+	
+	&.active{
+		background-color:$primary;
+		color:$white;
+	}
+	
+	display:none!important;
+	@include respond ('phone'){
+		display:inline-block!important;
+		margin-#{$dz-pos-left}:auto;
+	}
+	&.active{
+		&:before{
+			content: '';
+			display: block;
+			position: fixed;
+			top: 0;
+			#{$dz-pos-left}: 0;
+			width: 100vh;
+			height: 100vh;
+			background-color: #000;
+			opacity: 0.2;
+			border-radius: 0.75rem;
+			z-index: 4;
+		}
+	}
+}
+.email-left-box{
+	margin-bottom: 20px;
+	
+	@include respond ('tab-port'){
+		margin:0;
+	}
+	@include respond ('phone'){
+		margin-top:20px;
+	}
 }
 
 

@@ -24,6 +24,11 @@ $d-border:rgba(255,255,255,0.10);
 $d-bg: #151C2C;
 $dark-card: #182237;
 $dark_bg_lighter: #1E2A4A;
+$dark_bg_lighter: #1E2A4A;
+$d-text-dark : #fff;
+$d-text-gray : #b3b3b3;
+$d-text : #828690;
+
 
 /////////////////////////
 // Primary Light
@@ -55,6 +60,12 @@ $l-ctl: #828690;
 $l-border: #eaeaea;
 $l-bg: #f2f4fa;
 $heading: #333;
+
+$card: #fff;
+$text-dark: #312a2a;
+$text-gray: #737B8B;
+$text: #7e7e7e;
+$border: #dad8d4;
 
 ///////////////////
 // Material Colors
@@ -99,7 +110,9 @@ $athensGray: #F0F0F2;
 $sky: #2290FF;
 
 
-
+$dz-pos-right: right;
+$dz-pos-left: left;
+$dz-row : row wrap;
 
 
 $color_pallate_1: $white;
@@ -119,7 +132,7 @@ $color_pallate_14: #4885ed;
 $color_pallate_15: #4cb32b;
 
 //utility variables
-$radius: 0.625rem; 
+$radius: 0.5rem; 
 $radius-lg:0.625rem;
 $radius-sm:0.375rem;
 $radius-xs:0.25rem;
@@ -127,6 +140,18 @@ $radius-xs:0.25rem;
 
 $loader--width: 15.625rem;
 $loader-dot--size: 1.25rem;
+
+
+:root{
+    --card : #{$card};
+	--text-dark : #{$text-dark};
+	--text-gray : #{$text-gray};
+	--text : #{$text};
+	--body-bg : #{$body-bg};
+	--light : #{$body-bg};
+	--border : #{$border};
+	--bs-border-color:#{$border};
+}
 
 
 

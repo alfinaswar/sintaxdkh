@@ -92,9 +92,18 @@ class DataInventarisController extends Controller
                 ->rawColumns(['action', 'Gambar', 'ManualBook', 'PosisiBarang'])
                 ->make(true);
         }
-        $rs = MasterRs::get();
-        $departemen = MasterDepartemen::get();
-        $items = DataInventaris::with('getItem')->orderBy('ItemID', 'ASC')->get();
+        if (auth()->user()->hasRole('Admin')) {
+            $rs = MasterRs::get();
+            $departemen = MasterDepartemen::get();
+            $items = DataInventaris::with('getItem')->orderBy('ItemID', 'ASC')->get();
+        } else {
+            $rs = MasterRs::where('id', auth()->user()->KodeRS)->get();
+            $departemen = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)->get();
+            $items = DataInventaris::with('getItem')
+                ->where('KodeRS', auth()->user()->KodeRS)
+                ->orderBy('ItemID', 'ASC')
+                ->get();
+        }
         return view('data-inventaris.index', compact('rs', 'departemen', 'items'));
     }
 

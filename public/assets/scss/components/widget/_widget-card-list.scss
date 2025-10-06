@@ -19,7 +19,7 @@
 
 	&.list-left{
 		margin-top: 0.9375rem;
-		margin-left: 0.9375rem;
+		margin-#{$dz-pos-left}: 0.9375rem;
 		
 		.card-header{
 			padding-left: 0;
@@ -32,11 +32,11 @@
 	
 	&.list-right{
 		margin-top: 0.9375rem;
-		margin-right: 0.9375rem;
-		text-align: right;
+		margin-#{$dz-pos-right}: 0.9375rem;
+		text-align: #{$dz-pos-right};
 		
 		.card-header{
-			padding-right: 0;
+			padding-#{$dz-pos-right}: 0;
 			
 			.photo{
 				margin: -0.9375rem -0.9375rem 0 0.9375rem;

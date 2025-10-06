@@ -6,7 +6,7 @@
  var dzChartlist = function(){
 	
 	var screenWidth = $(window).width();
-	let draw = Chart.controllers.line.__super__.draw; //draw shadow
+	//let draw = Chart.controllers.line.__super__.draw; //draw shadow
 	
 	var NewExperience = function(){
 		var options = {

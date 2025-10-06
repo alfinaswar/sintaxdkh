@@ -31,12 +31,10 @@
 		}
 	}
 	.error-head{
-		color: #fff;
 		margin-bottom: 40px;
 		font-size: 30px;
 		line-height: 1.4;
 		font-weight:500;
-		color:#1c1c4e;
 		@include respond ('phone'){
 			font-size: 20px;
 			margin-bottom: 30px;
@@ -72,42 +70,42 @@
 			height: 100%;
 		}
 		&::before {
-			left: 2px;
+			#{$dz-pos-left}: 2px;
 			text-shadow: -2px 0 #f7cf47;
 			clip: rect(44px, 450px, 56px, 0);
 			animation: dzError1 5s infinite linear alternate-reverse;
 		}
 		&::after {
-			left: -2px;
+			#{$dz-pos-left}: -2px;
 			text-shadow: -2px 0 #f7cf47, 2px 2px #f7cf47;
 			clip: rect(44px, 450px, 56px, 0);
 			animation: dzError2 5s infinite linear alternate-reverse;
 		}
 	}
 }
-@keyframes dzError1 {
-	$dzSteps: 40;
-	@for $i from 0 to $dzSteps {
-		#{percentage($i*(1/$dzSteps))} {
-			clip: rect(random(500) + px, 9999px, random(500) + px, 0);
-			transform: skew((random(500) / 500) + deg);
-		}
-	}
-}
-@keyframes dzError2{
-	$dzSteps: 40;
-	@for $i from 0 to $dzSteps{
-		#{percentage($i*(1/$dzSteps))} {
-			clip: rect(random(500) + px, 9999px, random(500) + px, 0);
-			transform: skew((random(500) / 500) + deg);
-		}
-	}
-}
-@keyframes dzError{
-	$dzSteps: 10;
-	@for $i from 0 to $dzSteps {
-		#{percentage($i*(1/$dzSteps))} {
-			transform: skew((random(10) - 5) + deg);
-		}
-	}
-}
+// @keyframes dzError1 {
+// 	$dzSteps: 40;
+// 	@for $i from 0 to $dzSteps {
+// 		#{math.percentage(calc($i*(1/$dzSteps)))} {
+// 			clip: rect(random(500) + px, 9999px, random(500) + px, 0);
+// 			transform: skew(calc((random(500) / 500) + deg));
+// 		}
+// 	}
+// }
+// @keyframes dzError2{
+// 	$dzSteps: 40;
+// 	@for $i from 0 to $dzSteps{
+// 		#{math.percentage(calc($i*(1/$dzSteps)))} {
+// 			clip: rect(random(500) + px, 9999px, random(500) + px, 0);
+// 			transform: skew(calc((random(500) / 500) + deg));
+// 		}
+// 	}
+// }
+// @keyframes dzError{
+// 	$dzSteps: 10;
+// 	@for $i from 0 to $dzSteps {
+// 		#{math.percentage(calc($i*(1/$dzSteps)))} {
+// 			transform: skew(calc((random(10) - 5) + deg));
+// 		}
+// 	}
+// }

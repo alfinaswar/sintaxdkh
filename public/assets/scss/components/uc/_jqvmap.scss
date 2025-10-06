@@ -2,7 +2,7 @@
 .jqvmap-zoomin, .jqvmap-zoomout
 {
 	position: absolute;
-	left: 0.625rem;
+	#{$dz-pos-left}: 0.625rem;
 	-webkit-border-radius: 0.1875rem;
 	-moz-border-radius: 0.1875rem;
 	border-radius: 0.1875rem;

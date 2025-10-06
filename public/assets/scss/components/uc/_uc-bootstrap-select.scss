@@ -2,15 +2,12 @@
     margin-bottom: 0;
 
    .btn {
-		border: 1px solid $border !important;
+		border: 1px solid var(--border) !important;
 		background-color: transparent !important;
 		font-weight:400;
 		color: $body-color !important;
 		
-		@at-root [data-theme-version="dark"] & {
-			border-color:$d-border !important;
-			background:$d-bg !important;
-		}
+		
        
        &:active,
        &:focus,
@@ -23,24 +20,22 @@
        }
    }
     .dropdown-menu{
-		border-color: $border !important;
+		border-color: var(--border) !important;
 		box-shadow:$shadow;
 		
 		.dropdown-item{
 			padding: 0.25rem 1rem;
 		}
 		
-		@at-root [data-theme-version="dark"] & {
-			border-color: $border !important;
-		}
+		
 	}
    
 }
 .input-group > .bootstrap-select:not(:first-child) .dropdown-toggle{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-#{$dz-pos-left}-radius: 0;
+    border-bottom-#{$dz-pos-left}-radius: 0;
 }
 .input-group > .bootstrap-select:not(:last-child) .dropdown-toggle{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-#{$dz-pos-right}-radius: 0;
+    border-bottom-#{$dz-pos-right}-radius: 0;
 }

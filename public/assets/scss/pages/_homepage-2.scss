@@ -33,14 +33,14 @@
 	}
 }
 #AllProject_rate{
-	margin-left:-36px;
+	margin-#{$dz-pos-left}:-36px;
 }
 .ds-prise{
 	margin-top: 28px;
 	li{
 		font-size: 0.938rem;
 		font-weight:400;
-		color: black;
+		color: var(--text-dark);
 	}
 }
 .d-team{
@@ -57,7 +57,7 @@
 		background-color:var(--rgba-primary-1);
 		border-radius:50%;
 		bottom: -44px;
-        right: -44px;
+        #{$dz-pos-right}: -44px;
 	}
 	@include custommq($max:100rem){
 		img{
@@ -68,7 +68,7 @@
 }
 .m-prise{
 	justify-content:center;
-	border-bottom:1px solid #E6E6E6;
+	border-bottom:1px solid var(--border);
 	padding: 12px 0;
     margin-bottom: 20px;
 	h4{
@@ -99,11 +99,11 @@
 	padding: 0 20px;
 	margin-bottom: 20px;
 	.nav-item{
-		margin-right: 15px;
+		margin-#{$dz-pos-right}: 15px;
 		.nav-link{
 			height: 60px;
 			width: 70px;
-			border: 2px dotted $border-color;
+			border: 2px dotted var(--border);
 			box-shadow:none;
 			span{
 				color: $body-color;
@@ -134,7 +134,7 @@
 			}
 		}
 		@include respond ('phone'){
-			margin-right: 12px;
+			margin-#{$dz-pos-right}: 12px;
 			margin-bottom: 12px;
 		}
 	}	
@@ -173,7 +173,7 @@
 	.cat-name{
 		p{
 			font-weight:500;
-			color:black;
+			color:var(--text-dark);
 			font-size: 12px;
 		}
 		span{
@@ -192,7 +192,7 @@
 	}
 }
 .s-date{
-	border:1px solid $border;
+	border:1px solid var(--border);
 	padding: 5px 10px;
 	border-radius:$radius-xs;
 	margin-top: 20px;
@@ -215,10 +215,10 @@
 	}	
 	@include respond ('tab-land'){
 		width: 100px;
-		margin-right: 10px;
+		margin-#{$dz-pos-right}: 10px;
 	}
 	p{
-		color:black;
+		color:var(--text-dark);
 	}
 	span{
 		font-size: 12px;
@@ -232,7 +232,7 @@
 }
 .p-bd{
 	p{
-		color: black;
+		color: var(--text-dark);
         line-height: 1.3;
 	}
 }
@@ -251,7 +251,7 @@
 .exports{
 	.dt-buttons .dt-button{
 		top: 0px!important;
-        right: 0!important;
+        #{$dz-pos-right}: 0!important;
 	}
 	.tbl-caption{
 		padding: 10px;
@@ -259,11 +259,12 @@
 }
 .active-projects.style-1 .dt-buttons .dt-button {
     top: -50px;
-    right: 320px;
+    #{$dz-pos-right}: 320px;
 }
 @include custommq($max: 1920px , $min:1199px) {
 	.customeoff{
 		width:800px!important;
+		background-color: var(--card);
 	}
 }	
 
@@ -271,7 +272,7 @@
 
 
 .total-projects{
-	text-align:right;
+	text-align:#{$dz-pos-right};
 }
 
 .edit-action{
@@ -320,21 +321,21 @@
 .sale-card{
 	.card-footer{
 		.tag{
-			border-bottom-right-radius: 20px;
-			border-top-left-radius: 80px;
+			border-bottom-#{$dz-pos-right}-radius: 20px;
+			border-top-#{$dz-pos-left}-radius: 80px;
 			bottom: 0;
 			cursor: pointer;
 			height: 40px;
 			position: absolute;
-			right: 0;
+			#{$dz-pos-right}: 0;
 			width: 40px;
 			svg{
 				color: #fff;
 				height: 22px;
-				left: 0;
+				#{$dz-pos-left}: 0;
 				margin: 0 auto;
 				position: absolute;
-				right: 0;
+				#{$dz-pos-right}: 0;
 				top: 11px;
 				width: 22px;
 			}
@@ -468,7 +469,7 @@
 		width: 160px;
 		height: 130px;
 		border-radius: $radius;
-		margin-right: 18px;
+		margin-#{$dz-pos-right}: 18px;
 		object-fit: cover;
 		@include respond ('phone'){
 			width: 100%;
@@ -500,7 +501,7 @@
 		width: 300px;
 		height: 180px;
 		border-radius: 0.375rem;
-		margin-right: 18px;
+		margin-#{$dz-pos-right}: 18px;
 		object-fit: cover;
 		@include respond ('tab-land'){
 			width: 100%;
@@ -550,7 +551,7 @@
 	.icon-box{
 		position: absolute;
 		top: -12px;
-		left: 46%;
+		#{$dz-pos-left}: 46%;
 	}
 	.notify-data{
 		text-align: center;
@@ -570,7 +571,7 @@
 			margin: 0 7px;
 			border-radius: $radius-xs;
 			&:first-child{
-				margin-left: 0;
+				margin-#{$dz-pos-left}: 0;
 			}
 		}
 	}
@@ -581,7 +582,7 @@
 			display: flex;
 			padding: 6px 0px;
 			h6{
-				margin-left: 5px;
+				margin-#{$dz-pos-left}: 5px;
 				margin-bottom: 0;
 				font-size: 13px;
 			}
@@ -590,34 +591,34 @@
 }
 .bg-facebook{
 	background:#4867aa;
-	color:white;
+	color:white!important;
 	&:hover{
 		background:#4867aa;
-	   color:white;
+	   color:white!important;
 	}
 }
 .bg-whatsapp{
 	background:#1ad03f;
-	color:white;
+	color:white!important;
 	&:hover{
 		background:#1ad03f;
-	   color:white;
+	   color:white!important;
 	}
 }
 .bg-skype{
 	background:#0194d7;
-	color:white;
+	color:white!important;
 	&:hover{
 		background:#0194d7;
-	   color:white;
+	   color:white!important;
 	}
 }
 .bg-linkedin{
 	background:#0a66c2;
-	color:white;
+	color:white!important;
 	&:hover{
 		background:#0a66c2;
-	   color:white;
+	   color:white!important;
 	}
 }
 .mix-chart-tab .nav-link.active svg path{
@@ -625,29 +626,29 @@
 }
 .dt-filter{
 	.dataTables_filter {
-		float:left;
+		float:#{$dz-pos-left};
 		input[type="search"]{
 			border:0;
 			border: 0;
-            background:#eeee;
+            background:var(--body-bg);
 			
 		}
 		label{
-			background:#eeee;
+			background:var(--body-bg);
 			padding: 0 8px;
             margin: 1px 17px;
 			border-radius:$radius-xs;
 			display:flex;
 			align-items:center;
 			margin-bottom: 6px;
-			margin-right: 0;
-			padding-right: 0;
+			margin-#{$dz-pos-right}: 0;
+			padding-#{$dz-pos-right}: 0;
 		}
 	}
 }
 @include respond ('laptop'){
 	.tg-base{
-		padding-right:0;
+		padding-#{$dz-pos-right}:0;
 	}
 }
 @include respond ('tab-land'){
@@ -655,16 +656,19 @@
 		display:none;
 	}
 	.tg-base{
-		padding-right:15px;
+		padding-#{$dz-pos-right}:15px;
 	}
 }
 @include custommq($max:1070px){
 	.tg-base{
-		padding-right:5px;
+		padding-#{$dz-pos-right}:5px;
 	}
 }
 @include respond ('phone'){
 	.or-series{
-		padding-right:7px;
+		padding-#{$dz-pos-right}:7px;
 	}
+}
+#Statistics{
+	direction: ltr;
 }

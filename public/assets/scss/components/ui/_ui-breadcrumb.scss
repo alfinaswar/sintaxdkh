@@ -4,7 +4,7 @@
         a{
             svg{
                margin-bottom: 3px;
-			   margin-right: 4px;
+			   margin-#{$dz-pos-right}: 4px;
             }
         }    
 		&.active{
@@ -32,8 +32,6 @@
 		margin-top: 0;
 	}
     @include respond('phone-land') {
-		// margin-left: -1.25rem;
-		// margin-right: -1.25rem;
 		margin-bottom: 0rem;
     }
 
@@ -56,7 +54,6 @@
         padding: 0;
         background: transparent;
 		align-items:center;
-        // font-size: 0.875rem;
         li {
             margin-top: 0;
             margin-bottom: 0;
@@ -79,11 +76,6 @@
         
         .breadcrumb-item + .breadcrumb-item {
             &:before {
-                //content: "\e606";
-                /* font-family: 'simple-line-icons';
-                font-weight: 400;
-				position:absolute;
-                font-size: 10px; */
 				color:var(--primary);
             }
         }
@@ -101,7 +93,7 @@
 	.bc-title{
 		margin:0;
 		font-size:17px;
-		margin-right: 2rem;
+		margin-#{$dz-pos-right}: 2rem;
 		color:var(--secondary);
 		@include respond ('phone'){
 			font-size:15px;
@@ -110,6 +102,3 @@
     
 }
 
-.select2-selection__arrow{
-	display:none;
-}

@@ -8,7 +8,7 @@
                 &.mega-menu {
 
                     &> ul.collapse:not(.in) {
-                        height: 15.75rem !important;
+                        height: 252px !important;
                     }
 
                     &:hover {
@@ -36,7 +36,7 @@
                             }
 
                             &>ul {
-                                max-height: 12.5rem;
+                                max-height: 200px;
                                 width: 70vw;
 
                                 ul a {
@@ -54,7 +54,7 @@
                             }
 
                             &>ul {
-                                max-height:12.5rem;
+                                max-height:200px;
                                 width: 55vw;
 
                                 ul a {
@@ -67,7 +67,7 @@
                     &-md {
                         &:hover {
                             &>a {
-                                width: calc(45vw + 3);
+                                width: calc(45vw + 3rem);
                             }
                             &>ul {
                                 max-height: 18.75rem;
@@ -83,7 +83,7 @@
                     &-sm {
                         &:hover {
                             &>a {
-                                width: calc(30vw + 3);
+                                width: calc(30vw + 3rem);
                             }
                             &>ul {
                                 max-height: 18.125rem;
@@ -197,8 +197,8 @@
                     }
 
                     ul {
-                        left: 0;
-                        right: 0;
+                        #{$dz-pos-left}: 0;
+                        #{$dz-pos-right}: 0;
 						
 
                         li {
@@ -265,10 +265,10 @@
                             &::after {
                                 content: "";
                                 height: 100%;
-                                width: 0.0625rem;
+                                width: 1px;
                                 position: absolute;
                                 background-color: $white;
-                                right: 2.8125rem;
+                                #{$dz-pos-right}: 2.8125rem;
                                 top: 0;
 
                                 @at-root [data-theme-version="dark"]#{&} {
@@ -321,7 +321,7 @@
                     &-xl {
                         &:hover {
                             &>ul {
-                                max-height: 13.125rem;
+                                max-height: 210px;
                                 width: 70vw;
                             }
                         }
@@ -332,12 +332,12 @@
                         &:hover {
 
                             &>ul {
-								max-height: 13.125rem;
-								width: 43.75rem;
-								height: 13.125rem !important;
+								max-height: 210px;
+								width: 700px;
+								height: 210px !important;
 								
-                                @include custommq($min: 75rem, $max: 93.75rem) {
-                                    width: 43.75rem;
+                                @include custommq($min: 1200px, $max: 1500px) {
+                                    width: 700px;
                                 }
                             }
                         }
@@ -349,7 +349,7 @@
                                 max-height: 20rem;
                                 width: 54vw;
 
-                                @include custommq($min: 75rem, $max: 93.75rem) {
+                                @include custommq($min: 1200px, $max: 1500px) {
                                     width: 60vw;
                                 }
                             }
@@ -362,7 +362,7 @@
                                 max-height: 20rem;
                                 width: 25vw;
 
-                                @include custommq($min: 75rem, $max: 93.75rem) {
+                                @include custommq($min: 1200px, $max: 1500px) {
                                     width: 35vw;
                                 }
                             }

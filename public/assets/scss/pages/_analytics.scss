@@ -5,7 +5,7 @@
 		height:200px;
 		transform: scale(1.1);
 		position: absolute;
-		right: 32px;
+		#{$dz-pos-right}: 32px;
         bottom: 0;
 		@include custommq($max:1600px){
 			height:165px;
@@ -15,14 +15,16 @@
 		}
 		@include respond ('phone'){
 			height: 97px;
-			right: 25px;
-			bottom: 24px;
+			#{$dz-pos-right}: 25px;
+			bottom: 11px;
 		}
 	}
 	.c-con{
 		width:50%;
 		p{
-			margin-bottom: 44px;
+			margin-bottom: 44px;        
+			position: relative;
+			z-index: 1;
 		}
 		@include custommq($max:1326px){
 			p{
@@ -40,6 +42,8 @@
     border-radius:$radius;
 	background: rgba(255,255,255,0.1);
 	min-width: 164px;
+
+	
 	@include custommq($max:1880px){
 		min-width: 120px;
 		padding: 9px 30px;
@@ -64,15 +68,23 @@
 			width: 30px;
 		}
 		padding: 9px 10px;
-		min-width: 70px
+		min-width: 106px;
+	}
+	@include respond ('laptop'){
+		min-width: 106px;
 	}
 	@include respond ('tab-land'){
 		padding: 9px 32px;
-		min-width: 168px;
+		min-width: 160px;
 	}
 	@include respond ('tab-port'){
-		min-width: 140px;
+		min-width: 132px;
+
 	}
+	@include respond ('phone'){
+		min-width: 144px;
+	}
+	
 }
 .analytics-card{
 	.ic-n-bx{
@@ -151,10 +163,10 @@
 			position: absolute;
 			content: "";
 			top: 1.888rem;
-			left: 0.3rem;
+			#{$dz-pos-left}: 0.3rem;
 			width: 0.063rem;
 			height: 100%;
-			background: #e4e4e4;
+			background: var(--border);
 		}
 		&:last-child{
 			&:after{
@@ -165,5 +177,5 @@
 }
 .chartBar1{
 	margin-top: -31px;
-    margin-left: -21px;
+    margin-#{$dz-pos-left}: -21px;
 }

@@ -24,6 +24,16 @@
             <h4 class="card-title">Data Work Order</h4>
         </div>
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="filterKategori" class="form-label">Filter Kategori</label>
+                    <select id="filterKategori" class="form-select">
+                        <option value="">Semua Kategori</option>
+                        <option value="SOFTWARE">SOFTWARE</option>
+                        <option value="HARDWARE">HARDWARE</option>
+                    </select>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table id="example" class="display table" style="width: 100%;">
                     <thead>
@@ -87,7 +97,7 @@
                 });
             });
 
-            var dataTable = function () {
+            var dataTable = function (kategori = '') {
                 var table = $('#example');
                 table.DataTable({
                     responsive: true,
@@ -101,7 +111,12 @@
                             previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>'
                         }
                     },
-                    ajax: "{{ route('work-order.index') }}",
+                    ajax: {
+                        url: "{{ route('work-order.index') }}",
+                        data: function (d) {
+                            d.kategori = $('#filterKategori').val();
+                        }
+                    },
                     columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -149,6 +164,12 @@
                 });
             };
             dataTable();
+
+            // Event untuk filter kategori
+            $('#filterKategori').on('change', function () {
+                $('#example').DataTable().destroy();
+                dataTable($(this).val());
+            });
         });
     </script>
 @endpush

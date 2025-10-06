@@ -59,12 +59,15 @@
 
 
 
-
+@use "sass:math";
 
 ////////////////////
 // Abstracts
 ////////////////////
 @import "./abstracts/abstracts";
+
+//Importing the RTL-specific variables file//
+//@import "bs_rtl.scss";
 
 //bootstrap library scss files
 @import "./../vendor/bootstrap/scss/bootstrap.scss";
@@ -98,13 +101,14 @@
 
 
 
-////////////////////
-// RTL
-////////////////////
-@import "./layout/rtl/rtl";
 
 
 ////////////////////
 // Version Color
 ////////////////////
 @import "./layout/version-dark/main";
+
+////////////////////
+// RTL
+////////////////////
+//@import "./layout/rtl/rtl";

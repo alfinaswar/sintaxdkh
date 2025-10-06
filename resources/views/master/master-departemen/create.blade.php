@@ -59,13 +59,13 @@
             const tbody = document.querySelector("#unitTable tbody");
             const row = document.createElement("tr");
             row.innerHTML = `
-                                        <td>
-                                            <input type="text" name="NamaUnit[]" class="form-control" placeholder="Masukkan nama unit">
-                                        </td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="hapusBaris(this)">🗑</button>
-                                        </td>
-                                    `;
+                                                <td>
+                                                    <input type="text" name="NamaUnit[]" class="form-control" placeholder="Masukkan nama unit">
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-danger btn-sm" onclick="hapusBaris(this)">🗑</button>
+                                                </td>
+                                            `;
             tbody.appendChild(row);
         }
 

@@ -1,36 +1,82 @@
 
 // Basic Input
 
+
 .form-control{
-    background: $white;
-    color: $dark;
-	line-height: 1.5;
-    font-size: 13px;
+    background: var(--card);
+    color: var(--text);
+	line-height: 1.7;
+    font-size: 0.9rem;
+	border-color:var(--border);
 	height: 2.813rem;
-	border-radius:$radius-sm;
-	padding: 0.375rem 1rem;
-	border-color: rgba(0 ,0, 0, 0.1);
+	border-radius:$radius;
+
+	&::placeholder{
+		color:#888888;
+	}
     &:hover,&:focus,&.active{
         box-shadow: none;
-        background: $white;
-        color: $dark;
+        background: var(--card);
+        color: var(--text);
     }
 	&:focus{
-		border-color:var(--primary);
+		border-color:var(--border);
 	}
 	&.solid{
-		background:$body-bg;
-		border-color:#ececec;
-		color:#000;
+		background:var(--body-color);
+		border-color:var(--border);
+		color:var(--text-dark)
 		&[type="file"]{
 			padding: 6px 10px;
 		}
 	}
-	&[type="file"] {
-		padding: 0.175rem 0.75rem;
-		line-height: 2.7;
+	&.form-control-lg{
+		line-height:2.7rem;
+		
+		.dropdown-toggle{
+			padding:0.5rem 1rem;
+			height: 3.7rem;
+		}
 		
 	}
+	&.form-control-sm{
+		line-height: 1.9rem;
+		
+		.dropdown-toggle{
+			padding:0.25rem 1rem;
+			height: 2.3rem;
+		}
+		.dropdown-item{
+			line-height: 1.6rem;
+		}
+	}
+}
+.input-group-sm{
+	.form-control{
+		height:2.5rem;
+		
+		
+	}
+}
+
+.form-check{
+	padding: 0;
+	padding-#{$dz-pos-left}: 1.5em;
+	.form-check-input{
+		float: #{$dz-pos-left};
+    	margin-#{$dz-pos-left}: -1.5em;
+	}
+}
+.input-group-lg{
+	.form-control{
+		height:4.5rem;
+		
+		
+	}
+}
+
+.input-rounded {
+    border-radius: 6.25rem;
 }
 
 
@@ -144,25 +190,13 @@
 	}
 }
 
-// Input Size/
-// .form-control{
-    // min-height: 2.5rem;
-// }
-// .form-control-sm{
-//     min-height: 2.25rem;
-// }
-// .form-control-lg{
-//     min-height: 3.25rem;
-// }
-
-
 
 // Input Group
 .input-group-text{
     min-width: 3.125rem;
 	justify-content: center;
 	border-radius: $radius-sm;
-	border-color:$border-color;
+	border-color:var(--border);
 }
 .form-file-label{
     height: 2.5rem;
@@ -174,10 +208,8 @@
 }
 .custom-select{
     background: none;
-    // height: 2.8125rem;
     border-color: $border;
     color: $dark;
-    // border-radius: 0rem
     &:focus{
         box-shadow: none;
         border-color: var(--primary);
@@ -185,8 +217,6 @@
     }
 }
 .form-file-label{
-    // height: 2.8125rem;
-    // border-radius: 0rem
 	background: #656C73;
 	white-space: nowrap;
 	color: $white;
@@ -198,21 +228,15 @@
 }
 
 .custom_file_input {
-    .input-group-prepend, 
-    .input-group-append {
-        // height: 2.8125rem;
-    }
-
     .form-file-label::after {
         height: 100%;
-        // line-height: 2.4;
     }
 }
 
 
 .form-control:disabled,
  .form-control[readonly] {
-    background: $white;
+    background: var(--card);
     opacity: 1;
 }
 
@@ -236,14 +260,7 @@
 		margin-bottom: 0;
 
 	  }
-	/* &> .form-file {
-		display: flex;
-		align-items: center;
-
-		&:not(:last-child) .form-file-label,
-		&:not(:last-child) .form-file-label::after { @include border-right-radius(0); }
-		&:not(:first-child) .form-file-label { @include border-left-radius(0); }
-	  } */
+	
 }
 
 
@@ -261,12 +278,8 @@
 		height:auto;
 	}
 }
-#validationCustomUsername{
-	border-radius: 0 0.5rem 0.5rem 0;
-}
-.show-pass{
-	border-radius: 0 0.5rem 0.5rem 0!important;
-}
+
+
 .form-file{
 	.form-control{
 		margin:0;
@@ -297,7 +310,7 @@
 		}
 	}
 	.form-control{
-		padding-left: 10px;
+		padding-#{$dz-pos-left}: 10px;
 		line-height: 45px;
 	}
 }
@@ -372,24 +385,57 @@
 		border-radius:$radius;
 	}
 }
-.input-group-text {
-	//background-color:var(--rgba-primary-1);
-	//color: var(--primary);
-}
+
 textarea.form-control {
 	min-height:auto;
 	height:auto!important;
 }
 .form-control[type="file"]{
-    line-height: 2.375rem;
-    padding-left: 0.75rem;
+    line-height: 2.075rem;
+    padding-#{$dz-pos-left}: 0.75rem;
 }
 .form-control-sm[type="file"]{
     line-height: 2rem;
     padding: 0.25rem;
-    padding-left: 8px;
+    padding-#{$dz-pos-left}: 8px;
 }
 .form-control-lg[type="file"]{
-	line-height:3.25rem;
-	padding-left:0.625rem;
+	line-height:2.65rem;
+	padding-#{$dz-pos-left}:0.625rem;
+}
+
+.bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
+	#{$dz-pos-right}: 15px;
+	#{$dz-pos-left} : auto;
+}
+
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating){
+	border-top-#{$dz-pos-right}-radius: 0 !important;
+	border-bottom-#{$dz-pos-right}-radius: 0 !important;
+	border-top-#{$dz-pos-left}-radius: $radius;
+	border-bottom-#{$dz-pos-left}-radius: $radius;
+}
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-#{$dz-pos-left}: calc(var(--bs-border-width) * -1);
+    border-top-#{$dz-pos-left}-radius: 0;
+    border-bottom-#{$dz-pos-left}-radius: 0;
+	border-top-#{$dz-pos-right}-radius: $radius;
+    border-bottom-#{$dz-pos-right}-radius: $radius;
+}
+.input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n + 3){
+	border-top-#{$dz-pos-right}-radius: 0;
+    border-bottom-#{$dz-pos-right}-radius: 0;
+	border-top-#{$dz-pos-left}-radius: $radius;
+    border-bottom-#{$dz-pos-left}-radius: $radius;
+}
+.input-group button.dropdown-toggle.dropdown-toggle-split:nth-child(2){
+	border-radius: 0 !important;
+}
+.vertical-radius{
+	.input-group:not(.has-validation){
+		:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating).br-style{
+			border-top-#{$dz-pos-right}-radius:$radius!important;
+			border-bottom-#{$dz-pos-right}-radius:$radius!important;
+		}
+	}
 }

@@ -1,6 +1,6 @@
 //style for all basic tables
 .table {
-	color:
+	--bs-table-bg : var(--card);
 	strong{
 		color:$dark;
 	}
@@ -158,10 +158,10 @@
 		}
 	}
     thead th {
-        border-bottom: 0.0625rem solid $border;
+        border-bottom: 0.0625rem solid var(--border);
         text-transform: capitalize;
-        // color: $dark ;
         font-size: 1rem;
+		color:var(--text-dark);
 		white-space:nowrap;
         font-weight: 500;
         border-color: $border!important;
@@ -170,15 +170,9 @@
         }
     }
     tbody  tr td {
-        // color: $l-ctd;
-        // line-height: 2.5rem;
         vertical-align: middle;
         border-color: $border;
 		white-space: nowrap;
-		background: transparent!important;
-        // @at-root [data-theme-version="dark"] & {
-          // /*   border-color: $d-border; */
-        // }
     }
 	
 	//delete header borders without '.borders tables'
@@ -220,16 +214,26 @@
 
     //table hover
     &.primary-table-bg-hover {
+		tbody{
+			border-color:var(--primary-dark);
+		}
         thead th {
-            background-color: var(--primary-dark);
+            background-color:var(--primary-dark);
             color: $white;
             border-bottom: none;
+			border-color:var(--primary-dark);
         }
 
         tbody tr {
             background-color: var(--primary);
             color: $white;
+			
             transition: all .1s ease;
+			th,td{
+				border-color:var(--primary-dark)!important;
+				background-color: transparent;
+				color:$white;
+			}
 
             &:hover {
                 background-color: var(--rgba-primary-8);
@@ -238,8 +242,12 @@
             &:not(:last-child) {
                 td, th {
                     border-bottom: 0.0625rem solid var(--primary-dark);
+					border-color: $white;
+					
+					
                 }
             }
+			
         }
     }
 
@@ -331,15 +339,15 @@
 .card-table{
 	th, td{
         &:first-child{
-			padding-left: 1.875rem;
+			padding-#{$dz-pos-left}: 1.275rem;
 			@include respond('phone') {
-				padding-left: 0.9375rem;
+				padding-#{$dz-pos-left}: 0.9375rem;
 			}
 		}
 		&:last-child{
-			padding-right:1.875rem;
+			padding-#{$dz-pos-right}:1.875rem;
 			@include respond('phone') {
-				padding-right: 0.9375rem;
+				padding-#{$dz-pos-right}: 0.9375rem;
 			}
 		}
     }
@@ -402,7 +410,12 @@
 .light-logo{
 	display:block;
 }
-
+.table tbody tr td:last-child{
+    text-align: #{$dz-pos-right};
+}
+.table thead tr th:last-child {
+    text-align: #{$dz-pos-right} !important;
+}
 
 
 

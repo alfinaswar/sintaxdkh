@@ -101,7 +101,8 @@
 	.btn-close{
 		background: none;
 		text-shadow: 0 1px 0 #fff;
-		top:-5px;
+		#{$dz-pos-right}:-5px;
+        right:0;
 		opacity: 0.5;
 		color: inherit;
 		i{
@@ -113,11 +114,11 @@
 // Alert alt
 
 .alert-alt.alert-primary{
-    border-left: 0.25rem solid var(--primary);
+    border-#{$dz-pos-left}: 0.25rem solid var(--primary);
 }
 
 .alert-alt.alert-secondary{
-    border-left: 0.25rem solid $secondary;
+    border-#{$dz-pos-left}: 0.25rem solid $secondary;
 }
 
 
@@ -126,22 +127,22 @@
 }
 
 .alert-alt.alert-warning{
-    border-left: 0.25rem solid $warning;
+    border-#{$dz-pos-left}: 0.25rem solid $warning;
 }
 
 .alert-alt.alert-danger{
-    border-left: 0.25rem solid $danger;
+    border-#{$dz-pos-left}: 0.25rem solid $danger;
 }
 
 .alert-alt.alert-info{
-    border-left: 0.25rem solid $info;
+    border-#{$dz-pos-left}: 0.25rem solid $info;
 }
 
 .alert-alt.alert-dark{
-    border-left: 0.25rem solid $dark;
+    border-#{$dz-pos-left}: 0.25rem solid $dark;
 }
 .alert-alt.alert-light{
-    border-left: 0.25rem solid darken($light,15%);
+    border-#{$dz-pos-left}: 0.25rem solid darken($light,15%);
 }
 
 
@@ -149,35 +150,35 @@
 // Alert alt with solid color
 
 .alert-alt.alert-primary.solid{
-    border-left: 0.25rem solid var(--primary-dark)!important;
+    border-#{$dz-pos-left}: 0.25rem solid var(--primary-dark)!important;
 }
 
 .alert-alt.alert-secondary.solid{
-    border-left: 0.25rem solid darken($secondary,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($secondary,25%)!important;
 }
 
 
 .alert-alt.alert-success.solid{
-    border-left: 0.25rem solid darken($success, 25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($success, 25%)!important;
 }
 
 .alert-alt.alert-warning.solid{
-    border-left: 0.25rem solid darken($warning,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($warning,25%)!important;
 }
 
 .alert-alt.alert-danger.solid{
-    border-left: 0.25rem solid darken($danger,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($danger,25%)!important;
 }
 
 .alert-alt.alert-info.solid{
-    border-left: 0.25rem solid darken($info,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($info,25%)!important;
 }
 
 .alert-alt.alert-dark.solid{
-    border-left: 0.25rem solid darken($dark,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($dark,25%)!important;
 }
 .alert-alt.alert-light.solid{
-    border-left: 0.25rem solid darken($light,25%)!important;
+    border-#{$dz-pos-left}: 0.25rem solid darken($light,25%)!important;
 }
 
 
@@ -254,7 +255,7 @@
 .alert-right-icon{
     &>span i{
         font-size: 1.125rem;
-        margin-right: 0.3125rem;
+        margin-#{$dz-pos-right}: 0.3125rem;
     }
     .close{
         i{
@@ -323,7 +324,7 @@
     color: $white;
     .alert-social-icon{
         align-self: center;
-        margin-right: 0.9375rem;
+        margin-#{$dz-pos-right}: 0.9375rem;
         i{
             font-size: 2.625rem;
         }
@@ -354,28 +355,17 @@
 .left-icon-big{
     .alert-left-icon-big{
         align-self: center;
-        margin-right: 0.9375rem;
+        margin-#{$dz-pos-right}: 0.9375rem;
         i{
             font-size: 2.1875rem;   
 			line-height: 1;
         }
 		
-        // &.primary{
-        //     background: $primary;
-        //     color: $white;
-        // }
+        
     }
-    .media-body{
-        // margin-left: 6.25rem;
-    }
+    
 }
-[direction="rtl"]{
-	.left-icon-big .alert-left-icon-big,
-	.alert-social .alert-social-icon{
-		margin-right: 0;
-		margin-left: 0.9375rem;
-	}
-}
+
 
 .dz-scroll{
     overflow-y: scroll;
@@ -394,5 +384,25 @@ body > *{
 	background:  rgba(111, 133, 147, 0.1); 
 }
 
+.btn-close{
+	background:none;
+	position:relative;
+	font-family: "Font Awesome 5 Free";
+	margin-#{$dz-pos-left}: auto !important;
+	margin-#{$dz-pos-right}: unset !important;
+	color:var(--text-dark);
+	&:before{
+		content:'\f00d';
+		font-weight: 600;
+		
+	}
+	&:hover{
+		color:var(--text-dark);
+	}
+}
 
-
+// sweetalerts
+div:where(.swal2-container) div:where(.swal2-popup) {
+    background: var(--card) !important;
+    color: var(--text-dark) !important;
+}

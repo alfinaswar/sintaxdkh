@@ -17,4 +17,13 @@ class MasterDepartemen extends Model
     {
         return $this->hasMany(MasterUnit::class, 'IdDepartemen', 'id');
     }
+    /**
+     * Get the user associated with the MasterDepartemen
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getRS()
+    {
+        return $this->hasOne(MasterRs::class, 'id', 'KodeRS');
+    }
 }

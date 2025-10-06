@@ -63,12 +63,9 @@
             background-color: var(--primary);
             position: absolute;
             top: 0.75rem;
-            left: 50%;
+            #{$dz-pos-left}: 50%;
 
-            @at-root [direction="rtl"] #{&} {
-              left: auto;
-              right: 50%;
-            }
+           
 
             @include media-breakpoint-down(xs) {
                 top: 0.75rem;

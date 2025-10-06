@@ -31,8 +31,8 @@
             margin-top: 3rem;
 
             &>* {
-                margin-left: 1rem;
-                margin-right: 1rem;
+                margin-#{$dz-pos-left}: 1rem;
+                margin-#{$dz-pos-right}: 1rem;
             }
 
             .switch label {
@@ -58,8 +58,8 @@
 
         .upper-border {
             height: 1.5rem;
-            border-top-right-radius: .5rem;
-            border-top-left-radius: .5rem;
+            border-top-#{$dz-pos-right}-radius: .5rem;
+            border-top-#{$dz-pos-left}-radius: .5rem;
             
             &.style-1 {
                 @extend %gradient-1;
@@ -176,7 +176,7 @@
             padding: .95rem 2.5rem;
 
             i{
-                padding-right: .5rem;
+                padding-#{$dz-pos-right}: .5rem;
             }
         }
     }

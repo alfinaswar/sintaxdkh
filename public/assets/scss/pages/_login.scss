@@ -2,7 +2,7 @@
 .logo-header {
     margin-bottom: 2rem;
 	.logo-white {
-		margin-left: 0.625rem;
+		margin-#{$dz-pos-left}: 0.625rem;
 	}
 }
 
@@ -23,7 +23,7 @@
     text-align: center;
 	li{ 
 		font-size: 12px;
-		margin-right: 0.2rem;
+		margin-#{$dz-pos-right}: 0.2rem;
 		a {
 			color: #ffffff;
 			font-size: 14px;

@@ -17,9 +17,9 @@ class MasterMerkController extends Controller
     {
         if ($request->ajax()) {
             if (auth()->user()->hasRole('Admin')) {
-                $data = MasterMerk::orderBy('id', 'desc');
+                $data = MasterMerk::with('getRs')->orderBy('id', 'desc');
             } else {
-                $data = MasterMerk::where('KodeRS', auth()->user()->KodeRS)
+                $data = MasterMerk::with('getRs')->where('KodeRS', auth()->user()->KodeRS)
                     ->orderBy('id', 'desc');
             }
             return DataTables::of($data)
@@ -28,6 +28,9 @@ class MasterMerkController extends Controller
                     $btn = '<a href="' . route('master-merk.edit', encrypt($row->id)) . '" class="btn btn-warning btn-sm">Edit</a>';
                     $btn .= ' <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . encrypt($row->id) . '">Delete</button>';
                     return $btn;
+                })
+                ->editColumn('KodeRS', function ($row) {
+                    return $row->getRs->Nama;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

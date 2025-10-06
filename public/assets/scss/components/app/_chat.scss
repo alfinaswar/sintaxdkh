@@ -1,5 +1,5 @@
 .chat-border{
-	border-right:1px solid rgba(136,136,136,0.2);
+	border-#{$dz-pos-right}:1px solid rgba(136,136,136,0.2);
 }
 .chat-p{
 	display:flex;
@@ -27,7 +27,7 @@
 				width:10px;
 				background:$success;
 				bottom: 6px;
-                left: 27px;
+                #{$dz-pos-left}: 27px;
 				border-radius:50%;
 				border:2px solid $white;
 				
@@ -41,13 +41,13 @@
 	.search-area{
 		background-color:transparent!important;
 		.form-control{
-			background:$body-bg;
-			border-color:$body-bg;
+			background:var(--body-bg)!important;
+			border-color:var(--body-bg);
 			
 		}	
 		.input-group-text{
-			background:$body-bg;
-			border-color:$body-bg;
+			background:var(--body-bg)!important;
+			border-color:var(--body-bg);
 		}
 	}
 }
@@ -102,7 +102,7 @@
 	padding:1.25rem;
 	@include respond ('tab-land'){
 		width: 50%;
-		float: left;
+		float: #{$dz-pos-left};
 	}
 	@include respond ('phone'){
 		width: 100%;
@@ -115,7 +115,7 @@
 		width:75px;
 		object-fit:cover;
 		border-radius: 6px;
-		margin-left: 10px;
+		margin-#{$dz-pos-left}: 10px;
 		margin-bottom: 10px;
 	}
 }
@@ -150,10 +150,10 @@
 		position: absolute;
 		z-index: 2;
 		transition: all 0.2s;
-		left: -22rem;
+		#{$dz-pos-left}: -22rem;
 		&.active{
-			left:0;
-			background: white;
+			#{$dz-pos-left}:0;
+			background: var(--card);
 		}
 	}
 }
@@ -168,7 +168,7 @@
 		display: block;
 		position: absolute;
 		top: 0;
-		left: -50vw;
+		#{$dz-pos-left}: -50vw;
 		width: 100vw;
 		height: 100vh;
 	}

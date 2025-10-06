@@ -38,3 +38,8 @@
 .lightimg{
 	cursor: pointer;
 }
+[dir='rtl']{
+	.lg-outer.lg-visible{
+		direction: ltr;
+	}
+}

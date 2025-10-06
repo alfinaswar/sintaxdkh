@@ -6,7 +6,7 @@
  var dzChartlist = function(){
 	
 	var screenWidth = $(window).width();
-	let draw = Chart.controllers.line.__super__.draw; //draw shadow
+	//let draw = Chart.controllers.line.__super__.draw; //draw shadow
 	
 	var VisitorsChart = function(){
 		var options = {
@@ -435,7 +435,7 @@
 			borderColor: 'rgba(252, 252, 252,0.2)',
 		},
 		xaxis: {
-		  categories: ['Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Agu', 'Sep', 'Oct','Nev','Dec'],
+		  categories: ['Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug', 'Sep', 'Oct','Nov','Dec'],
 		  labels: {
 			style: {
 				colors: '#000',
@@ -629,8 +629,11 @@
 				type: "bar",
 				data: data,
 				options: {
+					plugins:{
+						legend: false,
+					
+				},
 					responsive: !0,
-					//maintainAspectRatio: false,
 					legend: {
 						display: !1
 					},
@@ -638,15 +641,15 @@
 						enabled: false
 					},
 					scales: {
-						xAxes: [{
+						x:{
 							display: !1,
 							gridLines: {
 								display: !1
 							},
 							barPercentage: 1,
 							categoryPercentage: 0.5
-						}],
-						yAxes: [{
+						},
+						y:{
 							display: !1,
 							ticks: {
 								padding: 10,
@@ -660,7 +663,7 @@
 								lineWidth: 1,
 								zeroLineColor: "#48f3c0"
 							}
-						}]
+						}
 					}
 				}
 			});
@@ -696,8 +699,10 @@
 				type: "bar",
 				data: data,
 				options: {
+					plugins:{
+						legend:false
+					},
 					responsive: !0,
-					//maintainAspectRatio: false,
 					legend: {
 						display: !1
 					},
@@ -705,15 +710,15 @@
 						enabled: false
 					},
 					scales: {
-						xAxes: [{
+						x:{
 							display: !1,
 							gridLines: {
 								display: !1
 							},
 							barPercentage: 1,
 							categoryPercentage: 0.5
-						}],
-						yAxes: [{
+						},
+						y:{
 							display: !1,
 							ticks: {
 								padding: 10,
@@ -727,7 +732,7 @@
 								lineWidth: 1,
 								zeroLineColor: "#48f3c0"
 							}
-						}]
+						}
 					}
 				}
 			});

@@ -10,7 +10,6 @@
     font-size: 1.25rem;
 
     i{
-        // font-size: 0.875rem; 
         color: $white
     }
     &.youtube{
@@ -28,8 +27,8 @@
     padding: 1.25rem;
     position: relative;
     color: $white;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-#{$dz-pos-left}-radius: 0.25rem;
+    border-top-#{$dz-pos-right}-radius: 0.25rem;
 	
     &.widget-facebook {
         background-color: $facebook;
@@ -46,7 +45,6 @@
     .s-icon {
         font-size: 1.5rem;
         position: relative;
-        // top: 0.625rem;
         padding: 0 0.625rem;
     }
 }

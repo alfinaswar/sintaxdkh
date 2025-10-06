@@ -1,14 +1,12 @@
 .card {
     margin-bottom: 1.563rem;
-    background-color: $white;
+    background-color: var(--card);
     transition: all .5s ease-in-out;
     position: relative;
     border: 0rem solid transparent;
-    border-radius: $radius;
+    border-radius: $radius-lg;
 	height: calc(100% - 25px);
-	border:1px solid $border;
-	
-	// z-index: 0;
+	border:1px solid var(--border);
 	@include custommq($max: 35.9375rem) {
 		margin-bottom:0.938rem;
 		height: calc(100% - 0.938rem);
@@ -24,9 +22,9 @@
     &-title {
         font-size: 1rem;
         font-weight: 500;
-        // line-height: 2.2rem;
+        color:var(--text-dark);
+
         text-transform: capitalize;
-        // margin-bottom: 1.5rem;
     
         &--large{
             font-size: 1.5rem;
@@ -49,7 +47,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // min-height: 4.0625rem;
+       
 		@include respond('phone') {
 			padding: 1.25rem 1rem 1.25rem;
 		}
@@ -105,14 +103,14 @@
         text-align: center;
         background: var(--primary-dark);
         color: $white;
-        margin-right: 0.5rem;
+        margin-#{$dz-pos-right}: 0.5rem;
 
         @at-root [data-theme-version="dark"] & {
             background: $d-bg;
         }
 
         &:last-child{
-            margin-right: 0;
+            margin-#{$dz-pos-right}: 0;
         }
         &:hover,&:focus{
             background: var(--primary-dark);
@@ -125,9 +123,9 @@
 
         i,span{
             font-size: 1rem;
-            // color: #333333;
+            
         }
-        // padding: 0 .5rem;
+        
     }
 
     .dropdown{
@@ -136,7 +134,7 @@
         border-radius: 0.3125rem;
         border-color: transparent;
         text-align: center;
-        margin-right: 0.5rem;
+        margin-#{$dz-pos-right}: 0.5rem;
         top: -0.125rem;
         position: relative;
         display: inline-block;
@@ -170,7 +168,7 @@
 .card-fullscreen {
     position: fixed;
     top: 0;
-    left: 0;
+    #{$dz-pos-left}: 0;
     width: 100%;
     height: 100%;
     z-index: 99999999;
@@ -180,7 +178,7 @@
 .card-loader {
     position: absolute;
     top: 0;
-    left: 0;
+    #{$dz-pos-left}: 0;
     width: 100%;
     height: 100%;
     display: -webkit-box;
@@ -242,4 +240,14 @@
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
+}
+.card-text{
+    color:var(--text-dark);
+}
+.card-link{
+    &:hover{
+        color:var(--primary);
+
+    }
+
 }

@@ -67,11 +67,8 @@
                 &.mm-active {
     
                     &>a {
-                        color: $white!important;
-						/* background:var(--rgba-primary-1); */
-                        &::after {
-                     
-                        }
+                        color: $white;
+                       
 						i{
 							color:$white;
 						}
@@ -98,11 +95,7 @@
 				
                 a {
     
-                    &:hover,
-                    &:focus, 
-                    &.mm-active {
-                        color: $white;
-                    } 
+                  
 					&:before{
 						background-color: $white;
 					}
@@ -110,9 +103,7 @@
                 }
             }
             
-            a {
-                color: darken($color: $white, $amount: 30%)!important;
-            }
+            
     
         }
     }

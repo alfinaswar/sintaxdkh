@@ -29,12 +29,12 @@
     }
 
     &::before {
-      left: 0;
+      #{$dz-pos-left}: 0;
       background: var(--primary);
     }
 
     &::after {
-      right: 0;
+      #{$dz-pos-right}: 0;
       background: var(--primary);
     }
   }
@@ -42,7 +42,7 @@
   .cd-h-timeline__line { // grey line
     position: absolute;
     z-index: 1;
-    left: 0;
+    #{$dz-pos-left}: 0;
     top: 3.0625rem;
     height: 0.125rem; // width will be set using JavaScript
     background-color: var(--primary);
@@ -52,7 +52,7 @@
   .cd-h-timeline__filling-line { // green filling line
     position: absolute;
     z-index: 1;
-    left: 0;
+    #{$dz-pos-left}: 0;
     top: 0;
     height: 100%;
     width: 100%;
@@ -76,7 +76,7 @@
     &::after { // this is used to create the event spot
       content: '';
       position: absolute;
-      left: 50%;
+      #{$dz-pos-left}: 50%;
       transform: translateX(-50%);
       bottom: -0.3125rem;
       height: 0.75rem;
@@ -93,10 +93,6 @@
       background-color: $success;
       border-color: $success;
     }
-
-    // @include breakpoint(md) {
-    //   font-size: 0.7em;
-    // }
   }
 
 
@@ -133,7 +129,7 @@
       height: 1rem;
       width: 1rem;
       top: 50%;
-      left: 50%;
+      #{$dz-pos-left}: 50%;
       transform: translateX(-50%) translateY(-50%);
       background: url(../images/svg/cd-arrow.svg) no-repeat 0 0;
     }
@@ -144,12 +140,12 @@
   }
 
   .cd-h-timeline__navigation--prev {
-    left: 0;
+    #{$dz-pos-left}: 0;
     transform: translateY(-50%) rotate(180deg);
   }
 
   .cd-h-timeline__navigation--next {
-    right: 0;
+    #{$dz-pos-right}: 0;
   }
 
   .cd-h-timeline__navigation--inactive {
@@ -175,7 +171,7 @@
     position: absolute;
     z-index: 1;
     width: 100%;
-    left: 0;
+    #{$dz-pos-left}: 0;
     top: 0;
     transform: translateX(-100%);
     padding: 0.0625rem 5%;

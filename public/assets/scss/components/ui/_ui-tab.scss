@@ -3,14 +3,24 @@
 		border-radius:4px;
 		padding: 5px 15px;
 		font-size: 13px;
+		color:var(--primary);
+		&:hover{
+			color:var(--primary);
+		}
+		&.active{
+			&:hover{
+				color:$white;
+			}
+		}
 	}
+	
 }
 
 .default-tab{
     .nav-link{
         background: transparent;
-        border-top-left-radius: 0.75rem;
-		border-top-right-radius: 0.75rem;
+        border-top-#{$dz-pos-left}-radius: 0.75rem;
+		border-top-#{$dz-pos-right}-radius: 0.75rem;
         font-weight: 500;
 		i{
 			display:inline-block;
@@ -86,3 +96,23 @@
 	}
 }
 
+.tab-icon{
+
+	.nav-link{
+		&:hover{
+			border-color:var(--border);
+			i{
+				color:var(--primary);
+
+			}
+		}
+		&.active{
+			background-color: var(--body-bg);
+			border-color:var(--border);
+			
+			i{
+				color:var(--text-dark);
+			}
+		}
+	}
+  }

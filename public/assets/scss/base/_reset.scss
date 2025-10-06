@@ -1,7 +1,4 @@
 @import "../abstracts/maps";
-@import "./../vendor/animate/animate.min.css";
-@import "./../vendor/aos/css/aos.min.css";
-@import "./../vendor/perfect-scrollbar/css/perfect-scrollbar.css";
 @import "./../vendor/metismenu/css/metisMenu.min.css";
 * {
     outline: none;
@@ -15,8 +12,14 @@
         padding: 0;
     }
 }
-.required{
-	color:$danger;
+.required:after {
+    content: "\f621";
+    position: absolute;
+    font-size: 6px;
+    font-weight: 900;
+    color: #fd5353;
+    font-family: "Font Awesome 6 Free";
+    padding-#{$dz-pos-left}: 3px;
 }
 ::selection {
     color: #fff;
@@ -35,7 +38,7 @@
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  background-color: $body-bg;
+  background-color: var(--body-bg);
   //overflow-y: scroll; 
 }
 
@@ -80,7 +83,7 @@ $line-height-base:1.5;
 	border-radius:$radius;
 }
 ul {
-    padding: 0;
+    // padding: 0;
     margin: 0;
 }
 
@@ -320,20 +323,12 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
 .bg-dark-blue{
 	background:#251e71!important;
 }
-/* .bg-blue-light{
-	background:$color_pallate_8 !important;
-}
-.bg-green-light{
-	background:$color_pallate_9 !important;
-}
-.bg-green{
-	background:$color_pallate_10 !important;
-} */
+
 .bg-black{
 	background:$black;
 }
 .text-black{
-	color:$black !important;
+	color:var(--text-dark) !important;
 }
 .dz-scroll{
 	position:relative;
@@ -406,6 +401,61 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
     }
 }
 
+@for $i from 1 through 9 {
+	.bs-blue-#{$i}00{
+    background-color: rgba($blue, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-indigo-#{$i}00{
+    background-color: rgba($indigo, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-purple-#{$i}00{
+    background-color: rgba($purple, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-pink-#{$i}00{
+    background-color: rgba($pink, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-red-#{$i}00{
+    background-color: rgba($red, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-orange-#{$i}00{
+    background-color: rgba($orange, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-yellow-#{$i}00{
+    background-color: rgba($yellow, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-green-#{$i}00{
+    background-color: rgba($green, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-teal-#{$i}00{
+    background-color: rgba($teal, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-cyan-#{$i}00{
+    background-color: rgba($cyan, $i * 0.1);
+  }
+}
+@for $i from 1 through 9 {
+	.bs-gray-#{$i}00{
+    background-color: rgba($gray, $i * 0.1);
+  }
+}
 .height10 { height:0.625rem; }
 .height20 { height:1.25rem; }
 .height30 { height:1.875rem; }
@@ -545,4 +595,16 @@ label{
 }
 .body{
 	font-size:0.813rem;
+}
+.text-dark{
+
+    color:var(--text-dark)!important;
+}
+.form-label,
+.col-form-label{
+
+    color:var(--text-dark)
+}
+.logout-svg{
+    stroke: $danger;
 }

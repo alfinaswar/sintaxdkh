@@ -34,6 +34,14 @@ button{
         background-color: transparent;
     }
 
+	&.btn-sharp {
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		text-align: center;
+		line-height: 30px;
+		padding: 0;
+	}
 
 }
 .swal2-popup .swal2-styled:focus{
@@ -75,7 +83,10 @@ button{
 	border-color:var(--primary);
 	&:hover{
 		border-color:var(--primary-hover);	
-		background-color:var(--primary-hover);	
+		background-color:var(--primary-hover);
+		svg path {
+			stroke: #fff;
+		}
 	}
 }
 .sharp {
@@ -97,7 +108,10 @@ button{
     display: block;
     width: 100%;
 }
-
+.light.btn-danger:hover svg path ,
+.light.btn-primary:hover svg path {
+    stroke: #fff;
+}
 .light{
 
 	&.tp-btn{
@@ -556,12 +570,20 @@ button{
 }
 
 .btn-icon-end {
-	border-left: 0.0625rem solid $light;
+	border-#{$dz-pos-left}: 0.0625rem solid rgba(255,255,255,0.4);
     display: inline-block;
-    margin: -.8rem 0 -.8rem 1rem;
-    padding: 0.4375rem 0 0.4375rem 1rem;
-    margin: -1rem -0.25rem -1rem 1rem;
-    padding: 0.8rem 0 0.8rem 1.25rem;
+	margin: -1rem 0;
+	margin-#{$dz-pos-left}: 1rem;
+	margin-#{$dz-pos-right}: -0.25rem;
+	padding: 0.8rem 0;
+	padding-#{$dz-pos-left}: 1.25rem;
+	@include respond ('laptop'){
+		margin: -1rem 0;
+		margin-#{$dz-pos-left}: 1rem;
+		margin-#{$dz-pos-right}: -0.25rem;
+		padding: 0.7rem 0;
+		padding-#{$dz-pos-left}: 1.25rem;
+	}
 }
 
 .btn-icon-start {
@@ -575,21 +597,7 @@ button{
 		margin: -0.3rem 0.75rem -0.5rem -0.5rem;
 	}
 }
-[direction="rtl"]{
-	.btn-icon-start {
-		margin: -.5rem 0.5rem -0.5rem -1rem;
-		@include respond('laptop') {
-			margin: -0.5rem 0.75rem -0.5rem -0.880rem;
-		}
-	}
-	.btn-icon-end {
-		border-left: 0rem solid white;
-		display: inline-block;
-		margin: -.8rem 1rem -.8rem 0;
-		padding: 0.4375rem 1rem 0.4375rem 0;
-		border-right: 0.0625rem solid white;
-	}
-}
+
 .toggle-dropdown::after {
     margin-left: 0.755em;
 }
@@ -691,20 +699,22 @@ button{
 
 
 
-
+.btn-follow {
+    transition: all 1s ease;
+}
 .btn-light {
     background  : $light;
     border-color: $light;
-    color       : $white;
+    color       : var(--text-dark);
     
     
-    &:active,
-    &:focus,
-    &:hover {
-        background  : lighten($light, 25%);
-        color       : $dark;
-        border-color: lighten($light, 25%);
-    }
+    // &:active,
+    // &:focus,
+    // &:hover {
+    //     background  : darken($light, 25%);
+    //     color       : $dark;
+    //     border-color: darken($light, 25%);
+    // }
 }
 
 .btn-outline-primary{
@@ -780,256 +790,261 @@ button{
 // Social Buttons
 ///////////////////
 
-.btn-facebook {
-    background  : $facebook;
-    border-color: $facebook;
-    color       : $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($facebook, 10%);
-        color       : $white;
-        border-color: darken($facebook, 10%);
-    }
+///////////////////
+// Social Buttons
+///////////////////
+
+.btn-facebook {
+	background: $facebook;
+	border-color: $facebook;
+	color: $white;
+
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($facebook, 10%)!important;
+		color: $white;
+		border-color: darken($facebook, 10%);
+	}
 }
 
 .btn-twitter {
-    background  : $twitter;
-    border-color: $twitter;
-    color       : $white;
+	background: $twitter;
+	border-color: $twitter;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($twitter, 10%);
-        color       : $white;
-        border-color: darken($twitter, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($twitter, 10%)!important;
+		color: $white;
+		border-color: darken($twitter, 10%);
+	}
 }
 
 .btn-youtube {
-    background  : $youtube;
-    border-color: $youtube;
-    color       : $white;
+	background: $youtube;
+	border-color: $youtube;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($youtube, 10%);
-        color       : $white;
-        border-color: darken($youtube, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($youtube, 10%)!important;
+		color: $white;
+		border-color: darken($youtube, 10%);
+	}
 }
 
 .btn-instagram {
-    background  : $instagram;
-    border-color: $instagram;
-    color       : $white;
+	background: $instagram;
+	border-color: $instagram;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($instagram, 10%);
-        color       : $white;
-        border-color: darken($instagram, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($instagram, 10%)!important;
+		color: $white;
+		border-color: darken($instagram, 10%);
+	}
 }
 
 .btn-pinterest {
-    background  : $pinterest;
-    border-color: $pinterest;
-    color       : $white;
+	background: $pinterest;
+	border-color: $pinterest;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($pinterest, 10%);
-        color       : $white;
-        border-color: darken($pinterest, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($pinterest, 10%)!important;
+		color: $white;
+		border-color: darken($pinterest, 10%);
+	}
 }
 
 .btn-linkedin {
-    background  : $linkedin;
-    border-color: $linkedin;
-    color       : $white;
+	background: $linkedin;
+	border-color: $linkedin;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($linkedin, 10%);
-        color       : $white;
-        border-color: darken($linkedin, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($linkedin, 10%)!important;
+		color: $white;
+		border-color: darken($linkedin, 10%);
+	}
 }
 
 .btn-google-plus {
-    background  : $google-plus;
-    border-color: $google-plus;
-    color       : $white;
+	background: $google-plus;
+	border-color: $google-plus;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($google-plus, 10%);
-        color       : $white;
-        border-color: darken($google-plus, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($google-plus, 10%)!important;
+		color: $white;
+		border-color: darken($google-plus, 10%);
+	}
 }
 
 .btn-google {
-    background  : $google;
-    border-color: $google;
-    color       : $white;
+	background: $google;
+	border-color: $google;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($google, 10%);
-        color       : $white;
-        border-color: darken($google, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($google, 10%)!important;
+		color: $white;
+		border-color: darken($google, 10%);
+	}
 }
 
 .btn-snapchat {
-    background  : $snapchat;
-    border-color: $snapchat;
-    color       : $black;
+	background: $snapchat;
+	border-color: $snapchat;
+	color: $black;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($snapchat, 10%);
-        color       : $black;
-        border-color: darken($snapchat, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($snapchat, 10%)!important;
+		color: $black;
+		border-color: darken($snapchat, 10%);
+	}
 }
 
 .btn-whatsapp {
-    background  : $whatsapp;
-    border-color: $whatsapp;
-    color       : $white;
+	background: $whatsapp;
+	border-color: $whatsapp;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($whatsapp, 10%);
-        color       : $white;
-        border-color: darken($whatsapp, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($whatsapp, 10%)!important;
+		color: $white;
+		border-color: darken($whatsapp, 10%);
+	}
 }
 
 .btn-tumblr {
-    background  : $tumblr;
-    border-color: $tumblr;
-    color       : $white;
+	background: $tumblr;
+	border-color: $tumblr;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($tumblr, 10%);
-        color       : $white;
-        border-color: darken($tumblr, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($tumblr, 10%)!important;
+		color: $white;
+		border-color: darken($tumblr, 10%);
+	}
 }
 
 .btn-reddit {
-    background  : $reddit;
-    border-color: $reddit;
-    color       : $white;
+	background: $reddit;
+	border-color: $reddit;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($reddit, 10%);
-        color       : $white;
-        border-color: darken($reddit, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($reddit, 10%)!important;
+		color: $white;
+		border-color: darken($reddit, 10%);
+	}
 }
 
 .btn-spotify {
-    background  : $spotify;
-    border-color: $spotify;
-    color       : $white;
+	background: $spotify;
+	border-color: $spotify;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($spotify, 10%);
-        color       : $white;
-        border-color: darken($spotify, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($spotify, 10%)!important;
+		color: $white;
+		border-color: darken($spotify, 10%);
+	}
 }
 
 .btn-yahoo {
-    background  : $yahoo;
-    border-color: $yahoo;
-    color       : $white;
+	background: $yahoo;
+	border-color: $yahoo;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($yahoo, 10%);
-        color       : $white;
-        border-color: darken($yahoo, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($yahoo, 10%)!important;
+		color: $white;
+		border-color: darken($yahoo, 10%);
+	}
 }
 
 .btn-dribbble {
-    background  : $dribbble;
-    border-color: $dribbble;
-    color       : $white;
+	background: $dribbble;
+	border-color: $dribbble;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($dribbble, 10%);
-        color       : $white;
-        border-color: darken($dribbble, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($dribbble, 10%)!important;
+		color: $white;
+		border-color: darken($dribbble, 10%);
+	}
 }
 
 .btn-skype {
-    background  : $skype;
-    border-color: $skype;
-    color       : $white;
+	background: $skype;
+	border-color: $skype;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($skype, 10%);
-        color       : $white;
-        border-color: darken($skype, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($skype, 10%)!important;
+		color: $white;
+		border-color: darken($skype, 10%);
+	}
 }
 
 .btn-quora {
-    background  : $quora;
-    border-color: $quora;
-    color       : $white;
+	background: $quora;
+	border-color: $quora;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($quora, 10%);
-        color       : $white;
-        border-color: darken($quora, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($quora, 10%)!important;
+		color: $white;
+		border-color: darken($quora, 10%);
+	}
 }
 
 .btn-vimeo {
-    background  : $vimeo;
-    border-color: $vimeo;
-    color       : $white;
+	background: $vimeo;
+	border-color: $vimeo;
+	color: $white;
 
-    &:active,
-    &:focus,
-    &:hover {
-        background  : darken($vimeo, 10%);
-        color       : $white;
-        border-color: darken($vimeo, 10%);
-    }
+	&:active,
+	&:focus,
+	&:hover {
+		background: darken($vimeo, 10%)!important;
+		color: $white;
+		border-color: darken($vimeo, 10%);
+	}
 }
 
 .btn-check:checked + .btn-outline-primary,
@@ -1085,4 +1100,45 @@ button{
 	}
 }
 
-
+// override bootstrap buttons
+.btn-group{
+	// & > .btn:not(:last-child):not(:first-child):not(.dropdown-toggle){
+	// 	border-radius: 0 ;
+	// }
+	& > .btn:not(:last-child):not(.dropdown-toggle){
+		border-top-#{$dz-pos-right}-radius: 0;
+		border-bottom-#{$dz-pos-right}-radius: 0;
+		// border-top-#{$dz-pos-left}-radius: $radius;
+		// border-bottom-#{$dz-pos-left}-radius: $radius;
+	}
+	& > .btn.dropdown-toggle-split:first-child, .btn-group > .btn-group:not(:last-child) > .btn{
+		border-top-#{$dz-pos-right}-radius: 0;
+		border-bottom-#{$dz-pos-right}-radius: 0;
+		border-top-#{$dz-pos-left}-radius: $radius;
+		border-bottom-#{$dz-pos-left}-radius: $radius;
+	}
+	button.dropdown-toggle.dropdown-toggle-split:first-child{
+		border-top-#{$dz-pos-right}-radius: 0 !important;
+    	border-bottom-#{$dz-pos-right}-radius: 0 !important;
+		border-top-#{$dz-pos-left}-radius: $radius !important;
+		border-bottom-#{$dz-pos-left}-radius: $radius !important;
+	}
+	button.dropdown-toggle.dropdown-toggle-split{
+		border-top-#{$dz-pos-left}-radius: 0 !important;
+    	border-bottom-#{$dz-pos-left}-radius: 0 !important;
+		border-top-#{$dz-pos-right}-radius: $radius !important;
+		border-bottom-#{$dz-pos-right}-radius: $radius !important;
+	}
+	& > :not(.btn-check) + .btn{
+		border-top-#{$dz-pos-left}-radius: 0;
+    	border-bottom-#{$dz-pos-left}-radius: 0;
+		border-top-#{$dz-pos-right}-radius: $radius;
+		border-bottom-#{$dz-pos-right}-radius: $radius;
+	}
+	& > .btn-group:not(:first-child) > .btn{
+		border-top-#{$dz-pos-left}-radius: 0;
+    	border-bottom-#{$dz-pos-left}-radius: 0;
+		border-top-#{$dz-pos-right}-radius: $radius;
+		border-bottom-#{$dz-pos-right}-radius: $radius;
+	}
+}

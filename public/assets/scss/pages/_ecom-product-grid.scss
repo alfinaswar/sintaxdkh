@@ -11,7 +11,7 @@
 			content: "";
 			position: absolute;
 			top: 0;
-			left: -85%;
+			#{$dz-pos-left}: -85%;
 			z-index: 2;
 			display: block;
 			content: '';
@@ -33,12 +33,12 @@
 }
 @-webkit-keyframes shine {
 	100% {
-		left: 125%;
+		#{$dz-pos-left}: 125%;
 	}
 }
 @keyframes shine {
 	100% {
-		left: 125%;
+		#{$dz-pos-left}: 125%;
 	}
 }
 

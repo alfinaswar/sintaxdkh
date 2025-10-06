@@ -25,11 +25,7 @@
         max-width: 15.625rem;
         opacity: 1;
 
-        @at-root [direction="rtl"] & {
-            padding: 0.9375rem 3.125rem 0.9375rem 0.9375rem;
-            background-position: calc(100% - 0.9375rem);
-            text-align: right;
-        }
+       
 
         &:hover {
             box-shadow: none;
@@ -55,9 +51,3 @@
 
 }
 
-[direction="rtl"] {
-    .toast-top-right.demo_rtl_class {
-        left: 0.75rem;
-        right: auto;
-    }
-}

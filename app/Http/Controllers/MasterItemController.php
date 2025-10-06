@@ -18,9 +18,9 @@ class MasterItemController extends Controller
         // dd($data = Kuisoner::orderBy('id', 'desc')->get());
         if ($request->ajax()) {
             if (auth()->user()->hasRole('Admin')) {
-                $data = MasterItem::orderBy('id', 'desc');
+                $data = MasterItem::with('getRs')->orderBy('id', 'desc');
             } else {
-                $data = MasterItem::where('KodeRS', auth()->user()->KodeRS)
+                $data = MasterItem::with('getRs')->where('KodeRS', auth()->user()->KodeRS)
                     ->orderBy('id', 'desc');
             }
             return DataTables::of($data)
@@ -29,6 +29,9 @@ class MasterItemController extends Controller
                     $btn = '<a href="' . route('master-item.edit', encrypt($row->id)) . '" class="btn btn-warning btn-sm">Edit</a>';
                     $btn .= ' <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . encrypt($row->id) . '">Delete</button>';
                     return $btn;
+                })
+                ->editColumn('KodeRS', function ($row) {
+                    return $row->getRS->Nama;
                 })
                 ->rawColumns(['action'])
                 ->make(true);

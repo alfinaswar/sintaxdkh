@@ -2,7 +2,7 @@
 	h4{
 		img{
 			width: 22px;
-            margin-left: 8px;
+            margin-#{$dz-pos-left}: 8px;
 		}
 	}
 }
@@ -16,11 +16,11 @@
 	position: relative;
 	img{
 		position: absolute;
-		right: 0px;
+		#{$dz-pos-right}: 0px;
 		top: -28px;
 		width: 172px;
 		@include custommq($max:1600px){
-			right: -7px;
+			#{$dz-pos-right}: -7px;
 			top: -10px;
 			width: 150px;
 		}
@@ -78,10 +78,10 @@
 	margin-top: 2rem;
 	li{
 		font-weight: 400;
-        color: black;
+        color: var(--text-dark);
 		i{
 			color:var(--secondary);
-			margin-right:10px;
+			margin-#{$dz-pos-right}:10px;
 		}
 	}
 }
@@ -102,8 +102,8 @@
 		position:absolute;
 		content:"";
 		top:0;
-		left: -10px;
-		background:$border;
+		#{$dz-pos-left}: -10px;
+		background:var(--border);
 		height: 141%;
 		top: -89px;
 		width: 1px;
@@ -162,7 +162,7 @@
 		height: 0.625rem;
 		border-radius: 50%;
 		vertical-align: middle;
-		margin-right:5px;
+		margin-#{$dz-pos-right}:5px;
 	}
 }
 #ExtraData{
@@ -199,4 +199,7 @@
 	.clm-chart{
 		display:none;
 	}
+}
+#ProjectChart{
+	direction: ltr;
 }

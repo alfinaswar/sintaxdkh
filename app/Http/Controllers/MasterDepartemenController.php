@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataInventaris;
 use App\Models\MasterDepartemen;
 use App\Models\MasterUnit;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class MasterDepartemenController extends Controller
             if (auth()->user()->hasRole('Admin')) {
                 $data = MasterDepartemen::orderBy('id', 'desc');
             } else {
-                $data = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)
+                $data = MasterDepartemen::with('getRS')->where('KodeRS', auth()->user()->KodeRS)
                     ->orderBy('id', 'desc');
             }
             return DataTables::of($data)
@@ -29,6 +30,9 @@ class MasterDepartemenController extends Controller
                     $btn = '<a href="' . route('master-dept.edit', encrypt($row->id)) . '" class="btn btn-warning btn-sm">Edit</a>';
                     $btn .= ' <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . encrypt($row->id) . '">Delete</button>';
                     return $btn;
+                })
+                ->editColumn('KodeRS', function ($row) {
+                    return $row->getRS->Nama;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -104,7 +108,7 @@ class MasterDepartemenController extends Controller
         }
 
         $departemen = MasterDepartemen::find($id);
-        $isUsed = DataInventarisController::where('Departemen', $id)->exists();
+        $isUsed = DataInventaris::where('Departemen', $id)->exists();
 
         if ($isUsed) {
             return redirect()

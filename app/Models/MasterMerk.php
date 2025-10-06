@@ -11,4 +11,8 @@ class MasterMerk extends Model
 
     protected $table = 'master_merks';
     protected $guarded = ['id'];
+    public function getRs()
+    {
+        return $this->hasOne(MasterRs::class, 'id', 'KodeRS');
+    }
 }

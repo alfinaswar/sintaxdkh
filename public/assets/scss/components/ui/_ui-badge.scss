@@ -22,7 +22,7 @@
 		background: #ADB6C7;
 	}
 	&.badge-primary{
-		background-color:$primary-light!important;
+		background-color:$primary-light;
 		border-color:$primary-light;
 		color:$white;
 	}
@@ -103,23 +103,13 @@
 		color:$body-color;
 	}
 }
-.badge-xs {
-    font-size: 0.5rem;
-    padding: 0rem 0.3125rem;
-    line-height: 1rem;
-    height: 16px;
-    border-radius: 2px;
-}
+
 .badge-sm {
 	font-size: 0.6875rem;
     padding: 0.3125rem 0.5rem;
-    line-height: 0.6875rem;
+    line-height: 0.8875rem;
 }
-//.badge-md {
-//    font-size: 0.8125rem;
-//    padding: 0rem 0.5625rem;
-//    line-height: 1.5625rem;
-//}
+
 .badge-lg {
     font-size: 0.875rem;
     padding: 0rem 0.625rem;
@@ -180,6 +170,7 @@
 }
 .badge-light {
     background-color: $light;
+	color:#000;
 	&:hover{
 		color:$white;
 	}
@@ -196,6 +187,7 @@
 	@at-root [data-theme-version="dark"] & {
 		background-color: $success-opacity;
 		border-color: transparent;
+		color:$white;
 	}
 }
 .light.badge-info {
@@ -203,6 +195,8 @@
 	color:$info;
 	@at-root [data-theme-version="dark"] & {
 		background-color: $info-opacity;
+		border-color:transparent;
+		color:$white;
 	}
 }
 .light.badge-primary {
@@ -281,4 +275,26 @@
         }
     }
 }
- 
+ .badge-xs {
+	font-size: 0.5rem;
+	padding: 0rem 0.3125rem;
+	line-height: 1rem;
+	height: 16px;
+	border-radius: 2px; 
+
+	
+	&.style-1{
+		margin-#{$dz-pos-left}:1rem;
+	}
+}
+.new-badge {
+    animation: new 0.5s infinite;
+}
+
+
+@keyframes new {
+	0% {background-color: #6610f2;}
+   
+	50% {background-color: #ff9900;}
+	100% {background-color: #6610f2;}
+  }

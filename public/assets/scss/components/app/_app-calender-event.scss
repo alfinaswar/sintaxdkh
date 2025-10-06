@@ -13,17 +13,14 @@
 }
 
 .calendar {
-    float        : left;
+    float        : #{$dz-pos-left};
     margin-bottom: 0;
 }
 
 .fc-view {
     margin-top: 1.875rem;
 }
-.fc .fc-button-group{
-	margin-bottom:0.625rem;
 
-}
 
 .fc-toolbar {
     margin-bottom: 0.3125rem;
@@ -81,11 +78,6 @@
 }
 
 
-
-// .fc-widget-content {
-//     border: 0.0625rem solid #E5E5E5 !important;
-// }
-
 .fc th.fc-widget-header {
     background    : $border!important;
     font-size     : 0.875rem;
@@ -127,15 +119,15 @@
 }
 
 .fc-basic-view td.fc-week-number span {
-    padding-right: 0.3125rem;
+    padding-#{$dz-pos-right}: 0.3125rem;
 }
 
 .fc-basic-view td.fc-day-number {
-    padding-right: 0.3125rem;
+    padding-#{$dz-pos-right}: 0.3125rem;
 }
 
 #drop-remove {
-    margin-right: 0.5rem;
+    margin-#{$dz-pos-right}: 0.5rem;
     top   : 0.1875rem;
 }
 
@@ -150,16 +142,13 @@
 .fc-content {
     color: $white;
 }
-// .fc-widget-content {
-//     border: 0.0625rem solid $l-border!important;
-// }
+
 .fc th.fc-widget-header {
-    // background: $l-border!important;
     background: transparent !important;
 }
 .fc-button {
     background: $white;
-    // color: $l-ctl;
+   
 }
 .fc-state-hover {
     background: $white!important;
@@ -219,7 +208,7 @@
 		min-width:0.875rem;
 		height: 0.875rem;
 		border-radius: 50%;
-		margin-right: .9rem;
+		margin-#{$dz-pos-right}: .9rem;
 		position: relative;
 		top: 0.125rem;
 	}

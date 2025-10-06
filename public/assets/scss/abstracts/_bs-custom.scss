@@ -6,8 +6,6 @@ $ignore-warning             : true;
 $fn:'HelveticaNeue'; // fn = font normal 
 $fm:'HelveticaNeueMed'; // fm = font Medium 
 $border-radius: 0.75rem;
-// Body
-// $body-bg   : #C7EBFC;
 $body-bg   : #F3F0EC;
 $body-color: #888888;
 $headings-color: #374557;
@@ -15,10 +13,6 @@ $headings-color: #374557;
 $font-family-base: 'poppins', sans-serif,
 sans-serif;
 $headings-font-weight   : 500;
-// $headings-font-family:        $fm;
-
-
-
 
 $font-size-base     : 0.875rem !default;
 $font-weight-base   : 400 !default;
@@ -75,6 +69,17 @@ $grays: map-merge((
   $grays);
 
 
+  $blue  : #0d6efd;
+  $indigo: #6610f2 !default;
+  $purple: #6f42c1 !default;
+  $pink  : #FF1493 !default;
+  $red   : #EE3232;
+  $orange: #ff9900 !default;
+  $yellow: #FFFF00;
+  $green : #297F00;
+  $teal  : #20c997 !default;
+  $cyan  : #3065D0;
+  
 $muted     : #89879f;
 $text-muted: #89879f;
 $mine-shaft: #262626;
@@ -106,11 +111,13 @@ $success  : #3A9B94 !default;
 $info     : #58bad7 !default;
 $warning  : #FF9F00 !default;
 $danger   : #FF5E5E !default;
-$light    : #c8c8c8 !default;
+$light    : #e7e7e7 !default;
 $dark     : #6e6e6e;
 
 
 :root{
+
+	 
 	--primary: #{$primary};
 	--secondary: #{$secondary};
 	--secondary-dark: #{darken($secondary, 10)};
@@ -137,6 +144,31 @@ $dark     : #6e6e6e;
 	--font-family-base: #{$font-family-base};
 	--font-family-title: #{$font-family-base};
 	 --title: #{$headings-color}; 
+	 
+	 
+	  
+   //  sidebar header 
+   --dz-sidebar-width: 15rem;
+   --dz-header-height: 4.375rem;
+   --dz-sidebar-pos : absolute;
+   --dz-header-pos : relative;
+   --dz-side-nav-padding : .85rem 1.5rem;
+   --dz-side-nav-margin : 0 0;
+   --dz-side-nav-size : 0.875rem;
+   --dz-side-ico-size : 1.2rem;
+   --dz-side-ico-height : auto;
+   --dz-side-ico-width : auto;
+   --dz-side-sub_nav-padding : .4rem 1rem .4rem 3.6rem;
+   --dz-side-sub_nav-size : 0.85rem;
+   --dz-head-title-size : 1.25rem;
+   --dz-side-menu-direction : column;
+   --dz-side-menu-padding : 0 0;
+   --dz-side-profile : block;
+   --dz-side-info : block;
+   --dz-side-copyright : block;
+   --dz-list-space-x: 1.25rem;
+   --dz-list-space-y: .5rem;
+   --dz-list-size: .875rem;
 }
 
 

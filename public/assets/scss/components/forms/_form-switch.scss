@@ -2,10 +2,10 @@
 
     & + .switchery {
         border-radius: 3.125rem;
-        margin-right: 4rem;
+        margin-#{$dz-pos-right}: 4rem;
 
         @include media-breakpoint-down(sm) {
-            margin-right: 1rem;
+            margin-#{$dz-pos-right}: 1rem;
         }
 
         &>small {

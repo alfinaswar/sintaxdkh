@@ -21,16 +21,54 @@ class WorkOrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = WorkOrder::with('getDitugaskanOleh', 'getDitugaskanKe', 'getDepartemen')->orderBy('id', 'desc');
+            // Ambil filter kategori dari request
+            $kategori = $request->kategori;
+
+            if (auth()->user()->hasRole('Admin')) {
+                $data = WorkOrder::with('getDitugaskanOleh', 'getDitugaskanKe', 'getDepartemen')->orderBy('id', 'desc');
+            } else {
+                $data = WorkOrder::with('getDitugaskanOleh', 'getDitugaskanKe', 'getDepartemen')
+                    ->where('KodeRS', auth()->user()->KodeRS)
+                    ->orderBy('id', 'desc');
+            }
+
+            // Tambahkan filter kategori jika ada
+            if (!empty($kategori)) {
+                $data->where('KategoriKasus', $kategori);
+            }
+
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('KategoriKasus', function ($row) {
+                    if ($row->KategoriKasus == 'SOFTWARE') {
+                        return '<span class="badge bg-primary"><i class="fa fa-code"></i> SOFTWARE</span>';
+                    } elseif ($row->KategoriKasus == 'HARDWARE') {
+                        return '<span class="badge bg-info"><i class="fa fa-desktop"></i> HARDWARE</span>';
+                    } else {
+                        return '<span class="badge bg-secondary">' . e($row->KategoriKasus) . '</span>';
+                    }
+                })
+                ->addColumn('Prioritas', function ($row) {
+                    switch ($row->Prioritas) {
+                        case 'Kritis':
+                            return '<span class="badge bg-danger"><i class="fa fa-exclamation-triangle"></i> KRITIS</span>';
+                        case 'Tinggi':
+                            return '<span class="badge bg-warning text-dark"><i class="fa fa-arrow-up"></i> TINGGI</span>';
+                        case 'Sedang':
+                            return '<span class="badge bg-primary"><i class="fa fa-arrow-right"></i> SEDANG</span>';
+                        case 'Rendah':
+                            return '<span class="badge bg-success"><i class="fa fa-arrow-down"></i> RENDAH</span>';
+                        default:
+                            return '<span class="badge bg-secondary">' . e($row->Prioritas) . '</span>';
+                    }
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<a href="' . route('work-order.edit', encrypt($row->id)) . '" class="btn btn-warning btn-sm">Edit</a>';
                     $btn .= ' <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="' . encrypt($row->id) . '">Delete</button>';
                     $btn .= ' <a href="' . route('work-order.reply', encrypt($row->id)) . '" class="btn btn-success btn-sm">Respon</a>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['KategoriKasus', 'Prioritas', 'action'])
                 ->make(true);
         }
 
@@ -39,9 +77,9 @@ class WorkOrderController extends Controller
 
     public function create()
     {
-        $items = DataInventaris::with('getItem')->get();
-        $departemens = MasterDepartemen::get();
-        $staffs = User::get();
+        $items = DataInventaris::with('getItem')->where('KodeRS', auth()->user()->KodeRS)->get();
+        $departemens = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)->get();
+        $staffs = User::where('KodeRS', auth()->user()->KodeRS)->get();
         return view('work-order.create', compact('departemens', 'staffs', 'items'));
     }
 
@@ -98,21 +136,24 @@ class WorkOrderController extends Controller
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
-        $departemens = MasterDepartemen::get();
-        $staffs = User::get();
-        $workOrder = WorkOrder::findOrFail($id);
-        $units = MasterUnit::get();
-        $items = DataInventaris::with('getItem')->get();
+        $kodeRS = auth()->user()->KodeRS;
+
+        $departemens = MasterDepartemen::where('KodeRS', $kodeRS)->get();
+        $staffs = User::where('KodeRS', $kodeRS)->get();
+        $workOrder = WorkOrder::where('KodeRS', $kodeRS)->findOrFail($id);
+        $units = MasterUnit::where('KodeRS', $kodeRS)->get();
+        $items = DataInventaris::with('getItem')->where('KodeRS', $kodeRS)->get();
         return view('work-order.edit', compact('workOrder', 'departemens', 'staffs', 'units', 'items'));
     }
     public function reply($id)
     {
         $id = Crypt::decrypt($id);
-        $departemens = MasterDepartemen::get();
-        $staffs = User::get();
-        $workOrder = WorkOrder::findOrFail($id);
-        $units = MasterUnit::get();
-        $items = DataInventaris::with('getItem')->get();
+        $kodeRS = auth()->user()->KodeRS;
+        $departemens = MasterDepartemen::where('KodeRS', $kodeRS)->get();
+        $staffs = User::where('KodeRS', $kodeRS)->get();
+        $workOrder = WorkOrder::where('KodeRS', $kodeRS)->findOrFail($id);
+        $units = MasterUnit::where('KodeRS', $kodeRS)->get();
+        $items = DataInventaris::with('getItem')->where('KodeRS', $kodeRS)->get();
         return view('work-order.reply', compact('workOrder', 'departemens', 'staffs', 'units', 'items'));
     }
 

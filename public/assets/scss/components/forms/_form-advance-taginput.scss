@@ -17,7 +17,7 @@
         float                : left;
         padding              : .3rem .8rem;
         text-decoration      : none;
-        margin-right         : .5rem;
+        margin-#{$dz-pos-right}         : .5rem;
         margin-bottom        : .5rem;
         font-size            : 1.3rem;
         -webkit-border-radius: .3rem;
@@ -38,13 +38,13 @@
         padding      : .5rem;
         background   : transparent;
         outline      : 0;
-        margin-right : .5rem;
+        margin-#{$dz-pos-right} : .5rem;
         margin-bottom: .5rem;
     }
 
     div {
         display: block;
-        float  : left;
+        float  : #{$dz-pos-left};
     }
 }
 
