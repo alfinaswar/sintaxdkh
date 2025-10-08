@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterDepartemen;
+use App\Models\MasterItem;
+use App\Models\MasterMerk;
 use App\Models\MasterRs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,7 +25,13 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $data = User::orderBy('id', 'DESC')->paginate(5);
+        if (auth()->user()->hasRole('Rumah Sakit')) {
+            $data = User::where('KodeRS', auth()->user()->KodeRS)
+                ->orderBy('id', 'DESC')
+                ->paginate(5);
+        } else {
+            $data = User::orderBy('id', 'DESC')->paginate(5);
+        }
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -34,9 +43,16 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        $rs = MasterRs::orderBy('Nama', 'ASC')->get();
+        if (auth()->user()->hasRole('Rumah Sakit')) {
+            $rs = MasterRs::where('id', auth()->user()->KodeRS)->orderBy('Nama', 'ASC')->get();
+        } else {
+            $rs = MasterRs::orderBy('Nama', 'ASC')->get();
+        }
         $roles = Role::pluck('name', 'name')->all();
-        return view('users.create', compact('roles', 'rs'));
+        $items = MasterItem::get();
+        $merks = MasterMerk::get();
+        $departemens = MasterDepartemen::get();
+        return view('users.create', compact('roles', 'rs', 'items', 'merks', 'departemens'));
     }
 
     /**
@@ -85,12 +101,18 @@ class UserController extends Controller
      */
     public function edit($id): View
     {
-        $rs = MasterRs::orderBy('Nama', 'ASC')->get();
+        if (auth()->user()->hasRole('Rumah Sakit')) {
+            // Jika user login adalah Rumah Sakit, hanya ambil RS yang sesuai dengan KodeRS user
+            $rs = MasterRs::where('id', auth()->user()->KodeRS)->orderBy('Nama', 'ASC')->get();
+        } else {
+            // Jika bukan, ambil semua RS
+            $rs = MasterRs::orderBy('Nama', 'ASC')->get();
+        }
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-
-        return view('users.edit', compact('user', 'roles', 'userRole', 'rs'));
+        $departemens = MasterDepartemen::get();
+        return view('users.edit', compact('user', 'roles', 'userRole', 'rs', 'departemens'));
     }
 
     /**

@@ -65,16 +65,57 @@
 
                         <div class="mb-3 col-md-6">
                             <label for="roles" class="form-label">Role</label>
-                            <select name="roles[]" class="form-select" id="roles" required>
-                                <option value="" disabled selected>Pilih Role</option>
-                                @foreach($roles as $role)
-                                    <option value="{{ $role }}" {{ (collect(old('roles'))->contains($role)) ? 'selected' : '' }}>{{ $role }}</option>
-                                @endforeach
-                            </select>
+                            @if(auth()->user()->hasRole('Rumah Sakit'))
+                                <select name="roles[]" class="form-select" id="roles" required>
+                                    <option value="Rumah Sakit" selected>Rumah Sakit</option>
+                                </select>
+                                <input type="hidden" name="roles[]" value="Rumah Sakit">
+                            @else
+                                <select name="roles[]" class="form-select" id="roles" required>
+                                    <option value="" disabled selected>Pilih Role</option>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role }}" {{ (collect(old('roles'))->contains($role)) ? 'selected' : '' }}>{{ $role }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                             @error('roles')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <!-- Tambahan Departemen dan Unit -->
+                        <div class="mb-3 col-md-6">
+                            <label for="Departemen" class="form-label">Departemen</label>
+                            <select class="single-select-placeholder js-states @error('Departemen') is-invalid @enderror"
+                                id="Departemen" name="Departemen"
+                                data-url="{{ route('master-dept.get-item-by-departemen') }}">
+                                <option value="">Pilih Departemen</option>
+                                @foreach($departemens as $dept)
+                                    <option value="{{ $dept->id }}" {{ old('Departemen') == $dept->id ? 'selected' : '' }}>
+                                        {{ $dept->NamaDepartemen }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('Departemen')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label for="Unit" class="form-label">Unit</label>
+                            <select class="single-select-placeholder js-states @error('Unit') is-invalid @enderror"
+                                id="Unit" name="Unit">
+                                <option value="">Pilih Unit</option>
+                                @if(old('Unit'))
+                                    <option value="{{ old('Unit') }}" selected>{{ old('Unit') }}</option>
+                                @endif
+                            </select>
+                            @error('Unit')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <!-- End Tambahan Departemen dan Unit -->
+
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -87,3 +128,43 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#Departemen').on('change', function () {
+                let departemenId = $(this).val();
+                let url = $(this).data('url');
+
+                $('#Unit').empty().append('<option value="">Loading...</option>');
+
+                if (departemenId) {
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        data: { departemen_id: departemenId },
+                        success: function (response) {
+                            $('#Unit').empty().append('<option value="">Pilih Unit</option>');
+                            if (Array.isArray(response) && response.length > 0) {
+                                $.each(response, function (key, unit) {
+                                    $('#Unit').append(`<option value="${unit.id}">${unit.NamaUnit}</option>`);
+                                });
+                            } else {
+                                $('#Unit').append('<option value="">Tidak ada unit tersedia</option>');
+                            }
+                        },
+                        error: function () {
+                            $('#Unit').empty().append('<option value="">Gagal mengambil data</option>');
+                        }
+                    });
+                } else {
+                    $('#Unit').empty().append('<option value="">Pilih Unit</option>');
+                }
+            });
+
+            // Optional: Trigger change on page load if old('Departemen') is set, to repopulate Unit
+            @if(old('Departemen'))
+                $('#Departemen').trigger('change');
+            @endif
+                });
+    </script>
+@endpush

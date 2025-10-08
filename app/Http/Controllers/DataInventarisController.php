@@ -128,7 +128,7 @@ class DataInventarisController extends Controller
             'Unit' => 'required',
             'ManualBook' => 'nullable|file|mimes:pdf,doc,docx|max:5000',
             'Klasifikasi' => 'required',
-            'Gambar' => 'required|image|mimes:jpeg,png,jpg|max:5000'
+            'Gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         if ($validator->fails()) {

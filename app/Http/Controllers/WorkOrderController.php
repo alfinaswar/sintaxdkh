@@ -78,6 +78,7 @@ class WorkOrderController extends Controller
     public function create()
     {
         $items = DataInventaris::with('getItem')->where('KodeRS', auth()->user()->KodeRS)->get();
+        // dd($items);
         $departemens = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)->get();
         $staffs = User::where('KodeRS', auth()->user()->KodeRS)->get();
         return view('work-order.create', compact('departemens', 'staffs', 'items'));

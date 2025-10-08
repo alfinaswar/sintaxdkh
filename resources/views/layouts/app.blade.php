@@ -159,26 +159,49 @@
                             <li><a href="{{route('master-dept.index')}}">Dept / Unit</a></li>
                         </ul>
                     </li>
-                    <li class="menu-title">Manajemen User</li>
-                    <li>
-                        <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                            <div class="menu-icon">
-                                <!-- Icon: People (Bootstrap Icons) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M5.5 7A2.5 2.5 0 1 0 5.5 2a2.5 2.5 0 0 0 0 5zm5 0A2.5 2.5 0 1 0 10.5 2a2.5 2.5 0 0 0 0 5zM5.5 8C3.567 8 0 8.933 0 10.5V13h11v-2.5C11 8.933 7.433 8 5.5 8zm5 0c-.168 0-.335.006-.5.017V13h5v-2.5C15 8.933 11.433 8 10.5 8z"
-                                        fill="#90959F" />
-                                </svg>
-                            </div>
-                            <span class="nav-text">Manajemen User</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{route('users.index')}}">Data Pengguna</a></li>
-                            <li><a href="{{route('master-rs.index')}}">Master Rumah Sakit</a></li>
-                            <li><a href="{{route('roles.index')}}">Role</a></li>
-                        </ul>
-                    </li>
+                    @if(auth()->user() && auth()->user()->hasRole('Rumah Sakit'))
+                        <li class="menu-title">Manajemen User</li>
+
+                        <li>
+                            <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                                <div class="menu-icon">
+                                    <!-- Icon: People (Bootstrap Icons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 7A2.5 2.5 0 1 0 5.5 2a2.5 2.5 0 0 0 0 5zm5 0A2.5 2.5 0 1 0 10.5 2a2.5 2.5 0 0 0 0 5zM5.5 8C3.567 8 0 8.933 0 10.5V13h11v-2.5C11 8.933 7.433 8 5.5 8zm5 0c-.168 0-.335.006-.5.017V13h5v-2.5C15 8.933 11.433 8 10.5 8z"
+                                            fill="#90959F" />
+                                    </svg>
+                                </div>
+                                <span class="nav-text">Manajemen User</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{route('users.index')}}">Data Pengguna</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if(auth()->user() && auth()->user()->hasRole('Admin'))
+                        <li class="menu-title">Pengaturan Sistem</li>
+                        <li>
+                            <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                                <div class="menu-icon">
+                                    <!-- Icon: People (Bootstrap Icons) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M5.5 7A2.5 2.5 0 1 0 5.5 2a2.5 2.5 0 0 0 0 5zm5 0A2.5 2.5 0 1 0 10.5 2a2.5 2.5 0 0 0 0 5zM5.5 8C3.567 8 0 8.933 0 10.5V13h11v-2.5C11 8.933 7.433 8 5.5 8zm5 0c-.168 0-.335.006-.5.017V13h5v-2.5C15 8.933 11.433 8 10.5 8z"
+                                            fill="#90959F" />
+                                    </svg>
+                                </div>
+                                <span class="nav-text">Role and Permission</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{route('users.index')}}">Data Pengguna</a></li>
+                                <li><a href="{{route('master-rs.index')}}">Master Rumah Sakit</a></li>
+                                <li><a href="{{route('roles.index')}}">Role</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
