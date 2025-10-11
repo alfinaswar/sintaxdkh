@@ -162,7 +162,7 @@
                                         <div class="d-flex align-items-center w-100">
                                             <div
                                                 class="avatar avatar-md style-1 border border-opacity-10 rounded d-flex align-items-center justify-content-center bg-white">
-                                                <img src="images/logo/calibration.png" alt="">
+                                                <i class="fas fa-file-alt fa-2x text-primary"></i>
                                             </div>
                                             <div class="clearfix ms-3">
                                                 <h6 class="mb-0 fw-semibold">{{ $kalibrasi->NamaDokumen }}</h6>
@@ -184,36 +184,36 @@
                                         </div>
 
                                         <!-- Informasi Kalibrasi -->
-                                        < </div>
+                                    </div>
                                 @empty
-                                            <div
-                                                class="alert alert-primary border-primary outline-dashed py-3 px-3 mt-4 mb-0 text-black">
-                                                <strong class="text-primary">Tidak ada data kalibrasi</strong> untuk
-                                                ditampilkan.
-                                            </div>
-                                        @endforelse
-                                </div>
+                                    <div
+                                        class="alert alert-primary border-primary outline-dashed py-3 px-3 mt-4 mb-0 text-black">
+                                        <strong class="text-primary">Tidak ada data kalibrasi</strong> untuk
+                                        ditampilkan.
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
-
-
-
                     </div>
-                </div>
 
+
+
+                </div>
             </div>
 
         </div>
-        @if (session()->has('success'))
-            <script>
-                setTimeout(function () {
-                    swal.fire({
-                        title: "{{ __('Success!') }}",
-                        text: "{!! \Session::get('success') !!}",
-                        icon: "success",
-                        type: "success"
-                    });
-                }, 1000);
-            </script>
-        @endif
+
+    </div>
+    @if (session()->has('success'))
+        <script>
+            setTimeout(function () {
+                swal.fire({
+                    title: "{{ __('Success!') }}",
+                    text: "{!! \Session::get('success') !!}",
+                    icon: "success",
+                    type: "success"
+                });
+            }, 1000);
+        </script>
+    @endif
 @endsection
