@@ -72,8 +72,10 @@
                                                 <div class="d-flex justify-content-between mb-2">
                                                     <div class="d-flex align-items-center py-2">
                                                         <div class="d-inline-block position-relative">
-                                                            <img src="images/avatar/avatar1.jpg" alt=""
-                                                                class="rounded avatar avatar-md style-1">
+                                                            <span
+                                                                class="avatar avatar-md style-1 rounded d-flex align-items-center justify-content-center bg-light">
+                                                                <i class="fa-solid fa-gear fa-lg text-primary"></i>
+                                                            </span>
                                                         </div>
                                                         <div class="clearfix ms-2">
                                                             <h6 class="mb-0 fw-semibold">
@@ -147,7 +149,7 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div
                                                     class="avatar avatar-md style-1 border border-opacity-10 rounded d-flex align-items-center justify-content-center bg-white">
-                                                    <img src="images/logo/google.png" alt="">
+                                                    <i class="fa-solid fa-tools fa-2x text-primary"></i>
                                                 </div>
                                                 <div class="clearfix ms-3">
                                                     <h6 class="mb-0 fw-semibold">{{ $pm->getDikerjakanOleh->name }}</h6>
@@ -212,7 +214,7 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div
                                                     class="avatar avatar-md style-1 border border-opacity-10 rounded d-flex align-items-center justify-content-center bg-white">
-                                                    <img src="images/logo/calibration.png" alt="">
+                                                    <i class="fas fa-file-pdf fa-2x text-danger"></i>
                                                 </div>
                                                 <div class="clearfix ms-3">
                                                     <h6 class="mb-0 fw-semibold">{{ $kalibrasi->NamaDokumen }}</h6>
