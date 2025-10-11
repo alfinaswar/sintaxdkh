@@ -43,6 +43,7 @@ class PmController extends Controller
             $data['After'] = $fileName;
         }
         $data['DikerjakanOleh'] = auth()->user()->id;
+        $data['Tanggal'] = now();
         $data['KodeRS'] = auth()->user()->KodeRS ?? 'A';
         Pm::create($data);
         return redirect()->back()->with('suceess', 'Preventif Maintenance Berhasil Ditambahkan');
