@@ -4,14 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="robots" content="">
+    <meta name="keywords" content="SINTA, Digital Indonesia Hebat, Inventaris, Sistem Manajemen">
+    <meta name="author" content="DIGITAL INDONESIA HEBAT">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Yashadmin:Sales Management System Admin Bootstrap 5 Template">
-    <meta property="og:title" content="Yashadmin:Sales Management System Admin Bootstrap 5 Template">
-    <meta property="og:description" content="Yashadmin:Sales Management System Admin Bootstrap 5 Template">
-    <meta property="og:image" content="https:/yashadmin.dexignzone.com/xhtml/social-image.png">
+    <meta name="description" content="sistem SINTA BY DIGITAL INDONESIA HEBAT">
+    <meta property="og:title" content="sistem SINTA BY DIGITAL INDONESIA HEBAT">
+    <meta property="og:description" content="Sistem manajemen inventaris modern oleh DIGITAL INDONESIA HEBAT">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -149,7 +148,7 @@
                                             <div class="d-flex align-items-center w-100">
                                                 <div
                                                     class="avatar avatar-md style-1 border border-opacity-10 rounded d-flex align-items-center justify-content-center bg-white">
-                                                    <i class="fa-solid fa-tools fa-2x text-primary"></i>
+                                                    <i class="fa-solid fa-screwdriver-wrench fa-2x text-primary"></i>
                                                 </div>
                                                 <div class="clearfix ms-3">
                                                     <h6 class="mb-0 fw-semibold">{{ $pm->getDikerjakanOleh->name }}</h6>

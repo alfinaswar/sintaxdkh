@@ -36,7 +36,7 @@
                                 <div class="border outline-dashed rounded p-2 d-flex align-items-center me-3 mt-3">
                                     <div
                                         class="avatar avatar-md style-1 bg-primary-light text-primary rounded d-flex align-items-center justify-content-center">
-                                        <i class="fa-solid fa-users fa-lg"></i>
+                                        <i class="fa-solid fa-calendar-days fa-lg"></i>
                                     </div>
                                     <div class="clearfix ms-2">
                                         <h3 class="mb-0 fw-semibold lh-1">{{$data->TanggalBeli}}</h3>
