@@ -110,7 +110,7 @@
                                         <div class="row mt-3 w-100">
                                             <div class="col-6 text-center">
                                                 <h6 class="fw-bold">Before</h6>
-                                                @if ($pm->before)
+                                                @if ($pm->Before)
                                                     <img src="{{ asset('storage/preventif/before/' . $pm->Before) }}" alt="Before"
                                                         class="img-fluid rounded" style="max-height:100px;">
                                                 @else
@@ -119,7 +119,7 @@
                                             </div>
                                             <div class="col-6 text-center">
                                                 <h6 class="fw-bold">After</h6>
-                                                @if ($pm->after)
+                                                @if ($pm->After)
                                                     <img src="{{ asset('storage/preventif/after/' . $pm->After) }}" alt="Before"
                                                         class="img-fluid rounded" style="max-height:100px;">
                                                 @else
