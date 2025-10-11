@@ -38,7 +38,7 @@ class DataInventaris extends Model
 
     public function getWo()
     {
-        return $this->hasMany(WorkOrder::class, 'ItemID', 'ItemID');
+        return $this->hasMany(WorkOrder::class, 'ItemID', 'id');
     }
 
     public function getPm()
