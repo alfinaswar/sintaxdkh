@@ -237,58 +237,58 @@
                                             </div>
 
                                             <!-- Informasi Kalibrasi -->
-                                            < </div>
+                                        </div>
                                     @empty
-                                                <div
-                                                    class="alert alert-primary border-primary outline-dashed py-3 px-3 mt-4 mb-0 text-black">
-                                                    <strong class="text-primary">Tidak ada data kalibrasi</strong> untuk
-                                                    ditampilkan.
-                                                </div>
-                                            @endforelse
-                                    </div>
+                                        <div
+                                            class="alert alert-primary border-primary outline-dashed py-3 px-3 mt-4 mb-0 text-black">
+                                            <strong class="text-primary">Tidak ada data kalibrasi</strong> untuk
+                                            ditampilkan.
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-
-
-
                         </div>
+
+
+
                     </div>
-
                 </div>
 
             </div>
-            @if (session()->has('success'))
-                <script>
-                    setTimeout(function () {
-                        swal.fire({
-                            title: "{{ __('Success!') }}",
-                            text: "{!! \Session::get('success') !!}",
-                            icon: "success",
-                            type: "success"
-                        });
-                    }, 1000);
-                </script>
-            @endif
 
-            <div class="footer">
-                <div class="copyright">
-                    <p>Copyright © Developed by <a href="" target="_blank">DexignZone</a> 2023</p>
-                </div>
+        </div>
+        @if (session()->has('success'))
+            <script>
+                setTimeout(function () {
+                    swal.fire({
+                        title: "{{ __('Success!') }}",
+                        text: "{!! \Session::get('success') !!}",
+                        icon: "success",
+                        type: "success"
+                    });
+                }, 1000);
+            </script>
+        @endif
+
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright © Developed by <a href="" target="_blank">DexignZone</a> 2023</p>
             </div>
-            <!--**********************************
+        </div>
+        <!--**********************************
                         Footer end
                     ***********************************-->
 
-            <!--**********************************
+        <!--**********************************
                        Support ticket button start
                     ***********************************-->
 
-            <!--**********************************
+        <!--**********************************
                        Support ticket button end
                     ***********************************-->
 
 
-        </div>
+    </div>
     </div>
     </div>
     <!--**********************************
