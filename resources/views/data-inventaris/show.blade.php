@@ -23,8 +23,10 @@
                                             <div class="d-flex justify-content-between mb-2">
                                                 <div class="d-flex align-items-center py-2">
                                                     <div class="d-inline-block position-relative">
-                                                        <img src="images/avatar/avatar1.jpg" alt=""
-                                                            class="rounded avatar avatar-md style-1">
+                                                        <span
+                                                            class="rounded avatar avatar-md style-1 d-flex align-items-center justify-content-center bg-light">
+                                                            <i class="bi bi-gear-fill fs-3 text-secondary"></i>
+                                                        </span>
                                                     </div>
                                                     <div class="clearfix ms-2">
                                                         <h6 class="mb-0 fw-semibold">{{ $wo->getDitugaskanOleh->name }}</h6>
@@ -95,7 +97,7 @@
                                         <div class="d-flex align-items-center w-100">
                                             <div
                                                 class="avatar avatar-md style-1 border border-opacity-10 rounded d-flex align-items-center justify-content-center bg-white">
-                                                <img src="images/logo/google.png" alt="">
+                                                <i class="fa-solid fa-screwdriver-wrench fa-2x text-primary"></i>
                                             </div>
                                             <div class="clearfix ms-3">
                                                 <h6 class="mb-0 fw-semibold">{{ $pm->getDikerjakanOleh->name }}</h6>
