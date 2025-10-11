@@ -31,8 +31,9 @@
 
                             <div class="mb-3">
                                 <label for="dikerjakanOleh" class="form-label">Dikerjakan Oleh</label>
-                                <input type="text" class="form-control" id="dikerjakanOleh" name="DikerjakanOleh"
-                                    placeholder="Masukkan nama yang mengerjakan" value="" readonly>
+                                <input type="text" class="form-control" id="dikerjakanOleh" name="Dikerj23akanOleh"
+                                    placeholder="Masukkan nama yang mengerjakan" value="{{ auth()->user()->name }}"
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
