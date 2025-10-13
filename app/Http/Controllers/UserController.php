@@ -26,11 +26,14 @@ class UserController extends Controller
     public function index(Request $request): View
     {
         if (auth()->user()->hasRole('Rumah Sakit')) {
-            $data = User::where('KodeRS', auth()->user()->KodeRS)
+            $data = User::where('id', '!=', 1)
+                ->where('KodeRS', auth()->user()->KodeRS)
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
         } else {
-            $data = User::orderBy('id', 'DESC')->paginate(5);
+            $data = User::where('id', '!=', 1)
+                ->orderBy('id', 'DESC')
+                ->paginate(5);
         }
         return view('users.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
