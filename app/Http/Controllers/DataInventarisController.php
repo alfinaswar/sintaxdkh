@@ -49,32 +49,56 @@ class DataInventarisController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $id = encrypt($row->id);
+                    $user = auth()->user();
                     $btn = '
                         <div class="btn-group w-100">
                             <button type="button" class="btn btn-primary btn-md dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 Aksi
                             </button>
                             <ul class="dropdown-menu">
+                                ';
+
+                    // inventaris-index (Detail privilege)
+                    if ($user->can('inventaris-index')) {
+                        $btn .= '
                                 <li>
                                     <a class="dropdown-item" href="' . route('data-inventaris.show', $id) . '">
                                         <i class="fa fa-eye"></i> Detail
                                     </a>
-                                </li>
+                                </li>';
+                    }
+
+                    // inventaris-edit
+                    if ($user->can('inventaris-edit')) {
+                        $btn .= '
                                 <li>
                                     <a class="dropdown-item" href="' . route('data-inventaris.edit', $id) . '">
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
-                                </li>
+                                </li>';
+                    }
+
+                    // item-delete
+                    if ($user->can('item-delete')) {
+                        $btn .= '
                                 <li>
                                     <a class="dropdown-item btn-delete" href="javascript:void(0);" data-id="' . $id . '">
                                         <i class="fa fa-trash"></i> Hapus
                                     </a>
-                                </li>
+                                </li>';
+                    }
+
+                    // inventaris-create (assumed needed for cetak label, adjust if not desired)
+    
+                    $btn .= '
                                 <li>
                                     <a class="dropdown-item" href="' . route('data-inventaris.cetak-label', $id) . '" target="_blank">
                                         <i class="fa fa-print"></i> Cetak Label
                                     </a>
-                                </li>
+                                </li>';
+
+
+                    $btn .= '
                             </ul>
                         </div>
                     ';
