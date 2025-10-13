@@ -225,7 +225,7 @@
                                                 </div>
                                                 <div class="clearfix ms-auto">
                                                     @if ($kalibrasi->Dokumen)
-                                                        <a href="{{ asset('storage/dokumen/' . $kalibrasi->Dokumen) }}"
+                                                        <a href="{{ asset('storage/kalibrasi/' . $kalibrasi->Dokumen) }}"
                                                             target="_blank" class="btn btn-sm btn-outline-primary">
                                                             <i class="fas fa-file-pdf"></i> Lihat Sertifikat
                                                         </a>
