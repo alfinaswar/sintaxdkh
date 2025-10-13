@@ -109,9 +109,15 @@ class DataInventarisController extends Controller
 
     public function create()
     {
-        $items = MasterItem::get();
-        $merks = MasterMerk::get();
-        $departemens = MasterDepartemen::get();
+        if (auth()->user()->hasRole('Rumah Sakit')) {
+            $items = MasterItem::where('KodeRS', auth()->user()->KodeRS)->get();
+            $merks = MasterMerk::where('KodeRS', auth()->user()->KodeRS)->get();
+            $departemens = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)->get();
+        } else {
+            $items = MasterItem::get();
+            $merks = MasterMerk::get();
+            $departemens = MasterDepartemen::get();
+        }
         return view('data-inventaris.create', compact('items', 'merks', 'departemens'));
     }
 
@@ -265,9 +271,15 @@ class DataInventarisController extends Controller
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
-        $items = MasterItem::get();
-        $merks = MasterMerk::get();
-        $departemens = MasterDepartemen::get();
+        if (auth()->user()->hasRole('Rumah Sakit')) {
+            $items = MasterItem::where('KodeRS', auth()->user()->KodeRS)->get();
+            $merks = MasterMerk::where('KodeRS', auth()->user()->KodeRS)->get();
+            $departemens = MasterDepartemen::where('KodeRS', auth()->user()->KodeRS)->get();
+        } else {
+            $items = MasterItem::get();
+            $merks = MasterMerk::get();
+            $departemens = MasterDepartemen::get();
+        }
         $dataInventaris = DataInventaris::findOrFail($id);
         return view('data-inventaris.edit', compact('dataInventaris', 'items', 'merks', 'departemens'));
     }
