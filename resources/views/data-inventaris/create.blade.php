@@ -177,14 +177,6 @@
                 if (!departemenId) {
                     $('#Unit').empty().append('<option value="">Pilih Unit</option>');
                     $('#Unit').prop('disabled', true);
-
-                    Swal.fire({
-                        title: 'Pilih Departemen',
-                        text: 'Anda wajib memilih departemen terlebih dahulu.',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    });
-                    return;
                 } else {
                     $('#Unit').prop('disabled', false);
                     $('#Unit').empty().append('<option value="">Loading...</option>');
@@ -203,6 +195,20 @@
                             $('#Unit').empty().append('<option value="">Gagal mengambil data</option>');
                         }
                     });
+                }
+            });
+
+            // Saat Unit diklik tapi Departemen masih kosong
+            $('#Unit').on('focus', function () {
+                let departemenId = $('#Departemen').val();
+                if (!departemenId) {
+                    Swal.fire({
+                        title: 'Pilih Departemen',
+                        text: 'Anda wajib memilih departemen terlebih dahulu.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    $('#Unit').prop('disabled', true);
                 }
             });
 
