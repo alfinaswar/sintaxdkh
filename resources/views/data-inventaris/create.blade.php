@@ -174,9 +174,21 @@
                 let departemenId = $(this).val();
                 let url = $(this).data('url');
 
-                $('#Unit').empty().append('<option value="">Loading...</option>');
+                if (!departemenId) {
+                    $('#Unit').empty().append('<option value="">Pilih Unit</option>');
+                    $('#Unit').prop('disabled', true);
 
-                if (departemenId) {
+                    Swal.fire({
+                        title: 'Pilih Departemen',
+                        text: 'Anda wajib memilih departemen terlebih dahulu.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                } else {
+                    $('#Unit').prop('disabled', false);
+                    $('#Unit').empty().append('<option value="">Loading...</option>');
+
                     $.ajax({
                         url: url,
                         type: 'GET',
@@ -191,8 +203,6 @@
                             $('#Unit').empty().append('<option value="">Gagal mengambil data</option>');
                         }
                     });
-                } else {
-                    $('#Unit').empty().append('<option value="">Pilih Unit</option>');
                 }
             });
 
