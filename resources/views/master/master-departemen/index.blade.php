@@ -107,11 +107,13 @@
                     },
                     {
                         data: 'NamaDepartemen',
-                        name: 'NamaDepartemen'
+                        name: 'NamaDepartemen',
+                        defaultContent: '-'
                     },
                     {
                         data: 'KodeRS',
-                        name: 'KodeRS'
+                        name: 'KodeRS',
+                        defaultContent: '-'
                     },
                     {
                         data: 'action',
