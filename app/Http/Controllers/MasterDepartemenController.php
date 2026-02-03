@@ -32,7 +32,7 @@ class MasterDepartemenController extends Controller
                     return $btn;
                 })
                 ->editColumn('KodeRS', function ($row) {
-                    return $row->getRS->Nama;
+                    return $row->getRS->Nama??'-';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
