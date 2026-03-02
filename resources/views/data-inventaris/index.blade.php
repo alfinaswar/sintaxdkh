@@ -27,25 +27,48 @@
             <!-- Filter -->
 
             <div class="row mb-3">
-                <div class="col-md-3"><label for="filter_rs" class="form-label">Rumah Sakit</label><select
-                        class="single-select-placeholder js-states" id="filter_rs" name="filter_rs">
-                        <option value="">Semua Rumah Sakit</option>@foreach($rs as $r)<option value="{{ $r->id }}">
-                            {{ $r->Nama }}
-                        </option>@endforeach
-                    </select></div>
-                <div class="col-md-3"><label for="filter_item" class="form-label">Item</label><select
-                        class="single-select-placeholder js-states" id="filter_item" name="filter_item">
-                        <option value="">Semua Item</option>@foreach($items as $item)<option value="{{ $item->id }}">
-                            {{ $item->getItem->Nama }}
-                        </option>@endforeach
-                    </select></div>
-                <div class="col-md-3"><label for="filter_dept" class="form-label">Departemen</label><select
-                        class="single-select-placeholder js-states" id="filter_dept" name="filter_dept">
-                        <option value="">Semua Departemen</option>@foreach($departemen as $dept)<option
-                        value="{{ $dept->id }}">{{ $dept->NamaDepartemen }}</option>@endforeach
-                    </select></div>
-                <div class="col-md-3"><label for="filter_unit" class="form-label">Unit</label><select
-                        class="single-select-placeholder js-states" id="filter_unit " name="filter_unit">
+                <div class="col-md-3">
+                    <label for="filter_rs" class="form-label">Rumah Sakit</label>
+                    <select class="single-select-placeholder js-states" id="filter_rs" name="filter_rs">
+                        <option value="">Semua Rumah Sakit</option>
+                        @if(!empty($rs))
+                            @foreach($rs as $r)
+                                <option value="{{ $r->id ?? '' }}">
+                                    {{ $r->Nama ?? '-' }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="filter_item" class="form-label">Item</label>
+                    <select class="single-select-placeholder js-states" id="filter_item" name="filter_item">
+                        <option value="">Semua Item</option>
+                        @if(!empty($items))
+                            @foreach($items as $item)
+                                <option value="{{ $item->id ?? '' }}">
+                                    {{ $item->getItem->Nama ?? '-' }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="filter_dept" class="form-label">Departemen</label>
+                    <select class="single-select-placeholder js-states" id="filter_dept" name="filter_dept">
+                        <option value="">Semua Departemen</option>
+                        @if(!empty($departemen))
+                            @foreach($departemen as $dept)
+                                <option value="{{ $dept->id ?? '' }}">
+                                    {{ $dept->NamaDepartemen ?? '-' }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="filter_unit" class="form-label">Unit</label>
+                    <select class="single-select-placeholder js-states" id="filter_unit " name="filter_unit">
                         <option value="">Semua Unit</option>
                     </select>
                 </div>
