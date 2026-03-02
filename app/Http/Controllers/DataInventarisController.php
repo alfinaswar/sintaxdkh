@@ -89,7 +89,7 @@ class DataInventarisController extends Controller
                     }
 
                     // inventaris-create (assumed needed for cetak label, adjust if not desired)
-    
+
                     $btn .= '
                                 <li>
                                     <a class="dropdown-item" href="' . route('data-inventaris.cetak-label', $id) . '" target="_blank">
@@ -111,7 +111,7 @@ class DataInventarisController extends Controller
                     return '<a href="' . asset('storage/manualbook-inventaris/' . $row->ManualBook) . '" class="btn btn-info btn-sm" target="_blank">Download</a>';
                 })
                 ->addColumn('PosisiBarang', function ($row) {
-                    return $row->getDepartemen->NamaDepartemen . ' - ' . $row->getUnit->NamaUnit;
+                    return optional($row->getDepartemen)->NamaDepartemen . ' - ' . optional($row->getUnit)->NamaUnit;
                 })
                 ->rawColumns(['action', 'Gambar', 'ManualBook', 'PosisiBarang'])
                 ->make(true);
