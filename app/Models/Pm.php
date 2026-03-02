@@ -9,7 +9,7 @@ class Pm extends Model
 {
     use HasFactory;
 
-    protected $table = 'Pm';
+    protected $table = 'pm';
     protected $guarded = ['id'];
 
     public function getDikerjakanOleh()
