@@ -53,7 +53,7 @@
                         @endif
                     </select>
                 </div>
-                {{-- <div class="col-md-3">
+                <div class="col-md-3">
                     <label for="filter_dept" class="form-label">Departemen</label>
                     <select class="single-select-placeholder js-states" id="filter_dept" name="filter_dept">
                         <option value="">Semua Departemen</option>
@@ -65,7 +65,7 @@
                             @endforeach
                         @endif
                     </select>
-                </div> --}}
+                </div>
                 <div class="col-md-3">
                     <label for="filter_unit" class="form-label">Unit</label>
                     <select class="single-select-placeholder js-states" id="filter_unit " name="filter_unit">
