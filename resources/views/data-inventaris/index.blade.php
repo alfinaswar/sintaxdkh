@@ -189,39 +189,48 @@
                         },
                         {
                             data: 'NoInventaris',
-                            name: 'NoInventaris'
+                            name: 'NoInventaris',
+                            defaultContent: '-'
                         },
                         {
                             data: 'get_item.Nama',
-                            name: 'get_item.Nama'
+                            name: 'get_item.Nama',
+                            defaultContent: '-'
                         },
                         {
                             data: 'SerialNumber',
-                            name: 'SerialNumber'
+                            name: 'SerialNumber',
+                            defaultContent: '-'
                         },
                         {
                             data: 'get_merk.Merk',
-                            name: 'get_merk.Merk'
+                            name: 'get_merk.Merk',
+                            defaultContent: '-'
                         },
                         {
                             data: 'Tipe',
-                            name: 'Tipe'
+                            name: 'Tipe',
+                            defaultContent: '-'
                         },
                         {
                             data: 'TanggalBeli',
-                            name: 'TanggalBeli'
+                            name: 'TanggalBeli',
+                            defaultContent: '-'
                         },
                         {
                             data: 'PosisiBarang',
-                            name: 'PosisiBarang'
+                            name: 'PosisiBarang',
+                            defaultContent: '-'
                         },
                         {
                             data: 'ManualBook',
-                            name: 'ManualBook'
+                            name: 'ManualBook',
+                            defaultContent: '-'
                         },
                         {
                             data: 'Gambar',
-                            name: 'Gambar'
+                            name: 'Gambar',
+                            defaultContent: '-'
                         },
                         {
                             data: 'action',
