@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            @forelse ($data->getWo->take(3) as $wo)
+                            @forelse (optional($data->getWo)->take(3) ?? [] as $wo)
                                 <div class="col-lg-12">
                                     <div class="card card-comment">
                                         <div class="card-body pb-0">
@@ -29,8 +29,8 @@
                                                         </span>
                                                     </div>
                                                     <div class="clearfix ms-2">
-                                                        <h6 class="mb-0 fw-semibold">{{ $wo->getDitugaskanOleh->name }}</h6>
-                                                        <span class="fs-13">{{ $wo->created_at }}</span>
+                                                        <h6 class="mb-0 fw-semibold">{{ optional($wo->getDitugaskanOleh)->name ?? '-' }}</h6>
+                                                        <span class="fs-13">{{ $wo->created_at ?? '-' }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="clearfix ms-auto">
@@ -40,15 +40,15 @@
                                                 </div>
                                             </div>
                                             <div class="clearfix text-black">
-                                                <p class="fs-14 mb-2 fw-bold">{{ $wo->Judul }}</p>
-                                                <p class="fs-14 mb-2">{{ $wo->Kasus }}</p>
+                                                <p class="fs-14 mb-2 fw-bold">{{ $wo->Judul ?? '-' }}</p>
+                                                <p class="fs-14 mb-2">{{ $wo->Kasus ?? '-' }}</p>
                                             </div>
                                             <div class="clearfix pt-1">
                                                 <span class="badge badge-rounded badge-outline-primary me-2">
-                                                    {{ $wo->getDepartemen ? $wo->getDepartemen->NamaDepartemen : '-' }}
+                                                    {{ optional($wo->getDepartemen)->NamaDepartemen ?? '-' }}
                                                 </span>
                                                 <span class="badge badge-rounded badge-outline-primary">
-                                                    {{ $wo->getUnit ? $wo->getUnit->NamaUnit : '-' }}
+                                                    {{ optional($wo->getUnit)->NamaUnit ?? '-' }}
                                                 </span>
                                             </div>
                                             <div
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @forelse ($data->getPm->take(5) as $pm)
+                                @forelse (optional($data->getPm)->take(5) ?? [] as $pm)
                                     <div class="d-flex align-items-start py-3 hover-bg-light rounded my-1 flex-column">
                                         <div class="d-flex align-items-center w-100">
                                             <div
@@ -100,11 +100,11 @@
                                                 <i class="fa-solid fa-screwdriver-wrench fa-2x text-primary"></i>
                                             </div>
                                             <div class="clearfix ms-3">
-                                                <h6 class="mb-0 fw-semibold">{{ $pm->getDikerjakanOleh->name }}</h6>
-                                                <span class="fs-13">{{ $pm->DiselesaikanTanggal }}</span>
+                                                <h6 class="mb-0 fw-semibold">{{ optional($pm->getDikerjakanOleh)->name ?? '-' }}</h6>
+                                                <span class="fs-13">{{ $pm->DiselesaikanTanggal ?? '-' }}</span>
                                             </div>
                                             <div class="clearfix ms-auto">
-                                                <span class="badge badge-sm badge-success">{{ $pm->Status }}</span>
+                                                <span class="badge badge-sm badge-success">{{ $pm->Status ?? '-' }}</span>
                                             </div>
                                         </div>
 
@@ -112,7 +112,7 @@
                                         <div class="row mt-3 w-100">
                                             <div class="col-6 text-center">
                                                 <h6 class="fw-bold">Before</h6>
-                                                @if ($pm->Before)
+                                                @if (!empty($pm->Before))
                                                     <img src="{{ asset('storage/preventif/before/' . $pm->Before) }}" alt="Before"
                                                         class="img-fluid rounded" style="max-height:100px;">
                                                 @else
@@ -121,8 +121,8 @@
                                             </div>
                                             <div class="col-6 text-center">
                                                 <h6 class="fw-bold">After</h6>
-                                                @if ($pm->After)
-                                                    <img src="{{ asset('storage/preventif/after/' . $pm->After) }}" alt="Before"
+                                                @if (!empty($pm->After))
+                                                    <img src="{{ asset('storage/preventif/after/' . $pm->After) }}" alt="After"
                                                         class="img-fluid rounded" style="max-height:100px;">
                                                 @else
                                                     <p class="text-muted">Tidak ada gambar</p>
@@ -136,8 +136,6 @@
                                         <strong class="text-primary">Tidak ada data</strong> untuk ditampilkan.
                                     </div>
                                 @endforelse
-
-
                             </div>
                         </div>
                     </div>
@@ -157,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @forelse ($data->getKalibrasi->take(5) as $kalibrasi)
+                                @forelse (optional($data->getKalibrasi)->take(5) ?? [] as $kalibrasi)
                                     <div class="d-flex align-items-start py-3 hover-bg-light rounded my-1 flex-column">
                                         <div class="d-flex align-items-center w-100">
                                             <div
@@ -165,14 +163,14 @@
                                                 <i class="fas fa-file-alt fa-2x text-primary"></i>
                                             </div>
                                             <div class="clearfix ms-3">
-                                                <h6 class="mb-0 fw-semibold">{{ $kalibrasi->NamaDokumen }}</h6>
-                                                <span class="fs-13">{{ $kalibrasi->TanggalKalibrasi }}</span>
+                                                <h6 class="mb-0 fw-semibold">{{ $kalibrasi->NamaDokumen ?? '-' }}</h6>
+                                                <span class="fs-13">{{ $kalibrasi->TanggalKalibrasi ?? '-' }}</span>
                                             </div>
                                             <div class="clearfix ms-auto">
-                                                <span class="badge badge-sm badge-info">{{ $kalibrasi->StatusKalibrasi }}</span>
+                                                <span class="badge badge-sm badge-info">{{ $kalibrasi->StatusKalibrasi ?? '-' }}</span>
                                             </div>
                                             <div class="clearfix ms-auto">
-                                                @if ($kalibrasi->Dokumen)
+                                                @if (!empty($kalibrasi->Dokumen))
                                                     <a href="{{ asset('storage/dokumen/' . $kalibrasi->Dokumen) }}" target="_blank"
                                                         class="btn btn-sm btn-outline-primary">
                                                         <i class="fas fa-file-pdf"></i> Lihat Sertifikat

@@ -7,18 +7,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
             </div>
             <div class="modal-body">
-                <form id="kalibrasiForm" enctype="multipart/form-data" method="POST"
-                    action="{{ route('kalibrasi.store') }}">
+                <form id="kalibrasiForm" enctype="multipart/form-data" method="POST" action="{{ route('kalibrasi.store') }}">
                     @csrf
                     <div class="row">
                         <div class="mb-3">
                             <label for="itemID" class="form-label">Nama Item</label>
-                            <input type="text" class="form-control" value="{{ $data->getItem->Nama }}" readonly>
-                            <input type="text" class="form-control" id="itemID" name="ItemID"
-                                value="{{ $data->ItemID }}" hidden>
+                            <input type="text" class="form-control" value="{{ $data->getItem->Nama ?? '-' }}" readonly>
+                            <input type="hidden" class="form-control" id="itemID" name="ItemID" value="{{ $data->ItemID }}">
                         </div>
                         <div class="col-md-6">
-
                             <div class="mb-3">
                                 <label for="namaDokumen" class="form-label">Nama Dokumen</label>
                                 <input type="text" class="form-control" id="namaDokumen" name="NamaDokumen"
@@ -26,15 +23,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="tanggalBerlaku" class="form-label">Tanggal Berlaku</label>
-                                <input type="date" class="form-control" id="tanggalBerlaku" name="TanggalBerlaku"
-                                    required>
+                                <input type="date" class="form-control" id="tanggalBerlaku" name="TanggalBerlaku" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="tanggalBerakhir" class="form-label">Tanggal Berakhir</label>
-                                <input type="date" class="form-control" id="tanggalBerakhir" name="TanggalBerakhir"
-                                    required>
+                                <input type="date" class="form-control" id="tanggalBerakhir" name="TanggalBerakhir" required>
                             </div>
                             <div class="mb-3">
                                 <label for="dokumen" class="form-label">Dokumen</label>

@@ -11,17 +11,16 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-
                             <div class="mb-3">
                                 <label for="itemID" class="form-label">Nama Item</label>
-                                <input type="text" class="form-control" value="{{ $data->getItem->Nama }}" readonly>
-                                <input type="text" class="form-control" id="itemID" name="ItemID"
-                                    placeholder="Masukkan Item ID" value="{{ $data->ItemID }}" hidden>
+                                <input type="text" class="form-control" value="{{ $data->getItem->Nama ?? '-' }}" readonly>
+                                <input type="hidden" class="form-control" id="itemID" name="ItemID"
+                                    value="{{ $data->ItemID }}">
                             </div>
 
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
-                                <select class="form-control" id="status" name="Status">
+                                <select class="form-control" id="status" name="Status" required>
                                     <option value="">Pilih Status</option>
                                     <option value="Baik">Baik</option>
                                     <option value="Kurang Baik">Kurang Baik</option>
@@ -31,8 +30,7 @@
 
                             <div class="mb-3">
                                 <label for="dikerjakanOleh" class="form-label">Dikerjakan Oleh</label>
-                                <input type="text" class="form-control" id="dikerjakanOleh" name="Dikerj23akanOleh"
-                                    placeholder="Masukkan nama yang mengerjakan"
+                                <input type="text" class="form-control" id="dikerjakanOleh" name="DikerjakanOleh"
                                     value="{{ auth()->user()->name ?? '' }}" readonly>
                             </div>
                         </div>
@@ -42,8 +40,6 @@
                                 <input type="date" class="form-control" id="diselesaikanTanggal"
                                     name="DiselesaikanTanggal" value="{{ date('Y-m-d') }}" readonly>
                             </div>
-
-
 
                             <div class="mb-3">
                                 <label for="before" class="form-label">Before</label>
