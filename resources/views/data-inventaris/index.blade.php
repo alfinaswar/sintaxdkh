@@ -72,9 +72,9 @@
                         <option value="">Semua Unit</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 d-flex flex-column justify-content-end">
                     <label for="filter_jenis" class="form-label">Jenis</label>
-                    <select class="single-select-placeholder js-states" id="filter_jenis" name="filter_jenis">
+                    <select id="filter_jenis" name="filter_jenis" class="form-select" style="height: 38px;">
                         <option value="" selected>Semua Jenis</option>
                         <option value="1">Medis</option>
                         <option value="2">Non Medis (Umum)</option>
