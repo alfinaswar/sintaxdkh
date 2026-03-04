@@ -27,7 +27,7 @@
             <!-- Filter -->
 
             <div class="row mb-3">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="filter_rs" class="form-label">Rumah Sakit</label>
                     <select class="single-select-placeholder js-states" id="filter_rs" name="filter_rs">
                         <option value="">Semua Rumah Sakit</option>
@@ -40,7 +40,7 @@
                         @endif
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="filter_item" class="form-label">Item</label>
                     <select class="single-select-placeholder js-states" id="filter_item" name="filter_item">
                         <option value="">Semua Item</option>
@@ -53,7 +53,7 @@
                         @endif
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="filter_dept" class="form-label">Departemen</label>
                     <select class="single-select-placeholder js-states" id="filter_dept" name="filter_dept">
                         <option value="">Semua Departemen</option>
@@ -66,20 +66,26 @@
                         @endif
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="filter_unit" class="form-label">Unit</label>
-                    <select class="single-select-placeholder js-states" id="filter_unit " name="filter_unit">
+                    <select class="single-select-placeholder js-states" id="filter_unit" name="filter_unit">
                         <option value="">Semua Unit</option>
                     </select>
                 </div>
-                <div class="col-12 text-end mt-3">
+                <div class="col-md-2">
+                    <label for="filter_jenis" class="form-label">Jenis</label>
+                    <select class="single-select-placeholder js-states" id="filter_jenis" name="filter_jenis">
+                        <option value="3">Semua Jenis</option>
+                        <option value="1">Medis</option>
+                        <option value="2">Non Medis (Umum)</option>
+                    </select>
+                </div>
+                <div class="col-2 text-end mt-4">
                     <button type="button" id="btnFilter" class="btn btn-primary">Filter</button>
                     <span style="display:inline-block; width: 10px;"></span>
                     <button type="button" id="btnReset" class="btn btn-secondary">Reset</button>
                 </div>
             </div>
-
-
 
             <!-- End Filter -->
             <div class="table-responsive">
@@ -89,6 +95,7 @@
                             <th width="5%">No</th>
                             <th>No Inventaris</th>
                             <th>Item</th>
+                            <th>Jenis</th>
                             <th>Serial Number</th>
                             <th>Merk</th>
                             <th>Tipe</th>
@@ -138,8 +145,13 @@
                 $('#example').DataTable().ajax.reload();
             });
             $('#btnReset').on('click', function () {
-                $('#filterForm')[0].reset();
-                table.ajax.reload();
+                // Reset all filters including filter_jenis
+                $('#filter_rs').val('');
+                $('#filter_item').val('');
+                $('#filter_dept').val('');
+                $('#filter_unit').val('');
+                $('#filter_jenis').val('');
+                $('#example').DataTable().ajax.reload();
             });
             $('body').on('click', '.btn-delete', function () {
                 var id = $(this).data('id');
@@ -201,6 +213,7 @@
                             d.filter_item = $('#filter_item').val();
                             d.filter_dept = $('#filter_dept').val();
                             d.filter_unit = $('#filter_unit').val();
+                            d.filter_jenis = $('#filter_jenis').val();
                         }
                     },
                     columns: [
@@ -213,6 +226,11 @@
                         {
                             data: 'NoInventaris',
                             name: 'NoInventaris',
+                            defaultContent: '-'
+                        },
+                        {
+                            data: 'Jenis',
+                            name: 'Jenis',
                             defaultContent: '-'
                         },
                         {

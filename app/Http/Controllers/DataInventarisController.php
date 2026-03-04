@@ -44,6 +44,10 @@ class DataInventarisController extends Controller
             if ($request->filled('filter_unit')) {
                 $query->where('Unit', $request->filter_unit);
             }
+            // Tambahkan filter jenis
+            if ($request->filled('filter_jenis')) {
+                $query->where('Jenis', $request->filter_jenis);
+            }
             $data = $query->get();
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -104,6 +108,17 @@ class DataInventarisController extends Controller
                     ';
                     return $btn;
                 })
+                ->addColumn('Jenis', function ($row) {
+                    // Asumsikan field Jenis di database berisi 'MEDIS' atau 'NON-MEDIS'
+                    // Tampilkan 1 jika MEDIS, 2 jika NON-MEDIS
+                    if (strtoupper($row->Jenis) == '1') {
+                        return 'Medis';
+                    } elseif (strtoupper($row->Jenis) == '2' || strtoupper($row->Jenis) == '2') {
+                        return 'Non Medis';
+                    } else {
+                        return '-';
+                    }
+                })
                 ->addColumn('Gambar', function ($row) {
                     return '<img src="' . asset('storage/gambar-inventaris/' . $row->Gambar) . '" class="img-thumbnail" width="100">';
                 })
@@ -113,7 +128,7 @@ class DataInventarisController extends Controller
                 ->addColumn('PosisiBarang', function ($row) {
                     return optional($row->getDepartemen)->NamaDepartemen . ' - ' . optional($row->getUnit)->NamaUnit;
                 })
-                ->rawColumns(['action', 'Gambar', 'ManualBook', 'PosisiBarang'])
+                ->rawColumns(['action', 'Gambar', 'ManualBook', 'PosisiBarang','Jenis'])
                 ->make(true);
         }
         if (auth()->user()->hasRole('Admin')) {
@@ -156,6 +171,7 @@ class DataInventarisController extends Controller
             'TanggalBeli' => 'required|date',
             'Departemen' => 'required',
             'Unit' => 'required',
+            'Jenis' => 'required',
             'ManualBook' => 'nullable|file|mimes:pdf,doc,docx|max:5000',
             'Klasifikasi' => 'required',
             'Gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
@@ -192,6 +208,7 @@ class DataInventarisController extends Controller
             'SerialNumber' => $request->SerialNumber,
             'Merk' => $request->Merk,
             'Tipe' => $request->Tipe,
+            'Jenis' => $request->Jenis,
             'TanggalBeli' => $request->TanggalBeli,
             'Departemen' => $request->Departemen,
             'Unit' => $request->Unit,
@@ -319,6 +336,7 @@ class DataInventarisController extends Controller
             'TanggalBeli' => 'required|date',
             'Departemen' => 'required',
             'Unit' => 'required',
+            'Jenis' => 'required',
             'ManualBook' => 'nullable|file|mimes:pdf,doc,docx|max:5000',
             'Klasifikasi' => 'required',
             'Gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5000'
@@ -366,6 +384,7 @@ class DataInventarisController extends Controller
             'TanggalBeli' => $request->TanggalBeli,
             'Departemen' => $request->Departemen,
             'Unit' => $request->Unit,
+            'Jenis' => $request->Jenis,
             'ManualBook' => $manualBookPath,
             'Klasifikasi' => $request->Klasifikasi,
             'Keterangan' => $request->Keterangan,

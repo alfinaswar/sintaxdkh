@@ -11,9 +11,8 @@
                     @csrf
                     <div class="row">
 
-
                         <div class="mb-3 col-md-6">
-                            <label for="ItemID" class="form-label">Item</label>
+                            <label for="ItemID" class="form-label">Item <span style="color:red">*</span></label>
                             <select class="single-select-placeholder js-states @error('ItemID') is-invalid @enderror"
                                 id="single-select" name="ItemID">
                                 <option value="">Pilih Item</option>
@@ -29,7 +28,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="SerialNumber" class="form-label">Serial Number</label>
+                            <label for="SerialNumber" class="form-label">Serial Number <span style="color:red">*</span></label>
                             <input type="text" class="form-control @error('SerialNumber') is-invalid @enderror"
                                 id="SerialNumber" name="SerialNumber" value="{{ old('SerialNumber') }}"
                                 placeholder="Masukkan serial number">
@@ -39,7 +38,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="Merk" class="form-label">Merk</label>
+                            <label for="Merk" class="form-label">Merk <span style="color:red">*</span></label>
                             <select class="single-select-placeholder js-states @error('Merk') is-invalid @enderror"
                                 id="Merk" name="Merk">
                                 <option value="">Pilih Merk</option>
@@ -55,7 +54,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="Tipe" class="form-label">Tipe</label>
+                            <label for="Tipe" class="form-label">Tipe <span style="color:red">*</span></label>
                             <input type="text" class="form-control @error('Tipe') is-invalid @enderror" id="Tipe"
                                 name="Tipe" value="{{ old('Tipe') }}" placeholder="Masukkan tipe">
                             @error('Tipe')
@@ -64,7 +63,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="TanggalBeli" class="form-label">Tanggal Beli</label>
+                            <label for="TanggalBeli" class="form-label">Tanggal Beli <span style="color:red">*</span></label>
                             <input type="date" class="form-control @error('TanggalBeli') is-invalid @enderror"
                                 id="TanggalBeli" name="TanggalBeli" value="{{ old('TanggalBeli') }}">
                             @error('TanggalBeli')
@@ -72,8 +71,23 @@
                             @enderror
                         </div>
 
+                        <!-- Tambahan inputan Jenis (Medis/Non Medis) -->
                         <div class="mb-3 col-md-6">
-                            <label for="Departemen" class="form-label">Departemen</label>
+                            <label for="Jenis" class="form-label">Jenis <span style="color:red">*</span></label>
+                            <select class="single-select-placeholder js-states @error('Jenis') is-invalid @enderror"
+                                id="Jenis" name="Jenis">
+                                <option value="">Pilih Jenis</option>
+                                <option value="1" {{ old('Jenis') == '1' ? 'selected' : '' }}>Medis</option>
+                                <option value="2" {{ old('Jenis') == '2' ? 'selected' : '' }}>Non Medis (Umum)</option>
+                            </select>
+                            @error('Jenis')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <!-- END: Tambahan inputan Jenis -->
+
+                        <div class="mb-3 col-md-6">
+                            <label for="Departemen" class="form-label">Departemen <span style="color:red">*</span></label>
                             <select class="single-select-placeholder js-states @error('Departemen') is-invalid @enderror"
                                 id="Departemen" name="Departemen"
                                 data-url="{{ route('master-dept.get-item-by-departemen') }}">
@@ -90,7 +104,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="Unit" class="form-label">Unit</label>
+                            <label for="Unit" class="form-label">Unit <span style="color:red">*</span></label>
                             <select class="single-select-placeholder js-states @error('Unit') is-invalid @enderror"
                                 id="Unit" name="Unit">
                                 <option value="">Pilih Unit</option>
@@ -113,7 +127,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="Klasifikasi" class="form-label">Kategori Risiko</label>
+                            <label for="Klasifikasi" class="form-label">Kategori Risiko <span style="color:red">*</span></label>
                             <select class="single-select-placeholder js-states @error('Klasifikasi') is-invalid @enderror"
                                 id="Klasifikasi" name="Klasifikasi">
                                 <option value="">Pilih Kategori Risiko</option>
@@ -142,7 +156,7 @@
                         </div>
 
                         <div class="mb-3 col-md-6">
-                            <label for="Gambar" class="form-label">Gambar</label>
+                            <label for="Gambar" class="form-label">Gambar <span style="color:red">*</span></label>
                             <input type="file" class="form-control @error('Gambar') is-invalid @enderror" id="Gambar"
                                 name="Gambar" placeholder="Pilih file gambar" accept="image/*"
                                 onchange="previewImage(this)">
@@ -153,7 +167,6 @@
                                 <img id="preview" src="#" alt="Preview" style="max-width: 300px; display: none;">
                             </div>
                         </div>
-
 
                     </div>
 
@@ -217,7 +230,7 @@
         });
         function previewImage(input) {
             const preview = document.getElementById('preview');
-            if (input.files && input.files[0]) {
+            if (input && input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     preview.src = e.target.result;

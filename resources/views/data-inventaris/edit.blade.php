@@ -17,8 +17,9 @@
                             <select class="single-select-placeholder js-states @error('ItemID') is-invalid @enderror"
                                 id="single-select" name="ItemID">
                                 <option value="">Pilih Item</option>
-                                @foreach($items as $item)
-                                    <option value="{{ $item->id }}" {{ old('ItemID', $dataInventaris->ItemID) == $item->id ? 'selected' : '' }}>
+                                @foreach ($items as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ old('ItemID', $dataInventaris->ItemID) == $item->id ? 'selected' : '' }}>
                                         {{ $item->Nama }}
                                     </option>
                                 @endforeach
@@ -44,8 +45,9 @@
                             <select class="single-select-placeholder js-states @error('Merk') is-invalid @enderror"
                                 id="Merk" name="Merk">
                                 <option value="">Pilih Merk</option>
-                                @foreach($merks as $merk)
-                                    <option value="{{ $merk->id }}" {{ old('Merk', $dataInventaris->Merk) == $merk->id ? 'selected' : '' }}>
+                                @foreach ($merks as $merk)
+                                    <option value="{{ $merk->id }}"
+                                        {{ old('Merk', $dataInventaris->Merk) == $merk->id ? 'selected' : '' }}>
                                         {{ $merk->Merk }}
                                     </option>
                                 @endforeach
@@ -58,7 +60,8 @@
                         <div class="mb-3 col-md-6">
                             <label for="Tipe" class="form-label">Tipe</label>
                             <input type="text" class="form-control @error('Tipe') is-invalid @enderror" id="Tipe"
-                                name="Tipe" value="{{ old('Tipe', $dataInventaris->Tipe) }}" placeholder="Masukkan tipe">
+                                name="Tipe" value="{{ old('Tipe', $dataInventaris->Tipe) }}"
+                                placeholder="Masukkan tipe">
                             @error('Tipe')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -73,7 +76,22 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
+                        <!-- Tambahan inputan Jenis (Medis/Non Medis) -->
+                        <div class="mb-3 col-md-6">
+                            <label for="Jenis" class="form-label">Jenis <span style="color:red">*</span></label>
+                            <select class="single-select-placeholder js-states @error('Jenis') is-invalid @enderror"
+                                id="Jenis" name="Jenis">
+                                <option value="">Pilih Jenis</option>
+                                <option value="1" {{ old('Jenis', $dataInventaris->Jenis) == '1' ? 'selected' : '' }}>
+                                    Medis</option>
+                                <option value="2" {{ old('Jenis', $dataInventaris->Jenis) == '2' ? 'selected' : '' }}>
+                                    Non Medis (Umum)</option>
+                            </select>
+                            @error('Jenis')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <!-- END: Tambahan inputan Jenis -->
 
                         <div class="mb-3 col-md-3">
                             <label for="Departemen" class="form-label">Departemen</label>
@@ -81,8 +99,9 @@
                                 id="Departemen" name="Departemen"
                                 data-url="{{ route('master-dept.get-item-by-departemen') }}">
                                 <option value="">Pilih Departemen</option>
-                                @foreach($departemens as $dept)
-                                    <option value="{{ $dept->id }}" {{ old('Departemen', $dataInventaris->Departemen) == $dept->id ? 'selected' : '' }}>
+                                @foreach ($departemens as $dept)
+                                    <option value="{{ $dept->id }}"
+                                        {{ old('Departemen', $dataInventaris->Departemen) == $dept->id ? 'selected' : '' }}>
                                         {{ $dept->NamaDepartemen }}
                                     </option>
                                 @endforeach
@@ -97,8 +116,9 @@
                             <select class="single-select-placeholder js-states @error('Unit') is-invalid @enderror"
                                 id="Unit" name="Unit">
                                 <option value="">Pilih Unit</option>
-                                @if($dataInventaris->Unit)
-                                    <option value="{{ $dataInventaris->Unit }}" {{ old('Unit', $dataInventaris->Unit) == $dataInventaris->Unit ? 'selected' : '' }}>
+                                @if ($dataInventaris->Unit)
+                                    <option value="{{ $dataInventaris->Unit }}"
+                                        {{ old('Unit', $dataInventaris->Unit) == $dataInventaris->Unit ? 'selected' : '' }}>
                                         {{ $dataInventaris->getUnit->NamaUnit }}
                                     </option>
                                 @endif
@@ -113,7 +133,7 @@
                             <label for="ManualBook" class="form-label">Manual Book</label>
                             <input type="file" class="form-control @error('ManualBook') is-invalid @enderror"
                                 id="ManualBook" name="ManualBook" placeholder="Pilih file manual book">
-                            @if($dataInventaris->ManualBook)
+                            @if ($dataInventaris->ManualBook)
                                 <p class="mt-2">File saat ini: {{ $dataInventaris->ManualBook }}</p>
                             @endif
                             @error('ManualBook')
@@ -126,12 +146,22 @@
                             <select class="single-select-placeholder js-states @error('Klasifikasi') is-invalid @enderror"
                                 id="Klasifikasi" name="Klasifikasi">
                                 <option value="">Pilih Kategori Risiko</option>
-                                <option value="" {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == '' ? 'selected' : '' }}>None</option>
-                                <option value="HIGH-RISK" {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'HIGH-RISK' ? 'selected' : '' }}>High Risk</option>
-                                <option value="MEDIUM-RISK" {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'MEDIUM-RISK' ? 'selected' : '' }}>Medium Risk</option>
-                                <option value="LOW-TO-MEDIUM-RISK" {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'LOW-TO-MEDIUM-RISK' ? 'selected' : '' }}>Low to Medium
+                                <option value=""
+                                    {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == '' ? 'selected' : '' }}>None
+                                </option>
+                                <option value="HIGH-RISK"
+                                    {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'HIGH-RISK' ? 'selected' : '' }}>
+                                    High Risk</option>
+                                <option value="MEDIUM-RISK"
+                                    {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'MEDIUM-RISK' ? 'selected' : '' }}>
+                                    Medium Risk</option>
+                                <option value="LOW-TO-MEDIUM-RISK"
+                                    {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'LOW-TO-MEDIUM-RISK' ? 'selected' : '' }}>
+                                    Low to Medium
                                     Risk</option>
-                                <option value="LOW-RISK" {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'LOW-RISK' ? 'selected' : '' }}>Low Risk</option>
+                                <option value="LOW-RISK"
+                                    {{ old('Klasifikasi', $dataInventaris->Klasifikasi) == 'LOW-RISK' ? 'selected' : '' }}>
+                                    Low Risk</option>
                             </select>
                             @error('Klasifikasi')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -140,9 +170,8 @@
 
                         <div class="mb-3 col-md-6">
                             <label for="Keterangan" class="form-label">Keterangan</label>
-                            <textarea class="form-control @error('Keterangan') is-invalid @enderror" id="Keterangan"
-                                name="Keterangan" rows="3"
-                                placeholder="Masukkan keterangan">{{ old('Keterangan', $dataInventaris->Keterangan) }}</textarea>
+                            <textarea class="form-control @error('Keterangan') is-invalid @enderror" id="Keterangan" name="Keterangan"
+                                rows="3" placeholder="Masukkan keterangan">{{ old('Keterangan', $dataInventaris->Keterangan) }}</textarea>
                             @error('Keterangan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -150,10 +179,10 @@
 
                         <div class="mb-3 col-md-6">
                             <label for="Gambar" class="form-label">Gambar</label>
-                            <input type="file" class="form-control @error('Gambar') is-invalid @enderror" id="Gambar"
-                                name="Gambar" placeholder="Pilih file gambar" accept="image/*"
+                            <input type="file" class="form-control @error('Gambar') is-invalid @enderror"
+                                id="Gambar" name="Gambar" placeholder="Pilih file gambar" accept="image/*"
                                 onchange="previewImage(this)">
-                            @if($dataInventaris->Gambar)
+                            @if ($dataInventaris->Gambar)
                                 <div class="mt-2">
                                     <img src="{{ asset('storage/gambar-inventaris/' . $dataInventaris->Gambar) }}"
                                         alt="Current Image" style="max-width: 300px;">
@@ -163,7 +192,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <div class="mt-2">
-                                <img id="preview" src="#" alt="Preview" style="max-width: 300px; display: none;">
+                                <img id="preview" src="#" alt="Preview"
+                                    style="max-width: 300px; display: none;">
                             </div>
                         </div>
 
@@ -182,8 +212,8 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function () {
-            $('#Departemen').on('change', function () {
+        $(document).ready(function() {
+            $('#Departemen').on('change', function() {
                 let departemenId = $(this).val();
                 let url = $(this).data('url');
 
@@ -193,15 +223,20 @@
                     $.ajax({
                         url: url,
                         type: 'GET',
-                        data: { departemen_id: departemenId },
-                        success: function (response) {
+                        data: {
+                            departemen_id: departemenId
+                        },
+                        success: function(response) {
                             $('#Unit').empty().append('<option value="">Pilih Unit</option>');
-                            $.each(response, function (key, unit) {
-                                $('#Unit').append(`<option value="${unit.id}">${unit.NamaUnit}</option>`);
+                            $.each(response, function(key, unit) {
+                                $('#Unit').append(
+                                    `<option value="${unit.id}">${unit.NamaUnit}</option>`
+                                    );
                             });
                         },
-                        error: function () {
-                            $('#Unit').empty().append('<option value="">Gagal mengambil data</option>');
+                        error: function() {
+                            $('#Unit').empty().append(
+                                '<option value="">Gagal mengambil data</option>');
                         }
                     });
                 } else {
@@ -212,11 +247,12 @@
             //Function
             previewImage();
         });
+
         function previewImage(input) {
             const preview = document.getElementById('preview');
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
                 }
