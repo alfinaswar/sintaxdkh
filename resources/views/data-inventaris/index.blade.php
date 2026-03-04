@@ -75,7 +75,7 @@
                 <div class="col-md-2">
                     <label for="filter_jenis" class="form-label">Jenis</label>
                     <select class="single-select-placeholder js-states" id="filter_jenis" name="filter_jenis">
-                        <option value="3">Semua Jenis</option>
+                        <option value="" selected>Semua Jenis</option>
                         <option value="1">Medis</option>
                         <option value="2">Non Medis (Umum)</option>
                     </select>
