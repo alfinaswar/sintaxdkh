@@ -94,8 +94,8 @@
                         <tr>
                             <th width="5%">No</th>
                             <th>No Inventaris</th>
-                            <th>Item</th>
                             <th>Jenis</th>
+                            <th>Item</th>
                             <th>Serial Number</th>
                             <th>Merk</th>
                             <th>Tipe</th>
